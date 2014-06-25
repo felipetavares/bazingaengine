@@ -1,0 +1,53 @@
+/ InputSystem
+	+ think basic design
+	+ read events from main SDL event queue
+	+ mouse
+		+ support for movement and buttons
+		+ support for scrolling
+	+ keyboard
+	/ controller
+		+ support for buttons
+		+ support for axis
+		- support for hats
+	- read input layouts from file system
+	- save input layouts to the file system
++ FileSystemAPI
+	+ Plataform-independent File Paths
+	+ Verify if file exists
+	+ Delete file
+	+ Create File
+	+ Copy File
+	+ Move/Rename File
+	+ Get file data
+- Log Manager
+/ Video System
+	+ Move to proprier class
+	- make a drawing API
+	+ Font Rendering
++ Sound System
+- Settings System
+/ Assets System
+	+ Basic Thinking about how it will work
+	+ dump asset
+	+ need asset
+	+ get asset
+	+ load file thread
+		+ linux suport
+			+ threads are working
+			+ file loading 
+		+ windows support (now using SDL threads)
+/ Core
+	+ Initialize Systems
+		+ Verify the strange thing with filesystem api
+	+ Deinitialize systems
+	+ Add Objects
+	+ Remove Objects
+	+ Find Objects
+	+ Initialize Objects
+	+ Deinitialize Objects
+	/ Game loop with different 'modes'
+		+ simple game loop
+	+ Timelines
+		+ Basic 'time' class implemented
+		+ Complete timing API
+	+ get events and dispath over all subsystems

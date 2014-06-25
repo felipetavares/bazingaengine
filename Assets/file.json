@@ -1,0 +1,10 @@
+{
+	"Window": {
+		"WindowName": "Soft Spot: Chapter One",
+		"WindowSize": [800,600],
+		"Other"		: false,
+		"Something"	: null,
+		"Another"	: true,
+		"FloatingPoint": 0.345e-1
+	}
+}

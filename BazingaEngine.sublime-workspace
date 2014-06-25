@@ -1,0 +1,1518 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"text",
+				"texture"
+			],
+			[
+				"get",
+				"getKeyboard"
+			],
+			[
+				"GL_AP",
+				"GL_ALPHA_TEST"
+			],
+			[
+				"bring",
+				"bringBack"
+			],
+			[
+				"pro",
+				"progress"
+			],
+			[
+				"progress",
+				"_progress"
+			],
+			[
+				"file",
+				"filesystemManager"
+			],
+			[
+				"GL_ALP",
+				"GL_ALPHA_TEST"
+			],
+			[
+				"o",
+				"objects"
+			],
+			[
+				"se",
+				"setVisibility"
+			],
+			[
+				"w",
+				"widgets"
+			],
+			[
+				"Z",
+				"ZJoystick"
+			],
+			[
+				"_",
+				"_joystick"
+			],
+			[
+				"Cons",
+				"ConstantInterpolator"
+			],
+			[
+				"i",
+				"Interpolator"
+			],
+			[
+				"next",
+				"nextX"
+			],
+			[
+				"mouse",
+				"mouseButton"
+			],
+			[
+				"ht",
+				"html5"
+			],
+			[
+				"res",
+				"restore"
+			],
+			[
+				"key",
+				"keyboard"
+			],
+			[
+				"floo",
+				"floorPatter"
+			],
+			[
+				"exp",
+				"explode"
+			],
+			[
+				"render",
+				"renderClouds"
+			],
+			[
+				"expl",
+				"explode"
+			],
+			[
+				"dial",
+				"dialogNumber"
+			],
+			[
+				"dia",
+				"dialogNumber"
+			],
+			[
+				"po",
+				"positionAtDialog"
+			],
+			[
+				"fill",
+				"fillStyle"
+			],
+			[
+				"bo",
+				"bomb"
+			],
+			[
+				"com",
+				"combo"
+			],
+			[
+				"My",
+				"myScore"
+			],
+			[
+				"lister",
+				"listenerUp"
+			],
+			[
+				"hit",
+				"hitNum"
+			],
+			[
+				"con",
+				"continuousPeriod"
+			],
+			[
+				"las",
+				"lastBombUpdate"
+			],
+			[
+				"nex",
+				"nextY"
+			],
+			[
+				"bom",
+				"bombNear"
+			],
+			[
+				"can",
+				"canMoveTo"
+			],
+			[
+				"parti",
+				"particles"
+			],
+			[
+				"s",
+				"systems"
+			],
+			[
+				"explode",
+				"explodeTile"
+			],
+			[
+				"border",
+				"border-left"
+			],
+			[
+				"tempo",
+				"tempoInicial"
+			],
+			[
+				"tmpo",
+				"tempoInicial"
+			],
+			[
+				"expoo",
+				"explosoes"
+			],
+			[
+				"Explo",
+				"Explosao"
+			],
+			[
+				"ma",
+				"Math"
+			],
+			[
+				"cre",
+				"creditos"
+			],
+			[
+				"credi",
+				"creditoAtual"
+			],
+			[
+				"TP_",
+				"TP_PAREDE"
+			],
+			[
+				"ge",
+				"getObjetos"
+			],
+			[
+				"ca",
+				"carregar"
+			],
+			[
+				"pri",
+				"private"
+			],
+			[
+				"al",
+				"altura"
+			],
+			[
+				"Cred",
+				"CreditosIniciais"
+			],
+			[
+				"dese",
+				"desenhaTextoCentrado"
+			],
+			[
+				"I",
+				"IOException"
+			],
+			[
+				"cred",
+				"creditosIniciais"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"buffer",
+				"buffer_b"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/list.json",
+			"settings":
+			{
+				"buffer_size": 1164,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-up.anim",
+			"settings":
+			{
+				"buffer_size": 169,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-left.anim",
+			"settings":
+			{
+				"buffer_size": 171,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-down.anim",
+			"settings":
+			{
+				"buffer_size": 171,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZInputManager/ZInputManager.cpp",
+			"settings":
+			{
+				"buffer_size": 7537,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZTextManager/ZTextManager.h",
+			"settings":
+			{
+				"buffer_size": 1023,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZTextManager/ZTextManager.cpp",
+			"settings":
+			{
+				"buffer_size": 7615,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Main.cpp",
+			"settings":
+			{
+				"buffer_size": 4673,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZVideoManager/ZVideoManager.h",
+			"settings":
+			{
+				"buffer_size": 693,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/stdout.txt",
+			"settings":
+			{
+				"buffer_size": 12267,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/map.map",
+			"settings":
+			{
+				"buffer_size": 32131,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ZAssetsManager/ZAssetsManager.h",
+			"settings":
+			{
+				"buffer_size": 3351,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZEditor/ZEditor.h",
+			"settings":
+			{
+				"buffer_size": 358,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZFilesystemManager/ZFilesystemManager.cpp",
+			"settings":
+			{
+				"buffer_size": 4162,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZGUIManager/ZGUIManager.cpp",
+			"settings":
+			{
+				"buffer_size": 10207,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZEditor/ZEditor.cpp",
+			"settings":
+			{
+				"buffer_size": 11524,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZVideoManager/ZVideoManager.cpp",
+			"settings":
+			{
+				"buffer_size": 10393,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZInputManager/ZInputManager.h",
+			"settings":
+			{
+				"buffer_size": 2098,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZAssetsManager/ZAssetsManager.cpp",
+			"settings":
+			{
+				"buffer_size": 12212,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZGUIManager/ZGUIManager.h",
+			"settings":
+			{
+				"buffer_size": 3848,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ZEngine/ZEngine.cpp",
+			"settings":
+			{
+				"buffer_size": 12072,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/dump.json",
+		"/C/Users/Rachel/Desktop/Development/JSEngine2/web/main.js",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/stdout.txt",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/map.map",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/Assets/Animations/player-left.anim",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-up.anim",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/map.json",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/file.json",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/WhatINeedToDo.txt",
+		"/home/philips/development/webdomino/web/main.js",
+		"/home/philips/development/JSEngine2/web/main.js",
+		"/home/philips/development/JSEngine2/web/modules/math.js",
+		"/home/philips/development/JSEngine2/web/modules/map.js",
+		"/home/philips/development/JSEngine2/README.md",
+		"/home/philips/development/bomberman/web/modules/assets.js",
+		"/home/philips/development/bomberman/web/css/UI.css",
+		"/home/philips/development/bomberman/web/assets/images/floor/floor.png",
+		"/home/philips/development/JSEngine/modules/render.js",
+		"/home/philips/development/JSEngine/main.js",
+		"/home/philips/development/bomberman/web/html5.js",
+		"/home/philips/development/bomberman/web/modules/ui.js",
+		"/home/philips/development/bomberman/web/modules/animation.js",
+		"/home/philips/development/bomberman/web/modules/character.js",
+		"/home/philips/development/bomberman/web/main-sat.html",
+		"/home/philips/development/bomberman/web/modules/render.js",
+		"/home/philips/development/bomberman/web/backup.js",
+		"/home/philips/development/bomberman/web/jquery.js",
+		"/home/philips/development/bomberman/web/assets/list.js",
+		"/home/philips/development/bomberman/web/modules/list.js",
+		"/home/philips/development/bomberman/web/style.css",
+		"/home/philips/development/bomberman/web/main.html",
+		"/home/philips/development/bomberman/web/main.js",
+		"/home/philips/development/JSEngine/main.html",
+		"/home/philips/development/bomberman/web/game.js",
+		"/home/philips/development/bomberman/web/game.html",
+		"/home/philips/development/bomberman/web/physics.js",
+		"/home/philips/music/MIDI/experiments/The Bard's Song.csv",
+		"/home/philips/development/bomberman/bazingafive/bomberman/telas/Bomberman.java",
+		"/home/philips/development/ccsl/samanau_sat/trunk/hallib/hallib.c",
+		"/home/philips/development/bomberman/bazingafive/bomberman/Test.java",
+		"/home/philips/development/ccsl/projeto_samanau/branches/v1.0/js/drawgraph.js",
+		"/home/philips/development/ccsl/projeto_samanau/branches/v1.0/js/graph.js",
+		"/home/philips/development/ccsl/projeto_samanau/branches/v1.0/js/interpolation.js",
+		"/home/philips/development/bomberman/bazingafive/bomberman/janela",
+		"/home/philips/documents/school/prog/hq/story/Story.java",
+		"/home/philips/development/hourgame/html5.js/physics.js",
+		"/home/philips/development/hourgame/html5.js/html5.js",
+		"/home/philips/development/hourgame/html5.js/game.html",
+		"/home/philips/development/hourgame/html5.js/game.js",
+		"/home/philips/development/bomberman/bazingafive/bomberman/telas/Tela.java",
+		"/home/philips/development/bomberman/bazingafive/bomberman/telas/Menu.java",
+		"/home/philips/development/bomberman/bazingafive/bomberman/telas/Instrucoes.java",
+		"/home/philips/development/bomberman/bazingafive/bomberman/telas/Creditos.java",
+		"/home/philips/development/bomberman/bazingafive/bomberman/Jogo.java",
+		"/home/philips/development/bomberman/basingafive/bomberman/telas/Bomberman.java",
+		"/home/philips/development/bomberman/basingafive/bomberman/telas/Creditos.java",
+		"/home/philips/development/bomberman/basingafive/bomberman/telas/Instrucoes.java",
+		"/home/philips/development/bomberman/basingafive/bomberman/telas/Menu.java",
+		"/home/philips/development/bomberman/basingafive/bomberman/telas/Tela.java",
+		"/home/philips/development/bomberman/basingafive/bomberman/Jogo.java",
+		"/home/philips/development/bomberman/basingafive/Tela.java",
+		"/home/philips/development/bomberman/basingafive/Instrucoes.java",
+		"/home/philips/development/bomberman/basingafive/Creditos.java",
+		"/home/philips/development/bomberman/basingafive/Bomberman.java",
+		"/home/philips/development/bomberman/basingafive/Jogo.java",
+		"/home/philips/development/bomberman/basingafive/Menu.java",
+		"/home/philips/documents/school/prog/hq/Espada.java",
+		"/home/philips/documents/school/prog/hq/Cajado.java",
+		"/home/philips/documents/school/prog/hq/Colt.java",
+		"/home/philips/documents/school/prog/hq/Arma.java",
+		"/home/philips/documents/school/prog/hq/Story.java",
+		"/home/philips/documents/school/prog/hq/Personagem.java",
+		"/home/philips/development/ccsl/ijs/js/I.js",
+		"/home/philips/documents/school/prog/hq/Jogador.java",
+		"/home/philips/development/ccsl/ijs/ijs.html",
+		"/home/philips/development/ccsl/ijs/css/style.css",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/arduino/satellite.h",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/arduino/satellite.cpp",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/arduino/hallib.h",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/arduino/hallib.cpp",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/arduino/device.h",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/messages.ino",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/arduino/arduino.ino",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/hallib/hallib.cpp",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/hallib/hallib.h",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/arduino/ligth_driver.h",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/arduino.ino",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/scommp.cpp",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/scommp.h",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/satellite.cpp",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/satellite.h",
+		"/home/philips/development/ccsl/samanau_sat/trunk/ard_hallib/complete.with.sensors/limits.h",
+		"/home/philips/development/ccsl/projeto_samanau/trunk/arduino/arduino.ino",
+		"/home/philips/development/ccsl/ijs/jquery.js",
+		"/home/philips/development/ccsl/ijs/js/I.js~"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"C:\\Users\\Rachel\\Desktop\\Development\\IFGames\\BazingaEngine\\,*.cpp,*.h,",
+			"C:\\Users\\Rachel\\Desktop\\Development\\IFGames\\BazingaEngine\\,*.cpp,*.h,-*Box2D*",
+			"C:\\Users\\Rachel\\Desktop\\Development\\IFGames\\BazingaEngine\\,*.cpp,*.h",
+			"C:\\Users\\Rachel\\Desktop\\Development\\IFGames\\BazingaEngine\\Z*",
+			"C:\\Users\\Rachel\\Desktop\\Development\\IFGames\\BazingaEngine",
+			"/home/philips/development/bomberman/web",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"obj->graphic->texture->rheight",
+			"obj->graphic->texture->rwidth",
+			"obj->graphic->size->y",
+			"obj->graphic->size->x",
+			"width",
+			"obj->graphic->",
+			"button1",
+			"have",
+			"button1",
+			"button",
+			"erase",
+			"index",
+			"indexOf",
+			"erase",
+			"^.*$",
+			"remove",
+			" (",
+			"grid",
+			"panel",
+			"x",
+			"_w\\.",
+			"_m\\.",
+			"x",
+			"_z",
+			"_s",
+			"_p",
+			"keyboard",
+			"joystick",
+			"keyboard",
+			"mouse",
+			"joystick",
+			"mouse",
+			"player",
+			"^.*$",
+			"$.*^",
+			"^.*$",
+			"t",
+			"pyi",
+			"pxi",
+			"translate",
+			"x",
+			"\\[0",
+			"0",
+			"Glass",
+			"Page",
+			"client",
+			"offset",
+			"Player",
+			"for",
+			"\n				",
+			"tales",
+			"0",
+			"play",
+			"true",
+			"ignore",
+			"B",
+			"Floor",
+			"Frog",
+			"Player",
+			"Play",
+			"Tales",
+			"Player",
+			"\\[y",
+			"\\[x",
+			"Tales",
+			"AssetImage",
+			"AssetAudio",
+			"metal",
+			"wall",
+			"canMoveTo",
+			"can",
+			"Bomberman",
+			"TileMap",
+			"wall",
+			"tales",
+			"Bomb",
+			"Player",
+			"player",
+			"Tales",
+			"ha",
+			"adding",
+			"hide",
+			"Player",
+			"panel",
+			"Player",
+			"Tales",
+			"particles",
+			"\\(",
+			"explode",
+			"this\\.",
+			"this",
+			"wall",
+			"this",
+			"alert",
+			"27",
+			"public Parede",
+			"TP_PAREDE",
+			"mapa.getObjetos\\(x,y\\)",
+			"getObjetos",
+			"8",
+			"64",
+			"class Jogador",
+			"Explosao",
+			"explosao",
+			"mover",
+			"\\.explode",
+			"explode",
+			".desenhar",
+			"(Mapa mapa)\\) \\{",
+			"desenhar",
+			"getcomprimento",
+			"altura",
+			"desenhar",
+			"Bomba",
+			"(public int desenhar .*)\\)",
+			"Piso",
+			"Parede",
+			"parede",
+			"getObjeto",
+			"desenhado",
+			"15",
+			"16",
+			"desenhar",
+			"8",
+			"CreditosIniciais",
+			"number",
+			"basinga",
+			"Menu"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": true,
+		"regex": true,
+		"replace_history":
+		[
+			"texture->rheight",
+			"texture->rwidth",
+			"texture->height",
+			"texture->width",
+			"height",
+			"",
+			"entry",
+			"button3\nbutton3",
+			"ProgressBar",
+			"menu",
+			"y",
+			"_w->",
+			"_m->",
+			"y",
+			"z",
+			"s",
+			"p",
+			"mouse",
+			"keyboard",
+			"joystick",
+			"keyboard",
+			"mouse",
+			"joystick",
+			"keyboard",
+			"joystick",
+			"keyboard",
+			"syi",
+			"sxi",
+			"scale",
+			"y",
+			"[1",
+			"1",
+			"page",
+			"Page",
+			"client",
+			"boy",
+			"this.A",
+			"false",
+			"prevent",
+			"A",
+			"[this.y",
+			"[this.x",
+			"cloud",
+			"Cutscene",
+			"floor",
+			"wall",
+			"tales",
+			"hc",
+			"hb",
+			"GameMenu",
+			"this.particles",
+			"(map,",
+			"this.explode",
+			"",
+			"bomb",
+			"map",
+			"objetos",
+			"32",
+			"Mapa mapa, Bomberman bomberman) {",
+			"getComprimento",
+			"comprimento",
+			"$1, Mapa mapa)",
+			"Bomba",
+			"Piso",
+			"piso",
+			"getObjetos",
+			"executado",
+			"7",
+			"8",
+			"16",
+			"Menu",
+			"entrada",
+			"bazinga",
+			"Bomberman",
+			"Creditos",
+			"Instrucoes",
+			"%",
+			"li",
+			"this.$1",
+			"x1",
+			"SATELLITE",
+			"this.jDiv"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 10,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/list.json",
+					"settings":
+					{
+						"buffer_size": 1164,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								858,
+								858
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-up.anim",
+					"settings":
+					{
+						"buffer_size": 169,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								80,
+								80
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-left.anim",
+					"settings":
+					{
+						"buffer_size": 171,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								168,
+								168
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-down.anim",
+					"settings":
+					{
+						"buffer_size": 171,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								155,
+								155
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "ZInputManager/ZInputManager.cpp",
+					"settings":
+					{
+						"buffer_size": 7537,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2570,
+								2570
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2171.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "ZTextManager/ZTextManager.h",
+					"settings":
+					{
+						"buffer_size": 1023,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "ZTextManager/ZTextManager.cpp",
+					"settings":
+					{
+						"buffer_size": 7615,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 761.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Main.cpp",
+					"settings":
+					{
+						"buffer_size": 4673,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1427.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "ZVideoManager/ZVideoManager.h",
+					"settings":
+					{
+						"buffer_size": 693,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/stdout.txt",
+					"settings":
+					{
+						"buffer_size": 12267,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/map.map",
+					"settings":
+					{
+						"buffer_size": 32131,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "ZAssetsManager/ZAssetsManager.h",
+					"settings":
+					{
+						"buffer_size": 3351,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								854,
+								854
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 312.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "ZEditor/ZEditor.h",
+					"settings":
+					{
+						"buffer_size": 358,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "ZFilesystemManager/ZFilesystemManager.cpp",
+					"settings":
+					{
+						"buffer_size": 4162,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1141,
+								1141
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1128.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "ZGUIManager/ZGUIManager.cpp",
+					"settings":
+					{
+						"buffer_size": 10207,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 7347.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "ZEditor/ZEditor.cpp",
+					"settings":
+					{
+						"buffer_size": 11524,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "ZVideoManager/ZVideoManager.cpp",
+					"settings":
+					{
+						"buffer_size": 10393,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3416.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "ZInputManager/ZInputManager.h",
+					"settings":
+					{
+						"buffer_size": 2098,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								857,
+								857
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 760.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "ZAssetsManager/ZAssetsManager.cpp",
+					"settings":
+					{
+						"buffer_size": 12212,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 734.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "ZGUIManager/ZGUIManager.h",
+					"settings":
+					{
+						"buffer_size": 3848,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3223,
+								3223
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2977.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": "ZEngine/ZEngine.cpp",
+					"settings":
+					{
+						"buffer_size": 12072,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 728.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"map.map",
+				"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/map.map"
+			],
+			[
+				"s",
+				"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/stdout.txt"
+			],
+			[
+				"stdo",
+				"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/stdout.txt"
+			],
+			[
+				"std",
+				"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/stdout.txt"
+			],
+			[
+				"zeng",
+				"ZEngine/ZEngine.cpp"
+			],
+			[
+				"zasse",
+				"ZAssetsManager/ZAssetsManager.h"
+			],
+			[
+				"zfie",
+				"ZFilesystemManager/ZFilesystemManager.cpp"
+			],
+			[
+				"zen",
+				"ZEngine/ZEngine.cpp"
+			],
+			[
+				"z",
+				"ZGUIManager/ZGUIManager.cpp"
+			],
+			[
+				"zgui",
+				"ZGUIManager/ZGUIManager.cpp"
+			],
+			[
+				"zi",
+				"ZInputManager/ZInputManager.h"
+			],
+			[
+				"zvide",
+				"ZVideoManager/ZVideoManager.cpp"
+			],
+			[
+				"zin",
+				"ZInputManager/ZInputManager.cpp"
+			],
+			[
+				"mai",
+				"Main.cpp"
+			],
+			[
+				"zed",
+				"ZEditor/ZEditor.h"
+			],
+			[
+				"zvideo",
+				"ZVideoManager/ZVideoManager.cpp"
+			],
+			[
+				"",
+				"ZGUIManager/ZGUIManager.cpp"
+			],
+			[
+				"ma",
+				"Main.cpp"
+			],
+			[
+				"zv",
+				"ZVideoManager/ZVideoManager.h"
+			],
+			[
+				"zg",
+				"ZGUIManager/ZGUIManager.h"
+			],
+			[
+				"main",
+				"Main.cpp"
+			],
+			[
+				"text",
+				"ZTextManager/ZTextManager.h"
+			],
+			[
+				"ztext",
+				"ZTextManager/ZTextManager.cpp"
+			],
+			[
+				"zvi",
+				"ZVideoManager/ZVideoManager.cpp"
+			],
+			[
+				"zinput",
+				"ZInputManager/ZInputManager.h"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
