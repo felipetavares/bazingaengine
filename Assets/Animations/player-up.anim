@@ -1,7 +1,7 @@
 {
-	"file"		: 	".:Assets:Animations:PlayerSpriteAnim-002.png",
-	"width"		: 	32,
-	"height"	: 	64,
+	"file"		: 	".:Assets:Images:MaxUpAnim.png",
+	"width"		: 	26,
+	"height"	: 	26,
 	"direction"	: 	"forward",
 	"type"		:	"horizontal",
 	"duration"	: 	0.08,
