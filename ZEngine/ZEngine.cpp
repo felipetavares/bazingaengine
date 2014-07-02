@@ -78,6 +78,8 @@ ZEngine::ZEngine (bool _debug) {
 	camera			  = new ZCamera();
 	editor			  = new ZEditor();
 	guiManager		  = new ZGUIManager();
+	sceneManager		= new ZSceneManager();
+
 
 	guiManager->onclick = [] (ZUI::Widget* _w, ZMouse *_m) {
 		if (_m->pos.x >= _w->p.x && _m->pos.x <= _w->p.x+_w->s.x &&
@@ -107,6 +109,7 @@ ZEngine::~ZEngine () {
 	delete box2dWorld;
 	delete camera;
 
+	delete sceneManager;
 	delete guiManager;
 	delete filesystemManager;
 	delete assetsManager;

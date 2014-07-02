@@ -43,3 +43,6 @@ Icon
 
 # Backup files
 *~
+
+# VIM swp files
+*swp

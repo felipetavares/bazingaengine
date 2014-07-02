@@ -17,6 +17,7 @@ using namespace std;
 #include "../ZCamera/ZCamera.h"
 #include "../ZEditor/ZEditor.h"
 #include "../ZGUIManager/ZGUIManager.h"
+#include "../ZScene/ZScene.h"
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_opengl.h>
@@ -67,21 +68,22 @@ public:
 	bool editMode = false;
 
 	bool debug; // Debugging mode (set once, this can be changed)
-	ZUtil				*util 			   = NULL; // [0] OK, COMPLETE
-	ZFilesystemManager  *filesystemManager = NULL; // [0.1] OK, COMPLETE
-	ZJSON				*jsonManager	   = NULL; // [0.2] OK, Implementing
+	ZUtil			*util			= NULL; // [0] OK, COMPLETE
+	ZFilesystemManager	*filesystemManager	= NULL; // [0.1] OK, COMPLETE
+	ZJSON			*jsonManager		= NULL; // [0.2] OK, Implementing
 	//ZSettingsManager    *settingsManager   = NULL; // [.5] Uninplemented
 	//ZLogManager         *logManager        = NULL; // [1] Uninplemented
-	ZTextManager		*textManager	   = NULL;
-	ZAssetsManager      *assetsManager     = NULL; // [1.5] OK, COMPLETE
-	ZInputManager       *inputManager      = NULL; // [2] OK, COMPLETE
-	ZVideoManager       *videoManager      = NULL; // [2] OK, COMPLETE
-	ZAudioManager       *audioManager      = NULL; // [2] OK, COMPLETE
-	ZEditor				*editor			   = NULL;
-	ZGUIManager			*guiManager		   = NULL;
+	ZTextManager		*textManager		= NULL;
+	ZAssetsManager		*assetsManager		= NULL; // [1.5] OK, COMPLETE
+	ZInputManager		*inputManager		= NULL; // [2] OK, COMPLETE
+	ZVideoManager		*videoManager		= NULL; // [2] OK, COMPLETE
+	ZAudioManager		*audioManager		= NULL; // [2] OK, COMPLETE
+	ZEditor			*editor			= NULL;
+	ZGUIManager		*guiManager		= NULL;
 public:
-	ZCamera				*camera			   = NULL;
-	b2World				*box2dWorld		   = NULL; //
+	ZCamera			*camera			= NULL;
+	ZSceneManager		*sceneManager		= NULL; // Scenes
+	b2World			*box2dWorld		= NULL; // Physics
 
 	template <class Type>
 	ZObject* createObject () {

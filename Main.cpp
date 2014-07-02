@@ -160,15 +160,8 @@ int main (int,char**) {
 	Engine->addObject (object);
 	Engine->camera->playerOid = object->oid;
 
-	// Test code for JSON asset
-	long int scene = Engine->assetsManager->createAsset (ZFilePath(".:Assets:Scenes:Intro.scene"));
-	Engine->assetsManager->needAsset (scene);
-	auto sceneAsset = Engine->assetsManager->getAsset<ZJSONAsset*> (scene);
-
-
-	cout << "Intro Scene Name is: " << sceneAsset->getJSON()->get("name")
-	     << endl;
-
+	auto intro = new ZScene ("Intro.scene");
+	Engine->sceneManager->addScene (intro);
 
 	Engine->run();
 
