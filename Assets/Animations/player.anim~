@@ -1,9 +1,0 @@
-{
-	"file"		: 	".:Assets:Animations:PlayerSpriteAnim-001.png",
-	"width"		: 	32,
-	"height"	: 	64,
-	"direction"	: 	"forward",
-	"type"		:	"horizontal",
-	"duration"	: 	0.05,
-	"loop"		:	1
-}
