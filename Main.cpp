@@ -12,24 +12,27 @@ void loadAssets () {
 	ZjObject *jsonAssetList;
 	char *file;
 
-    // Load file
+	// Load file
 	if (Engine->filesystemManager->fileExists(ZFilePath(ASSETLIST_PATH))) {
-        file = Engine->filesystemManager->getFileData(ZFilePath(ASSETLIST_PATH));
-        file [Engine->filesystemManager->getFileSize(ZFilePath(ASSETLIST_PATH))] = 0;
-        string jsonStringAssetList = string (file);
+		file = Engine->filesystemManager->getFileData(ZFilePath(ASSETLIST_PATH));
+		file [Engine->filesystemManager->getFileSize(ZFilePath(ASSETLIST_PATH))] = 0;
+		string jsonStringAssetList = string (file);
 
-        jsonAssetList = Engine->jsonManager->parse (jsonStringAssetList);
+		jsonAssetList = Engine->jsonManager->parse (jsonStringAssetList);
 
-        for (int i=0;i<jsonAssetList->keys.size();i++) {
-            cout << "[INF] (AL: " << ASSETLIST_PATH << ") " << jsonAssetList->keys[i] << " " << jsonAssetList->values[i]->str << endl;
-            long int assetId = Engine->assetsManager->createAsset (jsonAssetList->values[i]->str);
-            Engine->assetsManager->needAsset (assetId);
-        }
+		for (int i=0;i<jsonAssetList->keys.size();i++) {
+			cout << "[INF] (AL: " << ASSETLIST_PATH
+			     << ") " <<
+			     jsonAssetList->keys[i] << " " <<
+			     jsonAssetList->values[i]->str << endl;
+			long int assetId = Engine->assetsManager->createAsset (jsonAssetList->values[i]->str);
+			Engine->assetsManager->needAsset (assetId);
+		}
 
-        delete jsonAssetList;
+		delete jsonAssetList;
 	} else {
-        cout << "[ERR] No AL file found!" << endl;
-    }
+        	cout << "[ERR] No AL file found!" << endl;
+	}
 }
 
 void createGUI () {
@@ -156,6 +159,16 @@ int main (int,char**) {
 
 	Engine->addObject (object);
 	Engine->camera->playerOid = object->oid;
+
+	// Test code for JSON asset
+	long int scene = Engine->assetsManager->createAsset (ZFilePath(".:Assets:Scenes:Intro.scene"));
+	Engine->assetsManager->needAsset (scene);
+	auto sceneAsset = Engine->assetsManager->getAsset<ZJSONAsset*> (scene);
+
+
+	cout << "Intro Scene Name is: " << sceneAsset->getJSON()->get("name")
+	     << endl;
+
 
 	Engine->run();
 

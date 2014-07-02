@@ -2,6 +2,7 @@
 #define ZASSETSMANAGER_H
 
 #include "../ZFilesystemManager/ZFilesystemManager.h"
+#include "../ZJSON/ZJSON.h"
 #include <vector>
 #include <iostream>
 #include <GL/gl.h>
@@ -17,10 +18,11 @@ protected:
 	long int aid;
 	ZFilePath path;
 public:
+	bool error;
 	bool loaded;
 	char *data;
 
-	enum Type {Texture=0,Font,Audio,Animation};
+	enum Type {Texture=0,Font,Audio,Animation,JSON};
 
 	Type type;
 
@@ -100,6 +102,17 @@ public:
 	void sync();
 };
 
+class ZJSONAsset: public ZAsset {
+	ZjObject *json;
+public:
+	ZJSONAsset (long int, ZFilePath);
+	~ZJSONAsset();
+
+	void load();
+
+	ZjObject* getJSON ();
+};
+
 class ZAssetsManager {
 	unordered_map <string, long int> assetPathToAid;
 
@@ -129,7 +142,8 @@ public:
 	template <class AssetType>
 	AssetType getAsset (long int _aid) {
 		while (true) {// blocks until asset isn't loaded
-			SDL_LockMutex(loadingAssetLock);
+            fflush (stdout);
+			//SDL_LockMutex(loadingAssetLock);
 				ZAsset *asset;
 				try {
 					asset = loadedAssets.at(_aid);
@@ -138,7 +152,8 @@ public:
 				}
 				if (asset != NULL)
 					return (AssetType)asset;
-			SDL_UnlockMutex(loadingAssetLock);
+			//SDL_UnlockMutex(loadingAssetLock);
+			SDL_Delay(50);
 		}
 	}
 	template <class AssetType>
@@ -158,7 +173,7 @@ public:
 		}
 
 		while (true) {// blocks until asset isn't loaded
-			SDL_LockMutex(loadingAssetLock);
+			//SDL_LockMutex(loadingAssetLock);
 				ZAsset *asset;
 				try {
 					asset = loadedAssets.at(aid);
@@ -168,7 +183,8 @@ public:
 				if (asset != NULL) {
 					return (AssetType)asset;
 				}
-			SDL_UnlockMutex(loadingAssetLock);
+			//SDL_UnlockMutex(loadingAssetLock);
+			SDL_Delay(50);
 		}
 	}
 	size_t getAssetSize (long int);

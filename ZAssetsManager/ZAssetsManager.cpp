@@ -10,6 +10,7 @@ ZAsset::ZAsset (long int _aid,ZFilePath _path) {
 	path = _path;
 	data = NULL;
 	loaded = false;
+	error = false;
 	aid = _aid;
 }
 
@@ -56,7 +57,8 @@ ZTextureAsset::~ZTextureAsset () {
 void ZTextureAsset::load () {
     if (!Engine->filesystemManager->fileExists(path)) {
         cout << "[ERR] [FILE NOT FOUND] " << ZAsset::path.getPath() << endl;
-        return;
+        error = true;
+	return;
     }
 
     surface = IMG_Load (ZAsset::path.getPath().c_str());
@@ -133,6 +135,58 @@ void ZTextureAsset::sync () {
 	loaded = true;
 }
 
+ZJSONAsset::ZJSONAsset (long int _id, ZFilePath _path):
+	ZAsset::ZAsset (_id,_path) {
+	type = ZAsset::JSON;
+	json = NULL;
+}
+
+ZJSONAsset::~ZJSONAsset () {
+	if (json != NULL)
+		delete json;
+}
+
+void ZJSONAsset::load () {
+	if (!Engine->filesystemManager->fileExists(path)) {
+		cout << "[ERR] [FILE NOT FOUND]" << path.getPath() << endl;
+		error = true;
+		loaded = false;
+		return;
+	}
+
+	cout << "[INF] [LOADING JSON...]" << endl;
+
+	// Já temos certeza de que o arquivo existe
+	// Começamos a carrega-lo
+
+	// Variável para armazenar os dados temporariamente
+	char* fileData;
+	// Lemos os dados do arquivo
+	fileData = Engine->filesystemManager->getFileData(path);
+	// Colocamos um caractere de finalização para tornar uma string válida
+	fileData [Engine->filesystemManager->getFileSize(path)] = 0;
+
+	cout << "[INF] [LOADED JSON FILE...]" << endl;
+
+	string stringFileData = string (fileData);
+
+	// Chamamos o serviço da própria engine para criar um objeto a
+	// partir dos dados lidos
+	json = Engine->jsonManager->parse (stringFileData);
+
+	cout << "[INF] [STRING PARSED]" << endl;
+
+	// Limpamos a memória utilizada
+	free (fileData);
+
+	// Avisamos que conseguimos carregar os dados
+	loaded = true;
+}
+
+ZjObject* ZJSONAsset::getJSON () {
+	return json;
+}
+
 // Initialize ZAsset and animation type
 ZAnimationAsset::ZAnimationAsset (long int _id, ZFilePath _path):
 	ZAsset::ZAsset (_id,_path) {
@@ -143,7 +197,8 @@ ZAnimationAsset::ZAnimationAsset (long int _id, ZFilePath _path):
 void ZAnimationAsset::load () {
     if (!Engine->filesystemManager->fileExists(path)) {
         cout << "[ERR] [FILE NOT FOUND] " << ZAsset::path.getPath() << endl;
-        return;
+	error = true;
+	return;
     }
 
     ZjObject *jsonAnimation;
@@ -154,6 +209,8 @@ void ZAnimationAsset::load () {
 
 	string jsonStringAnimation = string (file);
 	jsonAnimation = Engine->jsonManager->parse (jsonStringAnimation);
+
+	free(file);
 
 	imagePath = ZFilePath(jsonAnimation->get ("file")->str);
 
@@ -273,7 +330,8 @@ ZFontAsset::~ZFontAsset () {
 void ZFontAsset::load () {
     if (!Engine->filesystemManager->fileExists(path)) {
         cout << "[ERR] [FILE NOT FOUND] " << ZAsset::path.getPath() << endl;
-        return;
+	error = true;
+	return;
     }
 	font = TTF_OpenFont(path.getPath().c_str(), 64);
 	TTF_SetFontHinting (font, TTF_HINTING_LIGHT);
@@ -281,6 +339,7 @@ void ZFontAsset::load () {
 	if (!font) {
 		cout << "[ERR] " << "[CANNOT LOAD FONT]" << ZAsset::path.getPath()  << " [aid=" << ZAsset::aid << "]" << endl;
 		loaded = false;
+		error = true;
 		return;
 	}
 
@@ -343,6 +402,9 @@ long int ZAssetsManager::createAsset (ZFilePath _path) {
 		asset = new ZAudioAsset (maxAid++,_path);
 	else if (_path.getExtension() == "anim")
 		asset = new ZAnimationAsset (maxAid++,_path);
+	else if (_path.getExtension() == "json" ||
+		 _path.getExtension() == "scene")
+		asset = new ZJSONAsset (maxAid++, _path);
 	else
 		asset = new ZAsset (maxAid++,_path);
 
@@ -414,11 +476,11 @@ void ZAssetsManager::loadFiles () {
 	while (run) {
 		if (milis < 100)
 			milis ++; // Each time we give a plus in the wait time
-					  // This way we will no consume processor when
+					  // This way we will not consume processor when
 					  // there is nothing to load
 
 		SDL_LockMutex (loadingAssetLock);
-		while (loadingAssets.size() > 0) { // While something to load
+		if (loadingAssets.size() > 0) { // While something to load
 			auto asset = loadingAssets.begin()->second;
 
 			cout << "[INF] [LOADING FILE " << asset->getPath().getPath() << "] "
@@ -428,11 +490,15 @@ void ZAssetsManager::loadFiles () {
 
 			loadingAssets.erase (asset->getAid());
 
-			loadedAssets.insert (unordered_map <long int, ZAsset*>::value_type (asset->getAid(),asset));
-
-			cout << "[INF] [FILE LOADED]" << endl;
-
-			milis = 0; // Probabily we will have something to do very soon
+			if (!asset->error) {
+				loadedAssets.insert (unordered_map <long int, ZAsset*>::value_type (asset->getAid(),asset));
+				cout << "[INF] [FILE LOADED]" << endl;
+				milis = 0; // Probabily we will have something to do very soon
+			} else {
+				// We had a problem! We couldn't load an asset!
+				cout << "/!\\ [ERR] [FATAL] COULDN'T LOAD ASSET!" << asset->getPath().getPath() << endl;
+				Engine->quit();
+			}
 		}
 		SDL_UnlockMutex (loadingAssetLock);
 

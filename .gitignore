@@ -42,4 +42,4 @@ Icon
 .xcf
 
 # Backup files
-.*~
+*~

@@ -36,6 +36,9 @@
 			+ threads are working
 			+ file loading 
 		+ windows support (now using SDL threads)
+/ Scene support
+	- support for json assets
+	/ abstract scene class
 / Core
 	+ Initialize Systems
 		+ Verify the strange thing with filesystem api

@@ -131,8 +131,6 @@ void ZEngine::addObject (ZObject* object) {
 		cout << "[ADD] [OBJ] [id=" << object->oid << "]"<< endl;
 	object->init();
 	objects->push_back (object);
-
-	cout << object->graphic->animation << endl;
 }
 
 bool ZEngine::removeObject (long int oid) {
@@ -173,7 +171,7 @@ long int ZEngine::getObjectsNumber () {
 }
 
 void ZEngine::run () {
-	while (true) {
+	while (!exitFlag) {
 		fps->run();
 		float deltaTime = getDeltaTime();
 		realTime->setDelta (deltaTime);
