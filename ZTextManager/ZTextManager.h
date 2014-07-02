@@ -5,6 +5,7 @@
 #include <SDL/SDL_opengl.h>
 #include "../ZAssetsManager/ZAssetsManager.h"
 #include "../ZMath/Vec3.h"
+#include "../ZMath/Vec2.h"
 
 class ZUTF8Atlas {
     class GlyphPosition {
@@ -18,9 +19,9 @@ class ZUTF8Atlas {
 
     vector <uint16_t> characters;
     map <uint16_t, GlyphPosition> positions;
-    ZTextureAsset* texture;
     ZFontAsset font;
 public:
+    ZTextureAsset* texture;
 
     ZUTF8Atlas(ZFontAsset&);
     ~ZUTF8Atlas();
@@ -30,6 +31,7 @@ public:
 private:
     void update ();
     void render (string&);
+
 };
 
 class ZTextManager {

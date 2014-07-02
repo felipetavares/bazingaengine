@@ -275,7 +275,7 @@ void ZFontAsset::load () {
         cout << "[ERR] [FILE NOT FOUND] " << ZAsset::path.getPath() << endl;
         return;
     }
-	font = TTF_OpenFont(path.getPath().c_str(), 32);
+	font = TTF_OpenFont(path.getPath().c_str(), 64);
 	TTF_SetFontHinting (font, TTF_HINTING_LIGHT);
 	TTF_SetFontKerning (font, 0);
 	if (!font) {
