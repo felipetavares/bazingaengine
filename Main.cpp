@@ -32,47 +32,7 @@ void loadAssets () {
     }
 }
 
-int main (int,char**) {
-	ZFilePath mapPath = ZFilePath (".:Assets:map.map");
-
-	Engine = new ZEngine(false); // Parameter=debug
-	Engine->init();
-
-	// True is for debug mode, defalts to false
-	Engine->videoManager->setWindowTitleAndIcon ("Bazinga Engine Demo","Bazinga Engine");
-
-    // Load all assets
-    loadAssets();
-
-	Engine->loadMap (mapPath);
-
-	Engine->box2dWorld->SetGravity (b2Vec2 (0,0));
-	//Engine->box2dWorld->SetLinearDamping (0.5);
-
-	Engine->assetsManager->getAsset <ZAudioAsset*>(ZFilePath(".:Assets:Audio:wind:wind.ogg"))->loop();
-	Engine->textManager->initTextureMaps (Engine->assetsManager->getAsset <ZFontAsset*> (ZFilePath(".:Assets:Fonts:LinuxLibertine:LinLibertine_Mah.ttf")));
-
-	ZPlayerObject* object = (ZPlayerObject*)Engine->createObject <ZPlayerObject> ();
-
-	object->position->x = 0;
-	object->position->y = 0;
-	object->position->z = 0;
-	object->graphic->position->x = -10;
-	object->graphic->position->y = -22;
-	object->graphic->position->z = 0;
-
-	object->size->x = 8;
-	object->size->y = 4;
-	object->size->z = 0;
-	object->graphic->size->x = 26;
-	object->graphic->size->y = 26;
-	object->graphic->size->z = 0;
-
-	object->phys = true;
-
-	Engine->addObject (object);
-	Engine->camera->playerOid = object->oid;
-
+void createGUI () {
 	auto menu = new ZUI::Panel (Vec2(10,10),Vec2(400,300), 24);
 	auto objects = new ZUI::Panel (Vec2(ww-410,10),Vec2(400,300), 24);
 	auto button0 = new ZUI::wButton("Quit");
@@ -153,6 +113,49 @@ int main (int,char**) {
 
 	Engine->guiManager->addPanel(objects);
 	Engine->guiManager->addPanel(menu);
+
+}
+
+int main (int,char**) {
+	ZFilePath mapPath = ZFilePath (".:Assets:map.map");
+
+	Engine = new ZEngine(false); // Parameter=debug
+	Engine->init();
+
+	// True is for debug mode, defalts to false
+	Engine->videoManager->setWindowTitleAndIcon ("Bazinga Engine Demo","Bazinga Engine");
+
+	// Load all assets
+	loadAssets();
+
+	Engine->loadMap (mapPath);
+
+	Engine->box2dWorld->SetGravity (b2Vec2 (0,0));
+	//Engine->box2dWorld->SetLinearDamping (0.5);
+
+	Engine->assetsManager->getAsset <ZAudioAsset*>(ZFilePath(".:Assets:Audio:wind:wind.ogg"))->loop();
+	Engine->textManager->initTextureMaps (Engine->assetsManager->getAsset <ZFontAsset*> (ZFilePath(".:Assets:Fonts:LinuxLibertine:LinLibertine_Mah.ttf")));
+
+	ZPlayerObject* object = (ZPlayerObject*)Engine->createObject <ZPlayerObject> ();
+
+	object->position->x = 0;
+	object->position->y = 0;
+	object->position->z = 0;
+	object->graphic->position->x = -10;
+	object->graphic->position->y = -22;
+	object->graphic->position->z = 0;
+
+	object->size->x = 8;
+	object->size->y = 4;
+	object->size->z = 0;
+	object->graphic->size->x = 26;
+	object->graphic->size->y = 26;
+	object->graphic->size->z = 0;
+
+	object->phys = true;
+
+	Engine->addObject (object);
+	Engine->camera->playerOid = object->oid;
 
 	Engine->run();
 

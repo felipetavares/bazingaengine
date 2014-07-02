@@ -40,3 +40,6 @@ Icon
 
 # Art files
 .xcf
+
+# Backup files
+.*~
