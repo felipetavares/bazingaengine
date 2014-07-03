@@ -80,9 +80,9 @@ public:
 	ZAudioManager		*audioManager		= NULL; // [2] OK, COMPLETE
 	ZEditor			*editor			= NULL;
 	ZGUIManager		*guiManager		= NULL;
+	ZSceneManager		*sceneManager		= NULL; // Scenes
 public:
 	ZCamera			*camera			= NULL;
-	ZSceneManager		*sceneManager		= NULL; // Scenes
 	b2World			*box2dWorld		= NULL; // Physics
 
 	template <class Type>

@@ -13,7 +13,7 @@
 #define WIN32
 #endif
 
-#define WIN32
+//#define WIN32
 
 #include <iostream>
 #include <fcntl.h>	  // Low level file creation
@@ -21,6 +21,7 @@
 #include <sys/stat.h> // For Linux/Windows
 #include <cstdio>     // Files
 #include <unistd.h>   // Deleting
+#include <cstring>   // Memcpy
 #include <algorithm>
 using namespace std;
 

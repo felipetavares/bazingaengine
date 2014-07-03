@@ -1,5 +1,10 @@
 #include "ZFilesystemManager.h"
 
+#ifdef WIN32
+#else
+#define _stat stat
+#endif
+
 ZFilePath::ZFilePath (string _path) {
 	oPath = string(_path);
 	setPath (_path);

@@ -12,17 +12,28 @@ protected:
 public:
 	ZScene (string);
 
-	virtual void load();
+	virtual void load () = 0;
 	virtual void render () = 0;
 
 	void loadData(string);
 };
 
-class scnBaseScene: public ZScene {
+class scnGame: public ZScene {
 public:
-	scnBaseScene(string);
+	scnGame(string);
 	void load ();
 	void render ();
+};
+
+class scnIntro: public ZScene {
+    vector <ZjValue*> list;
+    vector <ZjValue*> time;
+    int currentText;
+    float changeTime;
+public:
+    scnIntro(string);
+    void load ();
+    void render ();
 };
 
 class ZSceneManager {
@@ -30,7 +41,7 @@ class ZSceneManager {
 	ZScene* currentScene;
 public:
 	ZSceneManager();
-	˜ZSceneManager();
+    ~ZSceneManager();
 
 	void addScene (ZScene*);
 	void setCurrentScene (ZScene*);

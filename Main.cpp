@@ -120,8 +120,6 @@ void createGUI () {
 }
 
 int main (int,char**) {
-	ZFilePath mapPath = ZFilePath (".:Assets:map.map");
-
 	Engine = new ZEngine(false); // Parameter=debug
 	Engine->init();
 
@@ -130,13 +128,11 @@ int main (int,char**) {
 
 	// Load all assets
 	loadAssets();
-
-	Engine->loadMap (mapPath);
+    //createGUI();
 
 	Engine->box2dWorld->SetGravity (b2Vec2 (0,0));
 	//Engine->box2dWorld->SetLinearDamping (0.5);
 
-	Engine->assetsManager->getAsset <ZAudioAsset*>(ZFilePath(".:Assets:Audio:wind:wind.ogg"))->loop();
 	Engine->textManager->initTextureMaps (Engine->assetsManager->getAsset <ZFontAsset*> (ZFilePath(".:Assets:Fonts:LinuxLibertine:LinLibertine_Mah.ttf")));
 
 	ZPlayerObject* object = (ZPlayerObject*)Engine->createObject <ZPlayerObject> ();
@@ -160,8 +156,9 @@ int main (int,char**) {
 	Engine->addObject (object);
 	Engine->camera->playerOid = object->oid;
 
-	auto intro = new ZScene ("Intro.scene");
-	Engine->sceneManager->addScene (intro);
+	auto introScene = new scnIntro ("Intro.scene");
+
+	Engine->sceneManager->addScene (introScene);
 
 	Engine->run();
 

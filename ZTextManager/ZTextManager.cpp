@@ -44,7 +44,6 @@ int ZUTF8Atlas::drawCharacter (uint16_t _character) {
 
         glAlphaFunc(GL_GREATER,0.5f);
         glEnable (GL_ALPHA_TEST);
-        glDisable (GL_BLEND);
 
 		glBegin(GL_QUADS);
 			glTexCoord2f (pX,pY); 		glVertex3f(0, 0, 0);
@@ -384,7 +383,7 @@ void ZUTF8Atlas::render (string& _text) {
     //    cout << "[INF] [CONV] [^2] {FAIL}" << endl;
     //}
 
-    SDL_SaveBMP (potSurface, "debug.bmp");
+    //SDL_SaveBMP (potSurface, "debug.bmp");
 
 	GLuint id;
 
@@ -417,6 +416,7 @@ void ZUTF8Atlas::render (string& _text) {
 ZTextManager::ZTextManager () {
 	defaultFont = NULL;
 	color.x = color.y = color.z = 0;
+	opacity = 1;
 	createColorShader();
 }
 
@@ -434,7 +434,11 @@ void ZTextManager::drawString (Vec3 _pos, string& _text, float _h) {
    float scale = (float)_h/32.0;
 
     glPushMatrix();
-        glColor3f (color.x,color.y,color.z);
+        if (opacity < 1)
+            glEnable (GL_BLEND);
+        else
+            glDisable (GL_BLEND);
+        glColor4f (color.x,color.y,color.z,opacity);
         glTranslatef (_pos.x, _pos.y, _pos.z);
         glScalef(scale,scale,scale);
         for (int i=0;i<_text.size();i++) {
@@ -473,7 +477,11 @@ void ZTextManager::drawStringCentered (Vec3 _pos, string& _text, float _h) {
     Vec2 size = Vec2(measureString(_text,_h),32.0);
 
     glPushMatrix();
-        glColor3f (color.x,color.y,color.z);
+        if (opacity < 1)
+            glEnable (GL_BLEND);
+        else
+            glDisable (GL_BLEND);
+        glColor4f (color.x,color.y,color.z,opacity);
         glTranslatef (_pos.x, _pos.y, _pos.z);
         glScalef(scale,scale,scale);
         glTranslatef (-size.x/2,-size.y/2,0);
@@ -491,6 +499,10 @@ void ZTextManager::drawStringCentered (Vec3 _pos, string& _text, float _h) {
 
 void ZTextManager::setColor (Vec3 _color) {
 	color = _color;
+}
+
+void ZTextManager::setOpacity (float _opacity) {
+    opacity = _opacity;
 }
 
 void ZTextManager::createColorShader () {

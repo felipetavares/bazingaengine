@@ -2,6 +2,7 @@
 #define TEXT_MANAGER_H
 
 #include <map>
+#include <stdexcept>
 #include <SDL/SDL_opengl.h>
 #include "../ZAssetsManager/ZAssetsManager.h"
 #include "../ZMath/Vec3.h"
@@ -38,6 +39,7 @@ class ZTextManager {
 	ZFontAsset *defaultFont;
     ZUTF8Atlas *utf8atlas;
 	Vec3 color;
+	float opacity;
 public:
 	ZTextManager();
 	~ZTextManager();
@@ -49,6 +51,7 @@ public:
 	void drawStringCentered (Vec3, string&, float);
 
 	void initTextureMaps (ZFontAsset*);
+    void setOpacity(float);
 private:
 	void createColorShader();
 };

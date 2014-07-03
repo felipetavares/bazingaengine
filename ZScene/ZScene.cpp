@@ -1,4 +1,5 @@
 #include "ZScene.h"
+#include "../ZEngine/ZEngine.h"
 
 ZScene::ZScene (string _name) {
 	loadData(_name);
@@ -14,7 +15,7 @@ ZSceneManager::ZSceneManager () {
 	currentScene = NULL;
 }
 
-˜ZSceneManager::ZSceneManager () {
+ZSceneManager::~ZSceneManager () {
 	for (auto scn :scenes) {
 		delete scn;
 	}
@@ -38,17 +39,53 @@ void ZSceneManager::render () {
 	}
 }
 
-scnBaseScene::scnBaseScene (string _name):
+scnIntro::scnIntro (string _name):
+    ZScene(_name) {
+    currentText = 0;
+}
+
+void scnIntro::load () {
+    list = data->getJSON()->get("text")->array->array;
+    time = data->getJSON()->get("time")->array->array;
+    changeTime = Engine->gameTime->currentTime+time[0]->number;
+}
+
+void scnIntro::render () {
+    //int w = Engine->videoManager->windowWidth;
+    //int h = Engine->videoManager->windowHeight;
+
+    if (Engine->gameTime->currentTime >= changeTime) {
+        if (currentText < list.size()-1)
+            currentText++;
+        else {
+            auto gameScene = new scnGame ("Game.scene");
+            Engine->sceneManager->addScene(gameScene);
+       }
+
+        if (currentText == list.size()-1) {
+            Engine->assetsManager->getAsset <ZAudioAsset*>(ZFilePath(".:Assets:Audio:wind:wind.ogg"))->loop();
+        }
+
+        changeTime = Engine->gameTime->currentTime+time[currentText]->number;
+    }
+
+    Engine->textManager->setOpacity (1);
+    Engine->textManager->setColor(Vec3(0,0,0));
+    Engine->textManager->drawStringCentered(Vec3(0,0,0), list[currentText]->str, 32);
+}
+
+scnGame::scnGame (string _name):
 	ZScene(_name) {
 }
 
-void scnBaseScene::load () {
-
+void scnGame::load () {
+	ZFilePath mapPath = ZFilePath (data->getJSON()->get("map")->str);
+	Engine->loadMap (mapPath);
 }
 
-void scnBaseScene::render () {
+void scnGame::render () {
    	long int i;
-	
+
 	float gloom = Engine->gameTime->currentTime/10;
 
 	if (Engine->editMode) {
@@ -56,7 +93,7 @@ void scnBaseScene::render () {
 	}
 
 	Engine->guiManager->render();
-	
+
 	ZCamera *camera = Engine->camera;
 	camera->run();
 
@@ -73,12 +110,12 @@ void scnBaseScene::render () {
 		gY = Engine->editor->gridSize->y;
 
 		float startX 	= ((int)-camera->position->x)%(int)(gX) - gX;
-		float endX 		= startX + windowWidth/camera->scale->x;
+		float endX 		= startX + Engine->videoManager->windowWidth/camera->scale->x;
 		float startY	= ((int)-camera->position->y)%(int)(gY) - gY;
-		float endY		= startY + windowHeight/camera->scale->y;
+		float endY		= startY + Engine->videoManager->windowHeight/camera->scale->y;
 
-		startX  -= (int)(windowWidth/2/camera->scale->x)/(int)gX  *(int)gX;
-		startY  -= (int)(windowHeight/2/camera->scale->y)/(int)gY *(int)gY;
+		startX  -= (int)(Engine->videoManager->windowWidth/2/camera->scale->x)/(int)gX  *(int)gX;
+		startY  -= (int)(Engine->videoManager->windowHeight/2/camera->scale->y)/(int)gY *(int)gY;
 
 		for (i=startX;i<=endX;i+=gX) {
 			glDisable (GL_TEXTURE_2D);
