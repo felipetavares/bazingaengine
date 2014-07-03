@@ -30,6 +30,7 @@ class scnIntro: public ZScene {
     vector <ZjValue*> time;
     int currentText;
     float changeTime;
+    float startTime;
 public:
     scnIntro(string);
     void load ();
@@ -39,11 +40,16 @@ public:
 class ZSceneManager {
 	vector <ZScene*> scenes;
 	ZScene* currentScene;
+	ZScene* nextScene;
+	float changeTime;
+	float startTime;
+	bool fadeOut;
 public:
 	ZSceneManager();
     ~ZSceneManager();
 
 	void addScene (ZScene*);
+	void addSceneFadeOut (ZScene*,float);
 	void setCurrentScene (ZScene*);
 	void render();
 };

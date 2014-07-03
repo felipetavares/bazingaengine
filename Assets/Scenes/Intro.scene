@@ -1,3 +1,22 @@
 {
-	"name": "Teste de Introdução"
+	"time": [
+		5,
+		3,
+		5,
+		10,
+		10,
+		5,
+		5,
+		5,
+	],
+	"text": [
+		"IF Games",
+		"Made in Bazinga Engine",
+		" ",
+		"GIBÃO",
+		"O segredo da caatinga",
+		"Julho",
+		"1938",
+		"Semiárido Nordestino"
+	]
 }

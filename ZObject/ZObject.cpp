@@ -7,9 +7,9 @@
 
 #define M_PI 3.14159265358979323846
 
-ZObject::ZObject (	long int _oid,
-					Vec3 _position,
-					Vec3 _rotation) {
+ZObject::ZObject (long int _oid,
+		  Vec3 _position,
+		  Vec3 _rotation) {
 	oid = _oid;
 
 	position = new Vec3 (_position);
@@ -181,12 +181,44 @@ void ZFloorObject::init () {
 	delete def;
 }
 
+PO::Matches::Matches ():
+    PO::Object(Engine->assetsManager->getAsset<ZTextureAsset*>(ZFilePath(".:Assets:Images:bush:jurema01.png"))) {
+
+}
+
+void PO::Matches::action (ZPlayerObject* _player, vector <Object*> _interactions) {
+
+}
+
+string PO::Matches::getName() {
+
+}
+
+PO::Object::Object (ZTextureAsset *_texture) {
+	texture = texture;
+}
+
+void PO::Object::draw (Vec3 _pos) {
+	glPushMatrix();
+		glTranslatef (_pos.x, _pos.y, _pos.z);
+
+		glBindTexture (GL_TEXTURE_2D, texture->id);
+		glBegin(GL_QUADS);
+		//	glTexCoord2f (0,0); glVertex3f(0, 0, 0);
+		//	glTexCoord2f (size->x/texture->rwidth,0); glVertex3f(size->x, 0, 0);
+		//	glTexCoord2f (size->x/texture->rwidth,size->y/texture->rheight); glVertex3f(size->x, size->y, 0);
+		//	glTexCoord2f (0,size->y/texture->rheight); glVertex3f(0, size->y, 0);
+		glEnd();
+
+	glPopMatrix();
+}
+
 ZPlayerObject::ZPlayerObject (long int _oid,
 						Vec3 _position,
 						Vec3 _rotation):
 	ZObject (_oid, _position, _rotation)
 {
-
+    inventory.push_back(new PO::Matches());
 }
 
 void ZPlayerObject::init () {
@@ -264,21 +296,21 @@ void ZPlayerObject::step () {
     graphic->animation->isPlaying = false;
 
     if (getAxis(1) < -0.1 || keyboard->keys[SDLK_UP]) {
-        box2dBody->ApplyLinearImpulse (b2Vec2 (0,-100), box2dBody->GetWorldPoint(b2Vec2(0,0)));
+        box2dBody->ApplyLinearImpulse (b2Vec2 (0,-80), box2dBody->GetWorldPoint(b2Vec2(0,0)));
         graphic->animation = anims[0];
         graphic->animation->isPlaying = true;
         dir.y = -1;
         dir.x = 0;
     }
     if (getAxis(1) > 0.1 || keyboard->keys[SDLK_DOWN]) {
-        box2dBody->ApplyLinearImpulse (b2Vec2 (0,100), box2dBody->GetWorldPoint(b2Vec2(0,0)));
+        box2dBody->ApplyLinearImpulse (b2Vec2 (0,80), box2dBody->GetWorldPoint(b2Vec2(0,0)));
         graphic->animation = anims[1];
         graphic->animation->isPlaying = true;
         dir.y = +1;
         dir.x = 0;
     }
     if (getAxis(0) < -0.1 || keyboard->keys[SDLK_LEFT]) {
-        box2dBody->ApplyLinearImpulse (b2Vec2 (-100,0), box2dBody->GetWorldPoint(b2Vec2(0,0)));
+        box2dBody->ApplyLinearImpulse (b2Vec2 (-80,0), box2dBody->GetWorldPoint(b2Vec2(0,0)));
         graphic->animation = anims[2];
         graphic->animation->isPlaying = true;
         graphic->animation->flipH = false;
@@ -286,7 +318,7 @@ void ZPlayerObject::step () {
         dir.y = 0;
     }
     if (getAxis(0) > 0.1 || keyboard->keys[SDLK_RIGHT]) {
-        box2dBody->ApplyLinearImpulse (b2Vec2 (100,0), box2dBody->GetWorldPoint(b2Vec2(0,0)));
+        box2dBody->ApplyLinearImpulse (b2Vec2 (80,0), box2dBody->GetWorldPoint(b2Vec2(0,0)));
         graphic->animation = anims[3];
         graphic->animation->isPlaying = true;
         graphic->animation->flipH = true;
@@ -295,40 +327,21 @@ void ZPlayerObject::step () {
     }
 }
 
-void ZPlayerObject::draw () {
+void ZPlayerObject::drawInventory () {
 	glPushMatrix();
-		static float ang;
 
-		if (dir.x == -1 &&
-			dir.y == 0)
-			ang = 0;
+    Vec3 p = {0,0,0};
 
-		if (dir.x == 0 &&
-			dir.y == -1)
-			ang = 90;
+    for (auto o :inventory) {
+        o->draw(p);
+        p.y += 10;
+    }
 
-		if (dir.x == 0 &&
-			dir.y == 1)
-			ang = 180;
-
-		if (dir.x == 1 &&
-			dir.y == 0)
-			ang = 270;
-
-		//ZTextureAsset* tex = Engine->assetsManager->getAsset <ZTextureAsset*> (
-		//	ZFilePath (".:Assets:bullet.png")
-		//	);
-
-		//ang++;
-		//glRotatef (ang, 0,0,1);
-		//glBindTexture (GL_TEXTURE_2D, tex->id);
-	    //glBegin(GL_QUADS);
-	    //    glTexCoord2f (0,0); glVertex3f(0, 0, 0);
-	    //    glTexCoord2f (1,0); glVertex3f(tex->width, 0, 0);
-	    //    glTexCoord2f (1,1); glVertex3f(tex->width, tex->height, 0);
-	    //   glTexCoord2f (0,1); glVertex3f(0, tex->height, 0);
-	    //glEnd();
 	glPopMatrix();
+}
+
+void ZPlayerObject::draw () {
+    //drawInventory();
 }
 
 float ZPlayerObject::getAxis(int _axis) {

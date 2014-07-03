@@ -13,6 +13,8 @@ void ZScene::loadData (string _name) {
 
 ZSceneManager::ZSceneManager () {
 	currentScene = NULL;
+    nextScene = NULL;
+    fadeOut = false;
 }
 
 ZSceneManager::~ZSceneManager () {
@@ -26,12 +28,48 @@ void ZSceneManager::addScene (ZScene *_scene) {
 	setCurrentScene (_scene);
 }
 
+void ZSceneManager::addSceneFadeOut (ZScene *_scene, float _fadeTime) {
+    scenes.push_back (_scene);
+    nextScene = _scene;
+    changeTime = Engine->gameTime->currentTime+_fadeTime;
+    startTime = Engine->gameTime->currentTime;
+}
+
 void ZSceneManager::setCurrentScene (ZScene *_scene) {
 	currentScene = _scene;
 	currentScene->load();
 }
 
 void ZSceneManager::render () {
+	if (nextScene) {
+	    float color = (Engine->gameTime->currentTime-startTime)/(changeTime-startTime);
+        Engine->colorMultiplier = 1-color;
+	}
+
+    if (fadeOut) {
+	    float color = (Engine->gameTime->currentTime-startTime)/(changeTime-startTime);
+        color = color;
+        Engine->colorMultiplier = color;
+    }
+
+    float bc = Engine->colorMultiplier;
+    glClearColor(bc,bc,bc,1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+
+	if (nextScene && Engine->gameTime->currentTime >= changeTime) {
+        currentScene = nextScene;
+        currentScene->load();
+        nextScene = NULL;
+        fadeOut = true;
+        changeTime = Engine->gameTime->currentTime+8;
+        startTime = Engine->gameTime->currentTime;
+	}
+
+	if (fadeOut && Engine->gameTime->currentTime >= changeTime) {
+        fadeOut = false;
+	}
+
 	if (currentScene) {
 		currentScene->render();
 	} else {
@@ -47,10 +85,13 @@ scnIntro::scnIntro (string _name):
 void scnIntro::load () {
     list = data->getJSON()->get("text")->array->array;
     time = data->getJSON()->get("time")->array->array;
+    startTime = Engine->gameTime->currentTime;
     changeTime = Engine->gameTime->currentTime+time[0]->number;
 }
 
 void scnIntro::render () {
+    static bool end = false;
+
     //int w = Engine->videoManager->windowWidth;
     //int h = Engine->videoManager->windowHeight;
 
@@ -59,19 +100,26 @@ void scnIntro::render () {
             currentText++;
         else {
             auto gameScene = new scnGame ("Game.scene");
-            Engine->sceneManager->addScene(gameScene);
-       }
-
-        if (currentText == list.size()-1) {
-            Engine->assetsManager->getAsset <ZAudioAsset*>(ZFilePath(".:Assets:Audio:wind:wind.ogg"))->loop();
+            Engine->sceneManager->addSceneFadeOut(gameScene,5);
+            end = true;
         }
 
+        if (currentText == 2) {
+            Engine->assetsManager->getAsset <ZAudioAsset*>(ZFilePath(".:Assets:Audio:music:intro:godfather.ogg"))->loop();
+        }
+
+        startTime = Engine->gameTime->currentTime;
         changeTime = Engine->gameTime->currentTime+time[currentText]->number;
     }
 
-    Engine->textManager->setOpacity (1);
-    Engine->textManager->setColor(Vec3(0,0,0));
-    Engine->textManager->drawStringCentered(Vec3(0,0,0), list[currentText]->str, 32);
+    if (!end) {
+        float color = (Engine->gameTime->currentTime-startTime)/(changeTime-startTime);
+        color = (-cos(color*M_PI-M_PI/2)+1)/2;
+
+        Engine->textManager->setOpacity (1);
+        Engine->textManager->setColor(Vec3(color,color,color));
+        Engine->textManager->drawStringCentered(Vec3(0,0,0), list[currentText]->str, 32);
+    }
 }
 
 scnGame::scnGame (string _name):
@@ -86,7 +134,11 @@ void scnGame::load () {
 void scnGame::render () {
    	long int i;
 
-	float gloom = Engine->gameTime->currentTime/10;
+	float gloom = 1;
+
+	glClearColor(1,1,1,1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
 
 	if (Engine->editMode) {
 		Engine->editor->drawHUD();
@@ -186,9 +238,9 @@ void scnGame::render () {
                 glColor3f(0.25,0.25,0.25);
             else {
                 if (gloom < 0.5)
-                    glColor3f(0.5*gloom,0.5*gloom,1.4*gloom);
+                    glColor3f(0.5*gloom*Engine->colorMultiplier,0.5*gloom*Engine->colorMultiplier,1.4*gloom*Engine->colorMultiplier);
                 else
-                    glColor3f(0.55*gloom,0.45*gloom,0.45*gloom);
+                    glColor3f(0.55*gloom*Engine->colorMultiplier,0.45*gloom*Engine->colorMultiplier,0.45*gloom*Engine->colorMultiplier);
             }
 
 

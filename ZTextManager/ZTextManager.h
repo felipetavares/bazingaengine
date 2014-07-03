@@ -29,10 +29,10 @@ public:
 
     int drawCharacter (uint16_t);
     int characterSize (uint16_t);
+    void registerCharacters (vector <uint16_t>);
 private:
     void update ();
     void render (string&);
-
 };
 
 class ZTextManager {
@@ -52,6 +52,7 @@ public:
 
 	void initTextureMaps (ZFontAsset*);
     void setOpacity(float);
+    void registerCharacters (string&);
 private:
 	void createColorShader();
 };

@@ -80,6 +80,7 @@ ZEngine::ZEngine (bool _debug) {
 	guiManager		  = new ZGUIManager();
 	sceneManager		= new ZSceneManager();
 
+    colorMultiplier = 1;
 
 	guiManager->onclick = [] (ZUI::Widget* _w, ZMouse *_m) {
 		if (_m->pos.x >= _w->p.x && _m->pos.x <= _w->p.x+_w->s.x &&
@@ -103,6 +104,8 @@ ZEngine::~ZEngine () {
 			delete o;
 	}
 
+    fflush(stdout);
+
 	delete objects;
 
 	delete editor;
@@ -120,8 +123,8 @@ ZEngine::~ZEngine () {
 	delete jsonManager;
 	delete util;
 
-	TTF_Quit();
-	SDL_Quit();
+	//TTF_Quit();
+	//SDL_Quit();
 
 	delete realTime;
 	delete gameTime;

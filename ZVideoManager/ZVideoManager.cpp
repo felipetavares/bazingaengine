@@ -22,7 +22,7 @@ ZVideoManager::ZVideoManager () {
 	cout << "[INF] Loading icon from " << icon.getPath() << endl;
 	SDL_WM_SetIcon(SDL_LoadBMP(icon.getPath().c_str()), NULL);
 	screen = SDL_SetVideoMode (windowWidth,windowHeight,windowBpp,videoFlags);
-	SDL_ShowCursor (1);
+	SDL_ShowCursor (0);
 
 	cout << "[CRT] [WIN] [w:" << windowWidth << ",h:" << windowHeight << "]" << endl;
 
@@ -111,10 +111,6 @@ void ZVideoManager::setWindowTitleAndIcon (	string _title,
 }
 
 void ZVideoManager::render () {
-	glClearColor(1,1,1,1);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
-	
 	Engine->guiManager->render();
 	Engine->sceneManager->render();
 	Engine->inputManager->clear();

@@ -8,33 +8,6 @@ using namespace std;
 
 #define ASSETLIST_PATH ".:Assets:list.json"
 
-void loadAssets () {
-	ZjObject *jsonAssetList;
-	char *file;
-
-	// Load file
-	if (Engine->filesystemManager->fileExists(ZFilePath(ASSETLIST_PATH))) {
-		file = Engine->filesystemManager->getFileData(ZFilePath(ASSETLIST_PATH));
-		file [Engine->filesystemManager->getFileSize(ZFilePath(ASSETLIST_PATH))] = 0;
-		string jsonStringAssetList = string (file);
-
-		jsonAssetList = Engine->jsonManager->parse (jsonStringAssetList);
-
-		for (int i=0;i<jsonAssetList->keys.size();i++) {
-			cout << "[INF] (AL: " << ASSETLIST_PATH
-			     << ") " <<
-			     jsonAssetList->keys[i] << " " <<
-			     jsonAssetList->values[i]->str << endl;
-			long int assetId = Engine->assetsManager->createAsset (jsonAssetList->values[i]->str);
-			Engine->assetsManager->needAsset (assetId);
-		}
-
-		delete jsonAssetList;
-	} else {
-        	cout << "[ERR] No AL file found!" << endl;
-	}
-}
-
 void createGUI () {
 	auto menu = new ZUI::Panel (Vec2(10,10),Vec2(400,300), 24);
 	auto objects = new ZUI::Panel (Vec2(ww-410,10),Vec2(400,300), 24);
@@ -119,6 +92,42 @@ void createGUI () {
 
 }
 
+bool GUI;
+
+void loadAssets () {
+	ZjObject *jsonAssetList;
+	char *file;
+
+	// Load file
+	if (Engine->filesystemManager->fileExists(ZFilePath(ASSETLIST_PATH))) {
+		file = Engine->filesystemManager->getFileData(ZFilePath(ASSETLIST_PATH));
+		file [Engine->filesystemManager->getFileSize(ZFilePath(ASSETLIST_PATH))] = 0;
+		string jsonStringAssetList = string (file);
+
+		jsonAssetList = Engine->jsonManager->parse (jsonStringAssetList);
+
+		for (int i=0;i<jsonAssetList->keys.size();i++) {
+			if (jsonAssetList->keys[i] == "editmode" &&
+                jsonAssetList->values[i]->number != 0) {
+                GUI = true;
+                SDL_ShowCursor (1);
+			} else {
+                cout << "[INF] (AL: " << ASSETLIST_PATH
+                     << ") " <<
+                     jsonAssetList->keys[i] << " " <<
+                     jsonAssetList->values[i]->str << endl;
+                long int assetId = Engine->assetsManager->createAsset (jsonAssetList->values[i]->str);
+                Engine->assetsManager->needAsset (assetId);
+			}
+		}
+
+		delete jsonAssetList;
+	} else {
+        	cout << "[ERR] No AL file found!" << endl;
+	}
+}
+
+
 int main (int,char**) {
 	Engine = new ZEngine(false); // Parameter=debug
 	Engine->init();
@@ -128,7 +137,8 @@ int main (int,char**) {
 
 	// Load all assets
 	loadAssets();
-    //createGUI();
+    if (GUI)
+        createGUI();
 
 	Engine->box2dWorld->SetGravity (b2Vec2 (0,0));
 	//Engine->box2dWorld->SetLinearDamping (0.5);
@@ -156,6 +166,9 @@ int main (int,char**) {
 	Engine->addObject (object);
 	Engine->camera->playerOid = object->oid;
 
+    string everything = "abcdefghijklmnopqrstyuvwxyzáéíóúãõÁÉÍÓÚâêôÂẼÔABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?@#$&*()-+/:;\"'<>[]{}%/\\ çÇ";
+    Engine->textManager->registerCharacters(everything);
+
 	auto introScene = new scnIntro ("Intro.scene");
 
 	Engine->sceneManager->addScene (introScene);
@@ -164,5 +177,5 @@ int main (int,char**) {
 
 	delete Engine;
 
-	return 0;
+	exit(0);
 }

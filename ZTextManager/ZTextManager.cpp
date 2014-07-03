@@ -18,9 +18,16 @@ ZUTF8Atlas::ZUTF8Atlas(ZFontAsset& _font):
 }
 
 ZUTF8Atlas::~ZUTF8Atlas () {
-    if (texture) {
-        delete texture;
+    //if (texture) {
+    //    delete texture;
+    //}
+}
+
+void ZUTF8Atlas::registerCharacters (vector <uint16_t> _characters) {
+    for (auto c :_characters) {
+        characters.push_back(c);
     }
+    update();
 }
 
 int ZUTF8Atlas::drawCharacter (uint16_t _character) {
@@ -291,7 +298,7 @@ SDL_Surface* genSDF (SDL_Surface *in) {
     if (!out)
         return NULL;
 
-    cout << "Gen SDF algorithm" << endl;
+    //cout << "Gen SDF algorithm" << endl;
 
     int b=-255*255,s=255*255;
     int startl = 1;
@@ -346,7 +353,8 @@ SDL_Surface* genSDF (SDL_Surface *in) {
             putpixel (out, x,y, 0x00FFFFFF | ((int)v<<24));
         }
     }
-    cout << "Gen SDF finished" << endl;
+
+   // cout << "Gen SDF finished" << endl;
 
     return out;
 }
@@ -421,8 +429,8 @@ ZTextManager::ZTextManager () {
 }
 
 ZTextManager::~ZTextManager () {
-	if (utf8atlas != NULL)
-		delete utf8atlas;
+	//if (utf8atlas != NULL)
+	//	delete utf8atlas;
 }
 
 void ZTextManager::initTextureMaps (ZFontAsset *_font) {
@@ -451,6 +459,20 @@ void ZTextManager::drawString (Vec3 _pos, string& _text, float _h) {
             glTranslatef(advance,0,0);
         }
     glPopMatrix();
+}
+
+void ZTextManager::registerCharacters (string& _text) {
+    vector <uint16_t> allchars;
+
+    for (int i=0;i<_text.size();i++) {
+        uint16_t utf8;
+        if (_text[i] > 192)
+            utf8 = (uint16_t)_text[i] | (((uint16_t)_text[i+=1])<<8);
+        else
+            utf8 = _text[i];
+    }
+
+    utf8atlas->registerCharacters(allchars);
 }
 
 float ZTextManager::measureString (string& _text, float _h) {

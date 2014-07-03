@@ -85,6 +85,8 @@ public:
 	ZCamera			*camera			= NULL;
 	b2World			*box2dWorld		= NULL; // Physics
 
+    float colorMultiplier;
+
 	template <class Type>
 	ZObject* createObject () {
 		auto newObject = new Type (maxOid++);
