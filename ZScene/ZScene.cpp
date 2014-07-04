@@ -292,8 +292,9 @@ void scnGame::render () {
                         obj->graphic->animation->drawShadow(gloom);
                     glPopMatrix();
 				}
-				obj->draw();
 			glPopMatrix();
 		glPopMatrix();
+	
+		obj->draw();
 	}
 }

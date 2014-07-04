@@ -177,7 +177,7 @@ int main (int,char**) {
 	string everything = "abcdefghijklmnopqrstyuvwxyzáéíóúãõÁÉÍÓÚâêôÂẼÔABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?@#$&*()-+/:;\"'<>[]{}%/\\ çÇ";
 	Engine->textManager->registerCharacters(everything);
 
-	auto introScene = new scnIntro ("Intro.scene");
+	auto introScene = new scnIntro ("IntroFast.scene");
 
 	Engine->sceneManager->addScene (introScene);
 

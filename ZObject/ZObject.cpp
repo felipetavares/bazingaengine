@@ -189,7 +189,7 @@ void PO::Matches::action (ZPlayerObject* _player, vector <Object*> _interactions
 }
 
 string PO::Matches::getName() {
-    return "Matches";
+
 }
 
 PO::Object::Object (ZTextureAsset *_texture) {
@@ -199,8 +199,10 @@ PO::Object::Object (ZTextureAsset *_texture) {
 void PO::Object::draw (Vec3 _pos) {
 	glPushMatrix();
 		glTranslatef (_pos.x, _pos.y, _pos.z);
-
-		glBindTexture (GL_TEXTURE_2D, Object::texture->id);
+		//glEnable (GL_TEXTURE);
+		glDisable (GL_TEXTURE);
+		glBindTexture (GL_TEXTURE_2D, texture->id);
+		glColor3f (1,0,0);
 		glBegin(GL_QUADS);
 			glTexCoord2f (0,0); glVertex3f(0, 0, 0);
 			glTexCoord2f (texture->width/texture->rwidth,0); glVertex3f(texture->width, 0, 0);
@@ -214,8 +216,8 @@ void PO::Object::draw (Vec3 _pos) {
 ZPlayerObject::ZPlayerObject (long int _oid,
 						Vec3 _position,
 						Vec3 _rotation):
-	ZObject (_oid, _position, _rotation)
-{
+	ZObject (_oid, _position, _rotation) {
+    inventory.push_back(new PO::Matches());
 }
 
 void ZPlayerObject::init () {
@@ -253,8 +255,6 @@ void ZPlayerObject::init () {
 	delete def;
 
 	mapped = false;
-
-    inventory.push_back(new PO::Matches());
 
     auto callback = [] (ZAnimation* _anim) {
         if (_anim->position == 0) {
@@ -329,11 +329,11 @@ void ZPlayerObject::step () {
 void ZPlayerObject::drawInventory () {
 	glPushMatrix();
 
-	Vec3 p = {0,0,0};
+	Vec3 p = Vec3(0,0,99);
 
 	for (auto o :inventory) {
 		o->draw(p);
-		p.y += 10;
+		p.y += 0.1;
 	}
 
 	glPopMatrix();
