@@ -105,7 +105,7 @@ void scnIntro::render () {
         }
 
         if (currentText == 2) {
-            Engine->assetsManager->getAsset <ZAudioAsset*>(ZFilePath(".:Assets:Audio:music:intro:godfather.ogg"))->loop();
+            Engine->assetsManager->getAsset <ZAudioAsset*>(ZFilePath(".:Assets:Audio:music:intro:intro.ogg"))->loop();
         }
 
         startTime = Engine->gameTime->currentTime;

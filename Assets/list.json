@@ -3,7 +3,7 @@
 	"font": ".:Assets:Fonts:LinuxLibertine:LinLibertine_Mah.ttf",
 	"audio": ".:Assets:Audio:wind:wind.ogg",
 	"audio": ".:Assets:Audio:footsteps:sand.ogg",
-	"audio": ".:Assets:Audio:music:intro:godfather.ogg",	
+	"audio": ".:Assets:Audio:music:intro:intro.ogg",	
 	"animation": ".:Assets:Animations:player-up.anim",
 	"animation": ".:Assets:Animations:player-left.anim",
 	"animation": ".:Assets:Animations:player-down.anim",

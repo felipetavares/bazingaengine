@@ -204,10 +204,10 @@ void PO::Object::draw (Vec3 _pos) {
 
 		glBindTexture (GL_TEXTURE_2D, texture->id);
 		glBegin(GL_QUADS);
-		//	glTexCoord2f (0,0); glVertex3f(0, 0, 0);
-		//	glTexCoord2f (size->x/texture->rwidth,0); glVertex3f(size->x, 0, 0);
-		//	glTexCoord2f (size->x/texture->rwidth,size->y/texture->rheight); glVertex3f(size->x, size->y, 0);
-		//	glTexCoord2f (0,size->y/texture->rheight); glVertex3f(0, size->y, 0);
+			glTexCoord2f (0,0); glVertex3f(0, 0, 0);
+			glTexCoord2f (texture->width/texture->rwidth,0); glVertex3f(texture->width, 0, 0);
+			glTexCoord2f (texture->width/texture->rwidth,texture->height/texture->rheight); glVertex3f(texture->width, texture->height, 0);
+			glTexCoord2f (0,texture->height/texture->rheight); glVertex3f(0, texture->height, 0);
 		glEnd();
 
 	glPopMatrix();
@@ -330,18 +330,18 @@ void ZPlayerObject::step () {
 void ZPlayerObject::drawInventory () {
 	glPushMatrix();
 
-    Vec3 p = {0,0,0};
+	Vec3 p = {0,0,0};
 
-    for (auto o :inventory) {
-        o->draw(p);
-        p.y += 10;
-    }
+	for (auto o :inventory) {
+		o->draw(p);
+		p.y += 10;
+	}
 
 	glPopMatrix();
 }
 
 void ZPlayerObject::draw () {
-    //drawInventory();
+	drawInventory();
 }
 
 float ZPlayerObject::getAxis(int _axis) {
