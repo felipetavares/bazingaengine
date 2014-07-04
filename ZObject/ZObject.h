@@ -57,6 +57,7 @@ class ZPlayerObject;
 */
 namespace PO {
     class Object {
+    protected:
         ZTextureAsset *texture;
     public:
         Object (ZTextureAsset*);

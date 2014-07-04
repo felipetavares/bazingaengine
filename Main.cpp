@@ -94,7 +94,7 @@ void createGUI () {
 
 bool GUI;
 
-void loadAssets () {
+bool loadAssets () {
 	ZjObject *jsonAssetList;
 	char *file;
 
@@ -122,8 +122,10 @@ void loadAssets () {
 		}
 
 		delete jsonAssetList;
+		return true;
 	} else {
         	cout << "[ERR] No AL file found!" << endl;
+		return false;
 	}
 }
 
@@ -136,9 +138,13 @@ int main (int,char**) {
 	Engine->videoManager->setWindowTitleAndIcon ("Bazinga Engine Demo","Bazinga Engine");
 
 	// Load all assets
-	loadAssets();
-    if (GUI)
-        createGUI();
+	if (!loadAssets()) {
+		delete Engine;
+		return 0;
+	}
+
+	if (GUI)
+        	createGUI();
 
 	Engine->box2dWorld->SetGravity (b2Vec2 (0,0));
 	//Engine->box2dWorld->SetLinearDamping (0.5);
@@ -166,10 +172,12 @@ int main (int,char**) {
 	Engine->addObject (object);
 	Engine->camera->playerOid = object->oid;
 
-    string everything = "abcdefghijklmnopqrstyuvwxyzáéíóúãõÁÉÍÓÚâêôÂẼÔABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?@#$&*()-+/:;\"'<>[]{}%/\\ çÇ";
-    Engine->textManager->registerCharacters(everything);
+	// Pre-render every character (It is faster to render this way than using drawString)
+	// Draw string re-renders for every characters, here we render the entire chunk
+	string everything = "abcdefghijklmnopqrstyuvwxyzáéíóúãõÁÉÍÓÚâêôÂẼÔABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?@#$&*()-+/:;\"'<>[]{}%/\\ çÇ";
+	Engine->textManager->registerCharacters(everything);
 
-	auto introScene = new scnIntro ("IntroFast.scene");
+	auto introScene = new scnIntro ("Intro.scene");
 
 	Engine->sceneManager->addScene (introScene);
 
@@ -177,5 +185,5 @@ int main (int,char**) {
 
 	delete Engine;
 
-	exit(0);
+	return 0;
 }

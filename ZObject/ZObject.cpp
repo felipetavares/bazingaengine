@@ -5,8 +5,6 @@
 // You can only create objects if you know it's
 // oid (object id)
 
-#define M_PI 3.14159265358979323846
-
 ZObject::ZObject (long int _oid,
 		  Vec3 _position,
 		  Vec3 _rotation) {
@@ -191,18 +189,18 @@ void PO::Matches::action (ZPlayerObject* _player, vector <Object*> _interactions
 }
 
 string PO::Matches::getName() {
-
+    return "Matches";
 }
 
 PO::Object::Object (ZTextureAsset *_texture) {
-	texture = texture;
+	texture = _texture;
 }
 
 void PO::Object::draw (Vec3 _pos) {
 	glPushMatrix();
 		glTranslatef (_pos.x, _pos.y, _pos.z);
 
-		glBindTexture (GL_TEXTURE_2D, texture->id);
+		glBindTexture (GL_TEXTURE_2D, Object::texture->id);
 		glBegin(GL_QUADS);
 			glTexCoord2f (0,0); glVertex3f(0, 0, 0);
 			glTexCoord2f (texture->width/texture->rwidth,0); glVertex3f(texture->width, 0, 0);
@@ -218,7 +216,6 @@ ZPlayerObject::ZPlayerObject (long int _oid,
 						Vec3 _rotation):
 	ZObject (_oid, _position, _rotation)
 {
-    inventory.push_back(new PO::Matches());
 }
 
 void ZPlayerObject::init () {
@@ -256,6 +253,8 @@ void ZPlayerObject::init () {
 	delete def;
 
 	mapped = false;
+
+    inventory.push_back(new PO::Matches());
 
     auto callback = [] (ZAnimation* _anim) {
         if (_anim->position == 0) {

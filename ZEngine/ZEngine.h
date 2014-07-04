@@ -24,6 +24,8 @@ using namespace std;
 #include <Box2D/Box2D.h>
 #include <chrono>
 
+#define M_PI 3.14159265358979323846
+
 class ZTime {
 public:
 	float currentTime;

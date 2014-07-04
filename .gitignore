@@ -45,4 +45,4 @@ Icon
 *~
 
 # VIM swp files
-*swp
+*.swp
