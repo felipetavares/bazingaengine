@@ -16,6 +16,10 @@ Vec3::Vec3 (float _x,float _y, float _z) {
 	z = _z;
 }
 
+Vec3 Vec3::operator+ (Vec3 _v) {
+	return Vec3 (_v.x+x, _v.y+y, _v.z+z);
+}
+
 string Vec3::_str ()  {
 	stringstream stream;
 

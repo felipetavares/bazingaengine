@@ -81,7 +81,7 @@ ZEngine::ZEngine (bool _debug) {
 	guiManager		  = new ZGUIManager();
 	sceneManager		= new ZSceneManager();
 
-    colorMultiplier = 1;
+	colorMultiplier = 1;
 
 	guiManager->onclick = [] (ZUI::Widget* _w, ZMouse *_m) {
 		if (_m->pos.x >= _w->p.x && _m->pos.x <= _w->p.x+_w->s.x &&
@@ -105,7 +105,7 @@ ZEngine::~ZEngine () {
 			delete o;
 	}
 
-    fflush(stdout);
+	fflush(stdout);
 
 	delete objects;
 
@@ -124,8 +124,8 @@ ZEngine::~ZEngine () {
 	delete jsonManager;
 	delete util;
 
-	//TTF_Quit();
-	//SDL_Quit();
+	TTF_Quit();
+	SDL_Quit();
 
 	delete realTime;
 	delete gameTime;
@@ -321,7 +321,7 @@ void ZEngine::loadMap (ZFilePath _path) {
 			object->phys = (bool)(int)oDef->get("col")->number;
 			object->background = (bool)(int)oDef->get("back")->number;
 
-			auto asset = Engine->assetsManager->getAsset <ZAsset*> (ZFilePath(oDef->get("gtexture")->str));
+			auto asset = Engine->assetsManager->getAsset <ZAsset*> (oDef->get("gtexture")->str);
 
 			if (asset->type == ZAsset::Type::Texture)
 				object->graphic->texture = (ZTextureAsset*)asset;
@@ -386,9 +386,9 @@ void ZEngine::saveMap (ZFilePath _path) {
 		string path = "";
 
 		if (o->graphic->texture != NULL)
-			path = o->graphic->texture->getPath().getOriginalPath();
+			path = o->graphic->texture->getName();
 		if (o->graphic->animation != NULL)
-			path = o->graphic->animation->asset->getPath().getOriginalPath();
+			path = o->graphic->animation->asset->getName();
 
 		jsonObject->keys.push_back ("gtexture"); jsonObject->values.push_back (new ZjValue(path));
 

@@ -18,6 +18,7 @@ class ZAsset {
 protected:
 	long int aid;
 	ZFilePath path;
+	string name;
 public:
 	bool error;
 	bool loaded;
@@ -27,7 +28,7 @@ public:
 
 	Type type;
 
-	ZAsset (long int,ZFilePath);
+	ZAsset (long int,ZFilePath, string);
 	virtual ~ZAsset ();
 
 	void dump ();
@@ -39,6 +40,7 @@ public:
 	void setAid (long int);
 
 	ZFilePath getPath();
+	string getName();
 };
 
 class ZTextureAsset: public ZAsset {
@@ -50,7 +52,7 @@ public:
 	int width,height;
 	int rwidth,rheight;
 
-	ZTextureAsset (long int,ZFilePath);
+	ZTextureAsset (long int,ZFilePath, string);
 	~ZTextureAsset();
 
 	void load ();
@@ -93,7 +95,7 @@ public:
 		std::function <void()> call;
 	}callback;
 
-	ZAnimationAsset(long int, ZFilePath);
+	ZAnimationAsset(long int, ZFilePath, string);
 
 	void load ();
 	void sync ();
@@ -103,7 +105,7 @@ class ZFontAsset: public ZAsset {
 public:
 	TTF_Font *font;
 
-	ZFontAsset (long int, ZFilePath);
+	ZFontAsset (long int, ZFilePath,string);
 	~ZFontAsset();
 
 	void load();
@@ -113,7 +115,7 @@ public:
 class ZJSONAsset: public ZAsset {
 	ZjObject *json;
 public:
-	ZJSONAsset (long int, ZFilePath);
+	ZJSONAsset (long int, ZFilePath,string);
 	~ZJSONAsset();
 
 	void load();
@@ -123,6 +125,7 @@ public:
 
 class ZAssetsManager {
 	unordered_map <string, long int> assetPathToAid;
+	unordered_map <string, long int> assetNameToAid;
 
 	unordered_map <long int, ZAsset*> unloadedAssets;
 	unordered_map <long int, ZAsset*> loadingAssets;
@@ -141,7 +144,7 @@ public:
 
 	void loadFiles();
 
-	long int createAsset (ZFilePath);
+	long int createAsset (ZFilePath, string);
 	long int createAsset (ZAsset*);
 	long int getAssetsNum ();
 
@@ -172,6 +175,37 @@ public:
 
 		try {
 			aid = assetPathToAid.at(_path.getPath());
+		} catch (exception e) {
+			aid = -1;
+		}
+
+		if (aid < 0) {
+			return NULL;
+		}
+
+		while (true) {// blocks until asset isn't loaded
+			//SDL_LockMutex(loadingAssetLock);
+				ZAsset *asset;
+				try {
+					asset = loadedAssets.at(aid);
+				} catch (exception e) {
+					asset = NULL;
+				}
+				if (asset != NULL) {
+					return (AssetType)asset;
+				}
+			//SDL_UnlockMutex(loadingAssetLock);
+			SDL_Delay(50);
+		}
+	}
+	template <class AssetType>
+	AssetType getAsset (string _name) {
+		fflush (stdout);
+
+		long int aid;
+
+		try {
+			aid = assetNameToAid.at(_name);
 		} catch (exception e) {
 			aid = -1;
 		}

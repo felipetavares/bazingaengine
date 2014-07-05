@@ -362,7 +362,7 @@ SDL_Surface* genSDF (SDL_Surface *in) {
 void ZUTF8Atlas::render (string& _text) {
     if (texture)
         delete texture;
-    texture = new ZTextureAsset(0, string(""));
+    texture = new ZTextureAsset(0, string(""), string ("texture.text.utf8atlas"));
 
 	SDL_Surface *renderedText;
 

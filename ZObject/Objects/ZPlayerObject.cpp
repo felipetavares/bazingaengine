@@ -1,44 +1,82 @@
 #include "ZEngine/ZEngine.h"
 #include "ZObject/Objects/ZPlayerObject.h"
 
-PO::Matches::Matches ():
-    PO::Object(Engine->assetsManager->getAsset<ZTextureAsset*>(ZFilePath(".:Assets:Images:door:door00.png"))) {
+PI::Matches::Matches ():
+    PI::Item(Engine->assetsManager->getAsset<ZTextureAsset*>("image.door.00")) {
 
 }
 
-void PO::Matches::action (ZPlayerObject* _player, vector <Object*> _interactions) {
+void PI::Matches::action (ZPlayerObject* _player, vector <PI::Item*> _interactions) {
 
 }
 
-string PO::Matches::getName() {
+string PI::Matches::getName() {
 	return "Matches";
 }
 
-PO::Object::Object (ZTextureAsset *_texture) {
+PI::Item::Item (ZTextureAsset *_texture) {
 	texture = _texture;
 }
 
-void PO::Object::draw (Vec3 _pos) {
-	float sX = (float)texture->width/(float)texture->rwidth;
-	float sY = (float)texture->height/(float)texture->rheight;
-	glPushMatrix();
-		glTranslatef (_pos.x,_pos.y,_pos.z);
-		glColor4f(0.25,0.25,0.25,1);
-		glTranslatef (-texture->width/2, -texture->height/2, 0);
-		glEnable (GL_TEXTURE);
-		glBindTexture (GL_TEXTURE_2D, texture->id);
-		glBegin(GL_QUADS);
-			glTexCoord2f (0,0); 	glVertex3f(0, 0, 0);
-			glTexCoord2f (sX,0); 	glVertex3f(texture->width, 0, 0);
-			glTexCoord2f (sX,sY); 	glVertex3f(texture->width, texture->height, 0);
-			glTexCoord2f (0,sY); 	glVertex3f(0, texture->height, 0);
-		glEnd();
-	glPopMatrix();
+void PI::Item::draw (Vec3 _pos) {
+	texture->drawCentered(_pos);
 
 	string name = getName();
 	Engine->textManager->setColor(Vec3(0,0,0));
-	Engine->textManager->drawStringCentered (Vec3(0,texture->height/2+12,0),name,16);
+	Engine->textManager->drawStringCentered (_pos+Vec3(0,texture->height/2+12,0),name,16);
 }
+
+Vec2 PI::Item::getSize () {
+	// 20 = 16 + 4
+	return Vec2 (texture->width, texture->height+20);
+}
+
+PI::Inventory::Inventory () {
+        currentItem = 0;
+}
+
+void PI::Inventory::addItem (Item* _item) {
+	items.push_back (_item);
+}
+
+void PI::Inventory::removeItem (Item* _item) {
+	int p = 0;
+	for (auto i :items) {
+		if (i == _item) {
+			items.erase(items.begin()+p);
+			if (currentItem >= p && currentItem > 0) {
+				currentItem--;
+			}
+			break;
+		}
+		p++;
+	}
+}
+
+void PI::Inventory::draw() {
+	Vec3 pos {0,0,99};
+	for (auto i :items) {
+		i->draw(pos);
+		pos.y += i->getSize().y;
+	}
+}
+
+PI::Item* PI::Inventory::getItem () {
+	if (currentItem >= 0 &&
+	    currentItem < items.size())
+		return items[currentItem];
+}
+
+void PI::Inventory::nextItem() {
+	if (currentItem < items.size()-1)
+		currentItem++;
+}
+
+void PI::Inventory::prevItem() {
+	if (currentItem > 0)
+		currentItem--;
+}
+
 
 ZPlayerObject::ZPlayerObject (long int _oid,
 						Vec3 _position,
@@ -82,23 +120,31 @@ void ZPlayerObject::init () {
 
 	mapped = false;
 
-    auto callback = [] (ZAnimation* _anim) {
-        if (_anim->position == 0) {
-            //Engine->assetsManager->getAsset <ZAudioAsset*> (ZFilePath (".:Assets:Audio:footsteps:sand.ogg"))->play();
-        }
-    };
+	auto callback = [] (ZAnimation* _anim) {
+	if (_anim->position == 0) {
+	    //Engine->assetsManager->getAsset <ZAudioAsset*> ("audio.effect.sand")->play();
+	}
+	};
 
-    anims[0] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> (ZFilePath (".:Assets:Animations:player-up.anim")));
-    anims[0]->setCallback (callback);
-    anims[1] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> (ZFilePath (".:Assets:Animations:player-down.anim")));
-    anims[0]->setCallback (callback);
-    anims[3] = anims[2] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> (ZFilePath (".:Assets:Animations:player-left.anim")));
-    anims[2]->setCallback (callback);
-    //anims[3] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> (ZFilePath (".:Assets:Animations:player-right.anim")));
+	anims[0] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> ("animation.player.up"));
+	anims[0]->setCallback (callback);
+	anims[1] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> ("animation.player.down"));
+	anims[0]->setCallback (callback);
+	anims[3] = anims[2] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> ("animation.player.left"));
+	anims[2]->setCallback (callback);
 
-    graphic->animation = anims[0];
+	graphic->animation = anims[0];
 
-    inventory.push_back(new PO::Matches());
+	// Add inventory items
+	// A lot of matches :P
+	inventory.addItem(new PI::Matches());
+	inventory.addItem(new PI::Matches());
+	inventory.addItem(new PI::Matches());
+	inventory.addItem(new PI::Matches());
+	inventory.addItem(new PI::Matches());
+	inventory.addItem(new PI::Matches());
+	inventory.addItem(new PI::Matches());
+	inventory.addItem(new PI::Matches());
 }
 
 
@@ -154,28 +200,15 @@ void ZPlayerObject::step () {
     }
 }
 
-void ZPlayerObject::drawInventory () {
-	glPushMatrix();
-
-	Vec3 p = Vec3(0,0,99);
-
-	for (auto o :inventory) {
-		o->draw(p);
-		p.y += 0.1;
-	}
-
-	glPopMatrix();
-}
-
 void ZPlayerObject::draw () {
-	drawInventory();
+	inventory.draw();
 }
 
 float ZPlayerObject::getAxis(int _axis) {
-    auto joys = Engine->inputManager->getJoysticks();
+	auto joys = Engine->inputManager->getJoysticks();
 
-    if (joys.size() > playerNum) {
-        return joys[playerNum]->axis[_axis].value;
+	if (joys.size() > playerNum) {
+		return joys[playerNum]->axis[_axis].value;
 	}
 	return 0;
 }
@@ -200,7 +233,7 @@ void ZPlayerObject::shot () {
 	bullet->graphic->position->x = 0;
 	bullet->graphic->position->y = 0;
 
-	bullet->graphic->texture = Engine->assetsManager->getAsset <ZTextureAsset*> (ZFilePath (".:Assets:bullet.png"));
+	bullet->graphic->texture = Engine->assetsManager->getAsset <ZTextureAsset*> (ZFilePath ("image.door.00"));
 
 	bullet->size->x = bullet->graphic->texture->width;
 	bullet->size->y = bullet->graphic->texture->height;

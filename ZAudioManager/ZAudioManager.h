@@ -14,7 +14,7 @@ using namespace std;
 class ZAudioAsset: public ZAsset {
 	Mix_Music *sound;
 public:
-	ZAudioAsset (long int, ZFilePath);
+	ZAudioAsset (long int, ZFilePath,string);
 	~ZAudioAsset ();
 
 	void load ();

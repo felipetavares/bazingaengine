@@ -7,29 +7,46 @@
 class ZPlayerObject;
 
 /**
-    Player Objects
+    Player Items
 */
-namespace PO {
-	class Object {
+namespace PI {
+	class Item {
 	protected:
 		ZTextureAsset *texture;
 	public:
-		Object (ZTextureAsset*);
-		virtual void action (ZPlayerObject*, vector <Object*>) = 0;
+		Item (ZTextureAsset*);
+		virtual void action (ZPlayerObject*, vector <Item*>) = 0;
 		virtual string getName() = 0;
 		void draw (Vec3);
+
+		Vec2 getSize();
 	};
 
-	class Matches: public Object {
+	class Matches: public Item {
 	public:
 		Matches();
-		void action (ZPlayerObject*, vector <Object*>);
+		void action (ZPlayerObject*, vector <Item*>);
 		string getName();
+	};
+
+	class Inventory {
+		vector <Item*> items;
+		int currentItem;
+	public:
+		Inventory();
+
+		void addItem (Item*);
+		void removeItem (Item*);
+		void draw();
+
+		Item* getItem();
+		void nextItem();
+		void prevItem();
 	};
 }
 
 class ZPlayerObject: public ZObject {
-	vector <PO::Object*> inventory;
+	PI::Inventory inventory;
 public:
 	ZAnimation* anims[4];
 
@@ -46,7 +63,6 @@ public:
 	void draw();
 private:
 	float getAxis (int);
-	void drawInventory();
 };
 
 #endif /* ZPLAYEROBJECT_H */

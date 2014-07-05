@@ -6,8 +6,9 @@ int callLoadFiles (void *c) {
 	static_cast <ZAssetsManager*>(c)->loadFiles();
 }
 
-ZAsset::ZAsset (long int _aid,ZFilePath _path) {
+ZAsset::ZAsset (long int _aid,ZFilePath _path, string _name) {
 	path = _path;
+	name = _name;
 	data = NULL;
 	loaded = false;
 	error = false;
@@ -45,8 +46,12 @@ ZFilePath ZAsset::getPath () {
 	return path;
 }
 
-ZTextureAsset::ZTextureAsset (long int _id, ZFilePath _path):
-	ZAsset::ZAsset (_id,_path) {
+string ZAsset::getName () {
+	return name;
+}
+
+ZTextureAsset::ZTextureAsset (long int _id, ZFilePath _path, string _name):
+	ZAsset::ZAsset (_id,_path,_name) {
 		type = ZAsset::Texture;
 	opacity = 1;
 	color = Vec3 (0.25,0.25,0.25);
@@ -186,8 +191,8 @@ void ZTextureAsset::drawCentered (Vec3 _pos) {
 	glPopMatrix();
 }
 
-ZJSONAsset::ZJSONAsset (long int _id, ZFilePath _path):
-	ZAsset::ZAsset (_id,_path) {
+ZJSONAsset::ZJSONAsset (long int _id, ZFilePath _path, string _name):
+	ZAsset::ZAsset (_id,_path,_name) {
 	type = ZAsset::JSON;
 	json = NULL;
 }
@@ -239,8 +244,8 @@ ZjObject* ZJSONAsset::getJSON () {
 }
 
 // Initialize ZAsset and animation type
-ZAnimationAsset::ZAnimationAsset (long int _id, ZFilePath _path):
-	ZAsset::ZAsset (_id,_path) {
+ZAnimationAsset::ZAnimationAsset (long int _id, ZFilePath _path, string _name):
+	ZAsset::ZAsset (_id,_path,_name) {
 	type = ZAsset::Animation;
 }
 
@@ -369,8 +374,8 @@ void ZAnimationAsset::sync () {
 	loaded = true;
 }
 
-ZFontAsset::ZFontAsset (long int _id, ZFilePath _path):
-	ZAsset::ZAsset (_id,_path) {
+ZFontAsset::ZFontAsset (long int _id, ZFilePath _path, string _name):
+	ZAsset::ZAsset (_id,_path, _name) {
 	type = ZAsset::Font;
 }
 
@@ -434,7 +439,7 @@ ZAssetsManager::~ZAssetsManager () {
 	}
 }
 
-long int ZAssetsManager::createAsset (ZFilePath _path) {
+long int ZAssetsManager::createAsset (ZFilePath _path, string _name) {
 	/* When we create the first asset, the
 	loadFiles thread is started */
 	if (loadFilesThread == NULL) {
@@ -446,22 +451,23 @@ long int ZAssetsManager::createAsset (ZFilePath _path) {
 	ZAsset *asset;
 
 	if (_path.getExtension() == "bmp" || _path.getExtension() == "png")
-		asset = new ZTextureAsset (maxAid++,_path);
+		asset = new ZTextureAsset (maxAid++,_path, _name);
 	else if (_path.getExtension() == "ttf")
-		asset = new ZFontAsset (maxAid++,_path);
+		asset = new ZFontAsset (maxAid++,_path, _name);
 	else if (_path.getExtension() == "ogg")
-		asset = new ZAudioAsset (maxAid++,_path);
+		asset = new ZAudioAsset (maxAid++,_path, _name);
 	else if (_path.getExtension() == "anim")
-		asset = new ZAnimationAsset (maxAid++,_path);
+		asset = new ZAnimationAsset (maxAid++,_path, _name);
 	else if (_path.getExtension() == "json" ||
 		 _path.getExtension() == "scene")
-		asset = new ZJSONAsset (maxAid++, _path);
+		asset = new ZJSONAsset (maxAid++, _path, _name);
 	else
-		asset = new ZAsset (maxAid++,_path);
+		asset = new ZAsset (maxAid++,_path, _name);
 
 	unloadedAssets.insert (unordered_map <long int, ZAsset*>::value_type (asset->getAid(),asset));
 
 	assetPathToAid.insert (unordered_map <string, long int>::value_type (asset->getPath().getPath(),asset->getAid()));
+	assetNameToAid.insert (unordered_map <string, long int>::value_type (asset->getName(), asset->getAid()));
 
 	return asset->getAid();
 }
@@ -475,6 +481,7 @@ long int ZAssetsManager::createAsset (ZAsset *_asset) {
 	loadedAssets.insert (unordered_map <long int, ZAsset*>::value_type (asset->getAid(),asset));
 
 	assetPathToAid.insert (unordered_map <string, long int>::value_type (asset->getPath().getPath(),asset->getAid()));
+	assetNameToAid.insert (unordered_map <string, long int>::value_type (asset->getName(), asset->getAid()));
 
 	return asset->getAid();
 }

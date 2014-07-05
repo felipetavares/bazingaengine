@@ -1,8 +1,8 @@
 #include "ZAudioManager.h"
 #include "../ZEngine/ZEngine.h"
 
-ZAudioAsset::ZAudioAsset (long int _aid, ZFilePath _path):
-	ZAsset (_aid,_path) {
+ZAudioAsset::ZAudioAsset (long int _aid, ZFilePath _path, string _name):
+	ZAsset (_aid,_path,_name) {
     type = ZAsset::Audio;
 }
 

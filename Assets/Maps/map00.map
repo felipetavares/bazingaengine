@@ -16,7 +16,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -35,7 +35,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -54,7 +54,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -73,7 +73,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -92,7 +92,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -111,7 +111,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -130,7 +130,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -149,7 +149,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -168,7 +168,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -187,7 +187,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -206,7 +206,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -225,7 +225,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock00.png"
+"gtexture": "image.rock.00"
 },
 "o": {
 "type": "box",
@@ -244,7 +244,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock01.png"
+"gtexture": "image.rock.01"
 },
 "o": {
 "type": "box",
@@ -263,7 +263,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock02.png"
+"gtexture": "image.rock.02"
 },
 "o": {
 "type": "box",
@@ -282,7 +282,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock03.png"
+"gtexture": "image.rock.03"
 },
 "o": {
 "type": "box",
@@ -301,7 +301,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -320,7 +320,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:cact00.png"
+"gtexture": "image.bush.cact.00"
 },
 "o": {
 "type": "box",
@@ -339,7 +339,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -358,7 +358,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -377,7 +377,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -396,7 +396,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -415,7 +415,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -434,7 +434,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -453,7 +453,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -472,7 +472,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -491,7 +491,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -510,7 +510,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -529,7 +529,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock01.png"
+"gtexture": "image.rock.01"
 },
 "o": {
 "type": "box",
@@ -548,7 +548,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock01.png"
+"gtexture": "image.rock.01"
 },
 "o": {
 "type": "box",
@@ -567,7 +567,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock04.png"
+"gtexture": "image.rock.04"
 },
 "o": {
 "type": "box",
@@ -586,7 +586,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock00.png"
+"gtexture": "image.rock.00"
 },
 "o": {
 "type": "box",
@@ -605,7 +605,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock01.png"
+"gtexture": "image.rock.01"
 },
 "o": {
 "type": "box",
@@ -624,7 +624,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock01.png"
+"gtexture": "image.rock.01"
 },
 "o": {
 "type": "box",
@@ -643,7 +643,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock01.png"
+"gtexture": "image.rock.01"
 },
 "o": {
 "type": "box",
@@ -662,7 +662,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock01.png"
+"gtexture": "image.rock.01"
 },
 "o": {
 "type": "box",
@@ -681,7 +681,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock02.png"
+"gtexture": "image.rock.02"
 },
 "o": {
 "type": "box",
@@ -700,7 +700,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock02.png"
+"gtexture": "image.rock.02"
 },
 "o": {
 "type": "box",
@@ -719,7 +719,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock03.png"
+"gtexture": "image.rock.03"
 },
 "o": {
 "type": "box",
@@ -738,7 +738,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock03.png"
+"gtexture": "image.rock.03"
 },
 "o": {
 "type": "box",
@@ -757,7 +757,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -776,7 +776,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -795,7 +795,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -814,7 +814,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -833,7 +833,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -852,7 +852,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -871,7 +871,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -890,7 +890,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -909,7 +909,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock04.png"
+"gtexture": "image.rock.04"
 },
 "o": {
 "type": "box",
@@ -928,7 +928,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:wall:wall.png"
+"gtexture": "image.wall.00"
 },
 "o": {
 "type": "box",
@@ -947,7 +947,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:wall:wall.png"
+"gtexture": "image.wall.00"
 },
 "o": {
 "type": "box",
@@ -966,7 +966,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:wall:wall-lend.png"
+"gtexture": "image.wall.01"
 },
 "o": {
 "type": "box",
@@ -985,7 +985,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:wall:wall-rend.png"
+"gtexture": "image.wall.02"
 },
 "o": {
 "type": "box",
@@ -1004,7 +1004,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1023,7 +1023,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1042,7 +1042,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1061,7 +1061,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1080,7 +1080,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1099,7 +1099,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1118,7 +1118,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1137,7 +1137,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1156,7 +1156,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1175,7 +1175,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1194,7 +1194,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1213,7 +1213,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1232,7 +1232,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1251,7 +1251,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1270,7 +1270,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1289,7 +1289,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1308,7 +1308,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1327,7 +1327,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1346,7 +1346,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1365,7 +1365,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1384,7 +1384,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1403,7 +1403,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1422,7 +1422,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1441,7 +1441,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1460,7 +1460,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1479,7 +1479,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1498,7 +1498,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1517,7 +1517,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1536,7 +1536,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1555,7 +1555,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1574,7 +1574,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1593,7 +1593,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1612,7 +1612,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1631,7 +1631,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1650,7 +1650,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -1669,7 +1669,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:cact00.png"
+"gtexture": "image.bush.cact.00"
 },
 "o": {
 "type": "box",
@@ -1688,7 +1688,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:cact00.png"
+"gtexture": "image.bush.cact.00"
 },
 "o": {
 "type": "box",
@@ -1707,7 +1707,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:cact00.png"
+"gtexture": "image.bush.cact.00"
 },
 "o": {
 "type": "box",
@@ -1726,7 +1726,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1745,7 +1745,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1764,7 +1764,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1783,7 +1783,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1802,7 +1802,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1821,7 +1821,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1840,7 +1840,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1859,7 +1859,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1878,7 +1878,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1897,7 +1897,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1916,7 +1916,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1935,7 +1935,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1954,7 +1954,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1973,7 +1973,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -1992,7 +1992,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2011,7 +2011,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2030,7 +2030,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2049,7 +2049,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2068,7 +2068,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2087,7 +2087,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2106,7 +2106,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2125,7 +2125,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2144,7 +2144,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2163,7 +2163,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2182,7 +2182,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2201,7 +2201,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2220,7 +2220,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema01.png"
+"gtexture": "image.bush.jurema.01"
 },
 "o": {
 "type": "box",
@@ -2239,7 +2239,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema01.png"
+"gtexture": "image.bush.jurema.01"
 },
 "o": {
 "type": "box",
@@ -2258,7 +2258,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema01.png"
+"gtexture": "image.bush.jurema.01"
 },
 "o": {
 "type": "box",
@@ -2277,7 +2277,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema01.png"
+"gtexture": "image.bush.jurema.01"
 },
 "o": {
 "type": "box",
@@ -2296,7 +2296,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema01.png"
+"gtexture": "image.bush.jurema.01"
 },
 "o": {
 "type": "box",
@@ -2308,14 +2308,14 @@
 "sz": 0,
 "gx": 0,
 "gy": -27,
-"gz": 6e-05,
+"gz": 6e-005,
 "sgx": 49,
 "sgy": 49,
 "sgz": 1,
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:rock:rock04.png"
+"gtexture": "image.rock.04"
 },
 "o": {
 "type": "box",
@@ -2334,7 +2334,7 @@
 "rz": 0,
 "col": 0,
 "back": 1,
-"gtexture": ".:Assets:Images:floor:floor.png"
+"gtexture": "image.floor.00"
 },
 "o": {
 "type": "box",
@@ -2353,7 +2353,7 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:jurema00.png"
+"gtexture": "image.bush.jurema.00"
 },
 "o": {
 "type": "box",
@@ -2372,7 +2372,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2391,7 +2391,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2410,7 +2410,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2429,7 +2429,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2448,7 +2448,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2467,7 +2467,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2486,7 +2486,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2505,7 +2505,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2524,7 +2524,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2543,7 +2543,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2562,7 +2562,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2581,7 +2581,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2600,7 +2600,7 @@
 "rz": 0,
 "col": 0,
 "back": 0,
-"gtexture": ".:Assets:Images:bush:bush01.png"
+"gtexture": "image.bush.bush.01"
 },
 "o": {
 "type": "box",
@@ -2619,6 +2619,6 @@
 "rz": 0,
 "col": 1,
 "back": 0,
-"gtexture": ".:Assets:Images:door:door00.png"
+"gtexture": "image.door.00"
 }
 }

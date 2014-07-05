@@ -108,16 +108,16 @@ bool loadAssets () {
 
 		for (int i=0;i<jsonAssetList->keys.size();i++) {
 			if (jsonAssetList->keys[i] == "editmode" &&
-                jsonAssetList->values[i]->number != 0) {
-                GUI = true;
-                SDL_ShowCursor (1);
+			jsonAssetList->values[i]->number != 0) {
+				GUI = true;
+				SDL_ShowCursor (1);
 			} else {
-                cout << "[INF] (AL: " << ASSETLIST_PATH
-                     << ") " <<
-                     jsonAssetList->keys[i] << " " <<
-                     jsonAssetList->values[i]->str << endl;
-                long int assetId = Engine->assetsManager->createAsset (jsonAssetList->values[i]->str);
-                Engine->assetsManager->needAsset (assetId);
+				cout << "[INF] (AL: " << ASSETLIST_PATH
+				     << ") " <<
+				jsonAssetList->keys[i] << " " <<
+				jsonAssetList->values[i]->str << endl;
+				long int assetId = Engine->assetsManager->createAsset (jsonAssetList->values[i]->str,jsonAssetList->keys[i]);
+				Engine->assetsManager->needAsset (assetId);
 			}
 		}
 
@@ -149,7 +149,7 @@ int main (int,char**) {
 	Engine->box2dWorld->SetGravity (b2Vec2 (0,0));
 	//Engine->box2dWorld->SetLinearDamping (0.5);
 
-	Engine->textManager->initTextureMaps (Engine->assetsManager->getAsset <ZFontAsset*> (ZFilePath(".:Assets:Fonts:LinuxLibertine:LinLibertine_Mah.ttf")));
+	Engine->textManager->initTextureMaps (Engine->assetsManager->getAsset <ZFontAsset*> ("font.default"));
 
 	ZPlayerObject* object = (ZPlayerObject*)Engine->createObject <ZPlayerObject> ();
 
@@ -177,7 +177,7 @@ int main (int,char**) {
 	string everything = "abcdefghijklmnopqrstyuvwxyzáéíóúãõÁÉÍÓÚâêôÂẼÔABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?@#$&*()-+/:;\"'<>[]{}%/\\ çÇ";
 	Engine->textManager->registerCharacters(everything);
 
-	auto introScene = new scnIntro ("Intro.scene");
+	auto introScene = new scnIntro ("IntroFast.scene");
 
 	Engine->sceneManager->addScene (introScene);
 

@@ -6,7 +6,7 @@ ZScene::ZScene (string _name) {
 }
 
 void ZScene::loadData (string _name) {
-	long int jsonAsset = Engine->assetsManager->createAsset (ZFilePath(string(SCENE_BASE)+_name));
+	long int jsonAsset = Engine->assetsManager->createAsset (ZFilePath(string(SCENE_BASE)+_name), "scene."+_name);
 	Engine->assetsManager->needAsset (jsonAsset);
 	data = Engine->assetsManager->getAsset<ZJSONAsset*> (jsonAsset);
 }
@@ -112,7 +112,7 @@ void scnIntro::render () {
         }
 
         if (currentText == 2) {
-            Engine->assetsManager->getAsset <ZAudioAsset*>(ZFilePath(".:Assets:Audio:music:intro:intro.ogg"))->loop();
+            Engine->assetsManager->getAsset <ZAudioAsset*>("audio.music.intro")->loop();
         }
 
         startTime = Engine->gameTime->currentTime;
@@ -173,8 +173,6 @@ void scnGame::render () {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	/*
-
 	if (Engine->editMode) {
 		Engine->editor->drawHUD();
 	}
@@ -230,7 +228,6 @@ void scnGame::render () {
 	}
 
 	glTranslatef (-camera->position->x,-camera->position->y,-camera->position->z);
-	*/
 
 	long int len=Engine->getObjectsNumber();
 	for (long int i=0;i<len;i++) {
@@ -240,7 +237,6 @@ void scnGame::render () {
 			continue;
 
 
-		/*
 		float objz;
 		if (!obj->background)
 			objz = ((obj->position->y+obj->size->y/2))/1000.0+10.0;
@@ -249,7 +245,6 @@ void scnGame::render () {
 
 		obj->position->z = objz;
 
-		/*
 
 		glPushMatrix();
 			glTranslatef(obj->position->x,obj->position->y,objz);
@@ -335,8 +330,6 @@ void scnGame::render () {
 				}
 			glPopMatrix();
 		glPopMatrix();
-
-		*/
 
 		obj->draw();
 	}
