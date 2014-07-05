@@ -22,7 +22,7 @@ void PI::Item::draw (Vec3 _pos) {
 	texture->drawCentered(_pos);
 
 	string name = getName();
-	Engine->textManager->setColor(Vec3(0,0,0));
+	Engine->textManager->setColor(Vec3(0,0.5,0.5));
 	Engine->textManager->drawStringCentered (_pos+Vec3(0,texture->height/2+12,0),name,16);
 }
 
@@ -55,10 +55,14 @@ void PI::Inventory::removeItem (Item* _item) {
 
 void PI::Inventory::draw() {
 	Vec3 pos {0,0,99};
-	for (auto i :items) {
-		i->draw(pos);
-		pos.y += i->getSize().y;
-	}
+
+	glPushMatrix();
+		glLoadIdentity();
+		for (auto i :items) {
+			i->draw(pos);
+			pos.y += i->getSize().y;
+		}
+	glPopMatrix();
 }
 
 PI::Item* PI::Inventory::getItem () {

@@ -121,7 +121,8 @@ void scnIntro::render () {
 
     if (!end) {
         float color = (Engine->gameTime->currentTime-startTime)/(changeTime-startTime);
-        color = (-cos(color*M_PI-M_PI/2)+1);
+        color = (1-(-cos(color*M_PI*2)+1)/2);
+        color = color * color * color;
 
 	float py = 0;
 
@@ -130,7 +131,7 @@ void scnIntro::render () {
 	if (text.size() > 0 &&
 	    text[0] == '#') {
 		string texPath = data->getJSON()->get("image")->array->array[currentImage]->str;
-		auto tex = Engine->assetsManager->getAsset <ZTextureAsset*>(ZFilePath(texPath));
+		auto tex = Engine->assetsManager->getAsset <ZTextureAsset*>(texPath);
 		py += tex->height+10;
 		tex->setColor (Vec3(0.25,0.25,0.25));
 		tex->setOpacity (1.0-color);

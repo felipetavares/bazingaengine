@@ -3,6 +3,9 @@
 		5,
 	],
 	"text": [
-		"IF Games, Fast intro",
+		"#",
+	]
+	"image": [
+		"image.logo"
 	]
 }

@@ -156,7 +156,7 @@ void ZTextureAsset::draw (Vec3 _pos) {
 	glPushMatrix();
 		glTranslatef (_pos.x,_pos.y,_pos.z);
 		glEnable (GL_TEXTURE);
-		glDisable (GL_ALPHA_TEST);
+		glEnable (GL_ALPHA_TEST);
 		glAlphaFunc (GL_GREATER, 0);
 		glEnable (GL_BLEND);
 		glBindTexture (GL_TEXTURE_2D, id);
@@ -177,7 +177,7 @@ void ZTextureAsset::drawCentered (Vec3 _pos) {
 		glTranslatef (_pos.x,_pos.y,_pos.z);
 		glTranslatef (-width/2, -height/2, 0);
 		glEnable (GL_TEXTURE);
-		glDisable (GL_ALPHA_TEST);
+		glEnable (GL_ALPHA_TEST);
 		glAlphaFunc (GL_GREATER, 0);
 		glEnable (GL_BLEND);
 		glBindTexture (GL_TEXTURE_2D, id);
