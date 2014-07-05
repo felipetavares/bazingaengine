@@ -48,6 +48,8 @@ ZFilePath ZAsset::getPath () {
 ZTextureAsset::ZTextureAsset (long int _id, ZFilePath _path):
 	ZAsset::ZAsset (_id,_path) {
 		type = ZAsset::Texture;
+	opacity = 1;
+	color = Vec3 (0.25,0.25,0.25);
 }
 
 ZTextureAsset::~ZTextureAsset () {
@@ -123,16 +125,65 @@ void ZTextureAsset::sync () {
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-    glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
-    glTexEnvi(GL_TEXTURE_ENV, GL_SRC0_RGB, GL_TEXTURE);
-    glTexEnvi(GL_TEXTURE_ENV, GL_SRC1_RGB, GL_PREVIOUS);
-    glTexEnvi(GL_TEXTURE_ENV, GL_RGB_SCALE, 4.0);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SRC0_RGB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SRC1_RGB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_RGB_SCALE, 4.0);
 
 	SDL_FreeSurface (surface);
 	SDL_FreeSurface (potSurface);
 
 	loaded = true;
+}
+
+void ZTextureAsset::setColor (Vec3 _color) {
+	color = _color;
+}
+
+void ZTextureAsset::setOpacity (float _opacity) {
+	opacity = _opacity;
+}
+
+void ZTextureAsset::draw (Vec3 _pos) {
+	float sX = (float)width/(float)rwidth;
+	float sY = (float)height/(float)rheight;
+	glPushMatrix();
+		glTranslatef (_pos.x,_pos.y,_pos.z);
+		glEnable (GL_TEXTURE);
+		glDisable (GL_ALPHA_TEST);
+		glAlphaFunc (GL_GREATER, 0);
+		glEnable (GL_BLEND);
+		glBindTexture (GL_TEXTURE_2D, id);
+		glColor4f(color.x,color.y,color.z, opacity);
+		glBegin(GL_QUADS);
+			glTexCoord2f (0,0); 	glVertex3f(0, 0, 0);
+			glTexCoord2f (sX,0); 	glVertex3f(width, 0, 0);
+			glTexCoord2f (sX,sY); 	glVertex3f(width, height, 0);
+			glTexCoord2f (0,sY); 	glVertex3f(0, height, 0);
+		glEnd();
+	glPopMatrix();
+}
+
+void ZTextureAsset::drawCentered (Vec3 _pos) {
+	float sX = (float)width/(float)rwidth;
+	float sY = (float)height/(float)rheight;
+	glPushMatrix();
+		glTranslatef (_pos.x,_pos.y,_pos.z);
+		glTranslatef (-width/2, -height/2, 0);
+		glEnable (GL_TEXTURE);
+		glDisable (GL_ALPHA_TEST);
+		glAlphaFunc (GL_GREATER, 0);
+		glEnable (GL_BLEND);
+		glBindTexture (GL_TEXTURE_2D, id);
+		glColor4f(color.x,color.y,color.z, opacity);
+		glBegin(GL_QUADS);
+			glTexCoord2f (0,0); 	glVertex3f(0, 0, 0);
+			glTexCoord2f (sX,0); 	glVertex3f(width, 0, 0);
+			glTexCoord2f (sX,sY); 	glVertex3f(width, height, 0);
+			glTexCoord2f (0,sY); 	glVertex3f(0, height, 0);
+		glEnd();
+	glPopMatrix();
 }
 
 ZJSONAsset::ZJSONAsset (long int _id, ZFilePath _path):

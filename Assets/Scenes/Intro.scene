@@ -11,12 +11,15 @@
 	],
 	"text": [
 		"IF Games",
-		"Made in Bazinga Engine",
+		"#Bazinga Engine",
 		" ",
 		"GIBÃO",
 		"O segredo da caatinga",
 		"Julho",
 		"1938",
 		"Semiárido Nordestino"
+	],
+	"image": [
+		".:Assets:BazingaEngine.png"
 	]
 }

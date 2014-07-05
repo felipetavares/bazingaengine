@@ -180,7 +180,7 @@ void ZFloorObject::init () {
 }
 
 PO::Matches::Matches ():
-    PO::Object(Engine->assetsManager->getAsset<ZTextureAsset*>(ZFilePath(".:Assets:Images:bush:jurema01.png"))) {
+    PO::Object(Engine->assetsManager->getAsset<ZTextureAsset*>(ZFilePath(".:Assets:Images:door:door00.png"))) {
 
 }
 
@@ -189,7 +189,7 @@ void PO::Matches::action (ZPlayerObject* _player, vector <Object*> _interactions
 }
 
 string PO::Matches::getName() {
-
+	return "Matches";
 }
 
 PO::Object::Object (ZTextureAsset *_texture) {
@@ -197,27 +197,31 @@ PO::Object::Object (ZTextureAsset *_texture) {
 }
 
 void PO::Object::draw (Vec3 _pos) {
+	float sX = (float)texture->width/(float)texture->rwidth;
+	float sY = (float)texture->height/(float)texture->rheight;
 	glPushMatrix();
-		glTranslatef (_pos.x, _pos.y, _pos.z);
-		//glEnable (GL_TEXTURE);
-		glDisable (GL_TEXTURE);
+		glTranslatef (_pos.x,_pos.y,_pos.z);
+		glColor4f(0.25,0.25,0.25,1);
+		glTranslatef (-texture->width/2, -texture->height/2, 0);
+		glEnable (GL_TEXTURE);
 		glBindTexture (GL_TEXTURE_2D, texture->id);
-		glColor3f (1,0,0);
 		glBegin(GL_QUADS);
-			glTexCoord2f (0,0); glVertex3f(0, 0, 0);
-			glTexCoord2f (texture->width/texture->rwidth,0); glVertex3f(texture->width, 0, 0);
-			glTexCoord2f (texture->width/texture->rwidth,texture->height/texture->rheight); glVertex3f(texture->width, texture->height, 0);
-			glTexCoord2f (0,texture->height/texture->rheight); glVertex3f(0, texture->height, 0);
+			glTexCoord2f (0,0); 	glVertex3f(0, 0, 0);
+			glTexCoord2f (sX,0); 	glVertex3f(texture->width, 0, 0);
+			glTexCoord2f (sX,sY); 	glVertex3f(texture->width, texture->height, 0);
+			glTexCoord2f (0,sY); 	glVertex3f(0, texture->height, 0);
 		glEnd();
-
 	glPopMatrix();
+
+	string name = getName();
+	Engine->textManager->setColor(Vec3(0,0,0));
+	Engine->textManager->drawStringCentered (Vec3(0,texture->height/2+12,0),name,16);
 }
 
 ZPlayerObject::ZPlayerObject (long int _oid,
 						Vec3 _position,
 						Vec3 _rotation):
 	ZObject (_oid, _position, _rotation) {
-    inventory.push_back(new PO::Matches());
 }
 
 void ZPlayerObject::init () {
@@ -271,6 +275,8 @@ void ZPlayerObject::init () {
     //anims[3] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> (ZFilePath (".:Assets:Animations:player-right.anim")));
 
     graphic->animation = anims[0];
+
+    inventory.push_back(new PO::Matches());
 }
 
 

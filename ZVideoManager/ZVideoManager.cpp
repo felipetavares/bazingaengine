@@ -18,9 +18,9 @@ ZVideoManager::ZVideoManager () {
 
 	findBestVideoMode();
 
-	icon = ZFilePath (".:Assets:ZEngine.bmp");
+	icon = ZFilePath (".:Assets:BazingaEngineLittle.png");
 	cout << "[INF] Loading icon from " << icon.getPath() << endl;
-	SDL_WM_SetIcon(SDL_LoadBMP(icon.getPath().c_str()), NULL);
+	SDL_WM_SetIcon(IMG_Load(icon.getPath().c_str()), NULL);
 	screen = SDL_SetVideoMode (windowWidth,windowHeight,windowBpp,videoFlags);
 	SDL_ShowCursor (0);
 

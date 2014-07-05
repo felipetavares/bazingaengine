@@ -79,10 +79,11 @@ void ZSceneManager::render () {
 
 scnIntro::scnIntro (string _name):
     ZScene(_name) {
-    currentText = 0;
 }
 
 void scnIntro::load () {
+    currentText = 0;
+    currentImage = 0;
     list = data->getJSON()->get("text")->array->array;
     time = data->getJSON()->get("time")->array->array;
     startTime = Engine->gameTime->currentTime;
@@ -96,9 +97,15 @@ void scnIntro::render () {
     //int h = Engine->videoManager->windowHeight;
 
     if (Engine->gameTime->currentTime >= changeTime) {
-        if (currentText < list.size()-1)
-            currentText++;
-        else {
+        if (currentText < list.size()-1) {
+		string text = list[currentText]->str;
+
+		if (text.size() > 0 &&
+		    text[0] == '#') {
+			currentImage++;
+		}
+		currentText++;
+       } else {
             auto gameScene = new scnGame ("Game.scene");
             Engine->sceneManager->addSceneFadeOut(gameScene,5);
             end = true;
@@ -114,11 +121,37 @@ void scnIntro::render () {
 
     if (!end) {
         float color = (Engine->gameTime->currentTime-startTime)/(changeTime-startTime);
-        color = (-cos(color*M_PI-M_PI/2)+1)/2;
+        color = (-cos(color*M_PI-M_PI/2)+1);
+
+	float py = 0;
+
+	string text = list[currentText]->str;
+
+	if (text.size() > 0 &&
+	    text[0] == '#') {
+		string texPath = data->getJSON()->get("image")->array->array[currentImage]->str;
+		auto tex = Engine->assetsManager->getAsset <ZTextureAsset*>(ZFilePath(texPath));
+		py += tex->height+10;
+		tex->setColor (Vec3(0.25,0.25,0.25));
+		tex->setOpacity (1.0-color);
+
+		glPushMatrix();
+			glScalef (2,2,2);
+			tex->drawCentered(Vec3(0,0,0));
+		glPopMatrix();
+
+		text = text.substr(1);
+	}
+
+	//stringstream pc;
+	//pc << color;
+	//string percent = pc.str();
 
         Engine->textManager->setOpacity (1);
         Engine->textManager->setColor(Vec3(color,color,color));
-        Engine->textManager->drawStringCentered(Vec3(0,0,0), list[currentText]->str, 32);
+        Engine->textManager->drawStringCentered(Vec3(0,py,0), text, 32);
+        //Engine->textManager->setColor(Vec3(0,0,0));
+        //Engine->textManager->drawStringCentered(Vec3(0,py+32,0), percent, 16);
     }
 }
 
@@ -136,9 +169,11 @@ void scnGame::render () {
 
 	float gloom = 1;
 
-	glClearColor(1,1,1,1);
+	glClearColor(Engine->colorMultiplier,Engine->colorMultiplier,Engine->colorMultiplier,1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
+
+	/*
 
 	if (Engine->editMode) {
 		Engine->editor->drawHUD();
@@ -195,13 +230,17 @@ void scnGame::render () {
 	}
 
 	glTranslatef (-camera->position->x,-camera->position->y,-camera->position->z);
+	*/
 
 	long int len=Engine->getObjectsNumber();
-	for (i=0;i<len;i++) {
+	for (long int i=0;i<len;i++) {
+
 		ZObject* obj = Engine->getObjectByPos(i);
 		if (obj == NULL)
 			continue;
 
+
+		/*
 		float objz;
 		if (!obj->background)
 			objz = ((obj->position->y+obj->size->y/2))/1000.0+10.0;
@@ -209,6 +248,8 @@ void scnGame::render () {
 			objz = 0;
 
 		obj->position->z = objz;
+
+		/*
 
 		glPushMatrix();
 			glTranslatef(obj->position->x,obj->position->y,objz);
@@ -294,7 +335,9 @@ void scnGame::render () {
 				}
 			glPopMatrix();
 		glPopMatrix();
-	
+
+		*/
+
 		obj->draw();
 	}
 }

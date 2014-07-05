@@ -26,15 +26,16 @@ public:
 };
 
 class scnIntro: public ZScene {
-    vector <ZjValue*> list;
-    vector <ZjValue*> time;
-    int currentText;
-    float changeTime;
-    float startTime;
+	vector <ZjValue*> list;
+	vector <ZjValue*> time;
+	int currentText;
+	int currentImage;
+	float changeTime;
+	float startTime;
 public:
-    scnIntro(string);
-    void load ();
-    void render ();
+	scnIntro(string);
+	void load ();
+	void render ();
 };
 
 class ZSceneManager {

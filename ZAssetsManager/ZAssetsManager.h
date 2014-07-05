@@ -3,6 +3,7 @@
 
 #include "../ZFilesystemManager/ZFilesystemManager.h"
 #include "../ZJSON/ZJSON.h"
+#include "../ZMath/Vec3.h"
 #include <vector>
 #include <iostream>
 #include <GL/gl.h>
@@ -42,16 +43,23 @@ public:
 
 class ZTextureAsset: public ZAsset {
 	SDL_Surface *surface;
+	Vec3 color;
+	float opacity;
 public:
 	GLuint id;
 	int width,height;
-    int rwidth,rheight;
+	int rwidth,rheight;
 
 	ZTextureAsset (long int,ZFilePath);
 	~ZTextureAsset();
 
 	void load ();
 	void sync ();
+
+	void setOpacity(float);
+	void setColor(Vec3);
+	void draw(Vec3);
+	void drawCentered(Vec3);
 };
 
 class ZAnimationAsset: public ZAsset {

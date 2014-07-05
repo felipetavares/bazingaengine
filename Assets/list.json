@@ -3,7 +3,7 @@
 	"font": ".:Assets:Fonts:LinuxLibertine:LinLibertine_Mah.ttf",
 	"audio": ".:Assets:Audio:wind:wind.ogg",
 	"audio": ".:Assets:Audio:footsteps:sand.ogg",
-	"audio": ".:Assets:Audio:music:intro:intro.ogg",	
+	"audio": ".:Assets:Audio:music:intro:intro.ogg",
 	"animation": ".:Assets:Animations:player-up.anim",
 	"animation": ".:Assets:Animations:player-left.anim",
 	"animation": ".:Assets:Animations:player-down.anim",
@@ -25,4 +25,5 @@
 	"image": ".:Assets:Images:wall:wall-topv.png",
 	"image": ".:Assets:Images:table:table.png",
 	"image": ".:Assets:Images:door:door00.png",
+	"image": ".:Assets:BazingaEngine.png",
 }
