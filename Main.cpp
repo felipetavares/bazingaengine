@@ -2,7 +2,7 @@
 using namespace std;
 
 #include "ZEngine/ZEngine.h"
-
+#include "ZObject/Objects/ZPlayerObject.h"
 #include <stdlib.h>
 #include <sstream>
 

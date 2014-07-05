@@ -1,4 +1,5 @@
 #include "ZEngine.h"
+#include "ZObject/Objects/ZPlayerObject.h"
 
 ZTime::ZTime () {
 	currentTime = 0;
