@@ -32,14 +32,14 @@ struct b2ContactConstraint;
 /// This is an internal structure.
 struct b2Position
 {
-	b2Vec2 x;
+	b2vec2 x;
 	float32 a;
 };
 
 /// This is an internal structure.
 struct b2Velocity
 {
-	b2Vec2 v;
+	b2vec2 v;
 	float32 w;
 };
 
@@ -58,7 +58,7 @@ public:
 		m_jointCount = 0;
 	}
 
-	void Solve(const b2TimeStep& step, const b2Vec2& gravity, bool allowSleep);
+	void Solve(const b2TimeStep& step, const b2vec2& gravity, bool allowSleep);
 
 	void Add(b2Body* body)
 	{

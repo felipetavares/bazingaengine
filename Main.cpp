@@ -9,8 +9,8 @@ using namespace std;
 #define ASSETLIST_PATH ".:Assets:list.json"
 
 void createGUI () {
-	auto menu = new ZUI::Panel (Vec2(10,10),Vec2(400,300), 24);
-	auto objects = new ZUI::Panel (Vec2(ww-410,10),Vec2(400,300), 24);
+	auto menu = new ZUI::Panel (vec2(10,10),vec2(400,300), 24);
+	auto objects = new ZUI::Panel (vec2(ww-410,10),vec2(400,300), 24);
 	auto button0 = new ZUI::wButton("Quit");
 	auto button1 = new ZUI::wButton("Objects");
 	auto button2 = new ZUI::wButton("Save map");
@@ -146,7 +146,7 @@ int main (int,char**) {
 	if (GUI)
         	createGUI();
 
-	Engine->box2dWorld->SetGravity (b2Vec2 (0,0));
+	Engine->box2dWorld->SetGravity (b2vec2 (0,0));
 	//Engine->box2dWorld->SetLinearDamping (0.5);
 
 	Engine->textManager->initTextureMaps (Engine->assetsManager->getAsset <ZFontAsset*> ("font.default"));
@@ -181,7 +181,11 @@ int main (int,char**) {
 
 	Engine->sceneManager->addScene (introScene);
 
-	Engine->run();
+    try {
+        Engine->run();
+    } catch (exception e) {
+        cout << "[ERR] [EXCEPT] " << e.what() << endl;
+    }
 
 	delete Engine;
 

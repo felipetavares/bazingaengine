@@ -27,10 +27,10 @@ b2Shape* b2CircleShape::Clone(b2BlockAllocator* allocator) const
 	return clone;
 }
 
-bool b2CircleShape::TestPoint(const b2Transform& transform, const b2Vec2& p) const
+bool b2CircleShape::TestPoint(const b2Transform& transform, const b2vec2& p) const
 {
-	b2Vec2 center = transform.position + b2Mul(transform.R, m_p);
-	b2Vec2 d = p - center;
+	b2vec2 center = transform.position + b2Mul(transform.R, m_p);
+	b2vec2 d = p - center;
 	return b2Dot(d, d) <= m_radius * m_radius;
 }
 
@@ -40,12 +40,12 @@ bool b2CircleShape::TestPoint(const b2Transform& transform, const b2Vec2& p) con
 // norm(x) = radius
 bool b2CircleShape::RayCast(b2RayCastOutput* output, const b2RayCastInput& input, const b2Transform& transform) const
 {
-	b2Vec2 position = transform.position + b2Mul(transform.R, m_p);
-	b2Vec2 s = input.p1 - position;
+	b2vec2 position = transform.position + b2Mul(transform.R, m_p);
+	b2vec2 s = input.p1 - position;
 	float32 b = b2Dot(s, s) - m_radius * m_radius;
 
 	// Solve quadratic equation.
-	b2Vec2 r = input.p2 - input.p1;
+	b2vec2 r = input.p2 - input.p1;
 	float32 c =  b2Dot(s, r);
 	float32 rr = b2Dot(r, r);
 	float32 sigma = c * c - rr * b;
@@ -74,7 +74,7 @@ bool b2CircleShape::RayCast(b2RayCastOutput* output, const b2RayCastInput& input
 
 void b2CircleShape::ComputeAABB(b2AABB* aabb, const b2Transform& transform) const
 {
-	b2Vec2 p = transform.position + b2Mul(transform.R, m_p);
+	b2vec2 p = transform.position + b2Mul(transform.R, m_p);
 	aabb->lowerBound.Set(p.x - m_radius, p.y - m_radius);
 	aabb->upperBound.Set(p.x + m_radius, p.y + m_radius);
 }

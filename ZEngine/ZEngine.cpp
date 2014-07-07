@@ -21,17 +21,17 @@ ZFPS::ZFPS () {
 }
 
 void ZFPS::run () {
-	static auto _time = chrono::high_resolution_clock::now();
-	auto now = chrono::high_resolution_clock::now();
+    static auto _time = chrono::high_resolution_clock::now();
+    auto now = chrono::high_resolution_clock::now();
 
-	float d = chrono::duration_cast<chrono::seconds>(now - _time).count();
-	if (d < second) {
-		_fps ++;
-	} else {
-		_time = chrono::high_resolution_clock::now();
-		fps = _fps;
-		_fps = 0;
-	}
+    float d = chrono::duration_cast<chrono::seconds>(now - _time).count();
+    if (d < second) {
+        _fps ++;
+    } else {
+        _time = chrono::high_resolution_clock::now();
+        fps = _fps;
+        _fps = 0;
+    }
 }
 
 ZEngine::ZEngine (bool _debug) {
@@ -75,7 +75,7 @@ ZEngine::ZEngine (bool _debug) {
 	audioManager      = new ZAudioManager();
 	jsonManager		  = new ZJSON();
 	util			  = new ZUtil();
-	box2dWorld		  = new b2World(b2Vec2(0,0), false); // No gravity
+	box2dWorld		  = new b2World(b2vec2(0,0), false); // No gravity
 	camera			  = new ZCamera();
 	editor			  = new ZEditor();
 	guiManager		  = new ZGUIManager();
@@ -336,7 +336,7 @@ void ZEngine::loadMap (ZFilePath _path) {
 }
 
 void ZEngine::saveMap (ZFilePath _path) {
-	auto menu = new ZUI::Panel (Vec2(ww/2-150,wh/2-50),Vec2(300,100), 24);
+	auto menu = new ZUI::Panel (vec2(ww/2-150,wh/2-50),vec2(300,100), 24);
 	auto bStatus = new ZUI::wProgressBar("Saving ...");
 	auto bOk = new ZUI::wButton("Ok");
 

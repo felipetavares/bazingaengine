@@ -4,8 +4,8 @@
 #include <functional>
 #include <vector>
 #include <map>
-#include "../ZMath/Vec3.h"
-#include "../ZMath/Vec2.h"
+#include "ZMath/math/vec3/vec3.h"
+#include "ZMath/math/vec2/vec2.h"
 
 #include "../ZInputManager/ZInputManager.h"
 
@@ -75,7 +75,7 @@ public:
 class Widget {
 	map <Filter*,Action*> *actions = NULL;
 public:
-	Vec2 p,s;
+	vec2 p,s;
 	float z;
 public:
 	//! Construtor
@@ -87,7 +87,7 @@ public:
 	void addAction (Filter*, Action*);
 
 	//! Desenha o widget
-	virtual void draw(Vec2,Vec2,float);
+	virtual void draw(vec2,vec2,float);
 	//! Roteia um evento
 	void routeEvent(Event*);
 };
@@ -101,7 +101,7 @@ class wButton: public Widget {
 public:
 	wButton(string);
 	void setText(string);
-	void draw (Vec2,Vec2,float);
+	void draw (vec2,vec2,float);
 };
 
 /**
@@ -114,7 +114,7 @@ public:
 	wProgressBar(string);
 	void setText(string);
 	void setProgress(float);
-	void draw (Vec2,Vec2,float);
+	void draw (vec2,vec2,float);
 };
 
 /**
@@ -125,7 +125,7 @@ class wEntry: public Widget {
 public:
 	wEntry(string);
 	void processKeyEvent(Event*);
-	void draw (Vec2,Vec2,float);
+	void draw (vec2,vec2,float);
 };
 
 /**
@@ -135,7 +135,7 @@ class wIcon: public Widget {
 	unsigned int aid;
 public:
 	wIcon(unsigned int);
-	void draw (Vec2,Vec2,float);
+	void draw (vec2,vec2,float);
     unsigned int getAid();
 };
 
@@ -145,7 +145,7 @@ public:
 */
 class Panel {
 	float z;
-	Vec2 p,s;
+	vec2 p,s;
 
 	//! True se o panel estiver visível
 	bool visible;
@@ -159,11 +159,11 @@ class Panel {
 	bool dragged;
 
 	//! Distância do topo da janela até o ponto do clique
-	Vec2 dragDist;
+	vec2 dragDist;
 
 	Widget* focus;
 public:
-	Panel(Vec2,Vec2,int);
+	Panel(vec2,vec2,int);
 	~Panel();
 
 	//! Funções para controlar o estado de visibilidade

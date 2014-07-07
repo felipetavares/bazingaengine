@@ -1,7 +1,7 @@
 #ifndef ZGRAPHICS_H
 #define ZGRAPHICS_H
 
-#include "../ZMath/Vec3.h"
+#include "ZMath/math/vec3/vec3.h"
 #include "../ZAssetsManager/ZAssetsManager.h"
 #include "../ZAnimation/ZAnimation.h"
 
@@ -14,9 +14,9 @@ public:
 	ZTextureAsset* texture;
 	ZAnimation *animation;
 
-	Vec3 *position;
-	Vec3 *size;
-	Vec3 *rotation;
+	vec3 *position;
+	vec3 *size;
+	vec3 *rotation;
 
 	// Is this object visible now?
 	bool visible;

@@ -2,19 +2,19 @@
   Copyright (C) 2013 by Felipe Tavares
 
   This file is part of Render TRI.
-  
+
   Render TRI is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   Render TRI is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU General Public License
-  along with Render TRI.  If not, see <http://www.gnu.org/licenses/>. 
+  along with Render TRI.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "vec4.h"
@@ -27,7 +27,7 @@ vec4::vec4 () {
   w = 0;
 }
 
-vec4::vec4 (double x, double y, double z, double w) {
+vec4::vec4 (float x, float y, float z, float w) {
   this->x = x;
   this->y = y;
   this->z = z;
@@ -41,7 +41,7 @@ vec4::vec4 (const vec4& vec) {
   w = vec.w;
 }
 
-vec4::vec4 (const vec2& vec, double z, double w) {
+vec4::vec4 (const vec2& vec, float z, float w) {
   x = vec.x;
   y = vec.y;
 
@@ -57,7 +57,7 @@ vec4::vec4 (const vec2& vec, const vec2& vec2) {
   w = vec2.y;
 }
 
-vec4::vec4 (const vec3& vec, double w) {
+vec4::vec4 (const vec3& vec, float w) {
   x = vec.x;
   y = vec.y;
   z = vec.z;
@@ -69,19 +69,19 @@ vec4::~vec4 () {
   // Nothing to do here
 }
 
-vec2 vec4::toVec2 () {
+vec2 vec4::tovec2 () {
   vec2 r (x,y);
 
   return r;
 }
 
-vec3 vec4::toVec3 () {
+vec3 vec4::tovec3 () {
   vec3 r (x,y,z);
 
   return r;
 }
 
-double vec4::operator [] (const int i) {
+float vec4::operator [] (const int i) {
   switch (i) {
   case 0:
     return x;
@@ -98,7 +98,7 @@ double vec4::operator [] (const int i) {
 
 std::string vec4::str () {
   std::stringstream ss;
-  
+
   ss << "(";
   ss << x;
   ss << ", ";
@@ -112,7 +112,7 @@ std::string vec4::str () {
   return ss.str();
 }
 
-double vec4::dot (const vec4& vec) {
+float vec4::dot (const vec4& vec) {
   return x*vec.x+y*vec.y+z*vec.z+w*vec.w;
 }
 
@@ -125,7 +125,7 @@ vec4 vec4::operator = (const vec4& vec) {
   return *this;
 }
 
-vec4 vec4::operator * (const double s) {
+vec4 vec4::operator * (const float s) {
   vec4 r;
 
   r.x = x*s;
@@ -136,7 +136,7 @@ vec4 vec4::operator * (const double s) {
   return r;
 }
 
-vec4 vec4::operator / (const double s) {
+vec4 vec4::operator / (const float s) {
   vec4 r;
 
   r.x = x/s;
@@ -169,7 +169,7 @@ vec4 vec4::operator - (const vec4& vec) {
   return r;
 }
 
-vec4 vec4::operator *= (const double s) {
+vec4 vec4::operator *= (const float s) {
   x *= s;
   y *= s;
   z *= s;
@@ -178,7 +178,7 @@ vec4 vec4::operator *= (const double s) {
   return *this;
 }
 
-vec4 vec4::operator /= (const double s) {
+vec4 vec4::operator /= (const float s) {
   x /= s;
   y /= s;
   z /= s;
@@ -205,13 +205,13 @@ vec4 vec4::operator -= (const vec4& vec) {
   return *this;
 }
 
-double vec4::length () {
+float vec4::length () {
   return sqrt (x*x+y*y+z*z+w*w);
 }
 
 vec4 vec4::normal () {
   vec4 r;
-  double l = length();
+  float l = length();
 
   r.x = x/l;
   r.y = y/l;
@@ -222,12 +222,12 @@ vec4 vec4::normal () {
 }
 
 vec4 vec4::normalize () {
-  double l = length();
+  float l = length();
 
   x /= l;
   y /= l;
   z /= l;
   w /= l;
 
-  return *this;  
+  return *this;
 }

@@ -45,21 +45,21 @@ struct b2PulleyJointDef : public b2JointDef
 
 	/// Initialize the bodies, anchors, lengths, max lengths, and ratio using the world anchors.
 	void Initialize(b2Body* bodyA, b2Body* bodyB,
-					const b2Vec2& groundAnchorA, const b2Vec2& groundAnchorB,
-					const b2Vec2& anchorA, const b2Vec2& anchorB,
+					const b2vec2& groundAnchorA, const b2vec2& groundAnchorB,
+					const b2vec2& anchorA, const b2vec2& anchorB,
 					float32 ratio);
 
 	/// The first ground anchor in world coordinates. This point never moves.
-	b2Vec2 groundAnchorA;
+	b2vec2 groundAnchorA;
 
 	/// The second ground anchor in world coordinates. This point never moves.
-	b2Vec2 groundAnchorB;
+	b2vec2 groundAnchorB;
 
 	/// The local anchor point relative to bodyA's origin.
-	b2Vec2 localAnchorA;
+	b2vec2 localAnchorA;
 
 	/// The local anchor point relative to bodyB's origin.
-	b2Vec2 localAnchorB;
+	b2vec2 localAnchorB;
 
 	/// The a reference length for the segment attached to bodyA.
 	float32 lengthA;
@@ -86,17 +86,17 @@ struct b2PulleyJointDef : public b2JointDef
 class b2PulleyJoint : public b2Joint
 {
 public:
-	b2Vec2 GetAnchorA() const;
-	b2Vec2 GetAnchorB() const;
+	b2vec2 GetAnchorA() const;
+	b2vec2 GetAnchorB() const;
 
-	b2Vec2 GetReactionForce(float32 inv_dt) const;
+	b2vec2 GetReactionForce(float32 inv_dt) const;
 	float32 GetReactionTorque(float32 inv_dt) const;
 
 	/// Get the first ground anchor.
-	b2Vec2 GetGroundAnchorA() const;
+	b2vec2 GetGroundAnchorA() const;
 
 	/// Get the second ground anchor.
-	b2Vec2 GetGroundAnchorB() const;
+	b2vec2 GetGroundAnchorB() const;
 
 	/// Get the current length of the segment attached to body1.
 	float32 GetLength1() const;
@@ -116,17 +116,17 @@ protected:
 	void SolveVelocityConstraints(const b2TimeStep& step);
 	bool SolvePositionConstraints(float32 baumgarte);
 
-	b2Vec2 m_groundAnchor1;
-	b2Vec2 m_groundAnchor2;
-	b2Vec2 m_localAnchor1;
-	b2Vec2 m_localAnchor2;
+	b2vec2 m_groundAnchor1;
+	b2vec2 m_groundAnchor2;
+	b2vec2 m_localAnchor1;
+	b2vec2 m_localAnchor2;
 
-	b2Vec2 m_u1;
-	b2Vec2 m_u2;
-	
+	b2vec2 m_u1;
+	b2vec2 m_u2;
+
 	float32 m_constant;
 	float32 m_ratio;
-	
+
 	float32 m_maxLength1;
 	float32 m_maxLength2;
 

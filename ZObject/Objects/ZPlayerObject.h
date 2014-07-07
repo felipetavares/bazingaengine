@@ -17,9 +17,9 @@ namespace PI {
 		Item (ZTextureAsset*);
 		virtual void action (ZPlayerObject*, vector <Item*>) = 0;
 		virtual string getName() = 0;
-		void draw (Vec3);
+		void draw (vec3);
 
-		Vec2 getSize();
+		vec2 getSize();
 	};
 
 	class Matches: public Item {
@@ -32,6 +32,7 @@ namespace PI {
 	class Inventory {
 		vector <Item*> items;
 		int currentItem;
+		float currentPos;
 	public:
 		Inventory();
 
@@ -54,8 +55,8 @@ public:
 
 	int playerNum = 0;
 
-	Vec3 dir;
-	ZPlayerObject (long int, Vec3=Vec3(), Vec3=Vec3());
+	vec3 dir;
+	ZPlayerObject (long int, vec3=vec3(), vec3=vec3());
 
 	void init();
 	void step();

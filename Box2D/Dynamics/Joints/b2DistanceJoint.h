@@ -42,13 +42,13 @@ struct b2DistanceJointDef : public b2JointDef
 	/// Initialize the bodies, anchors, and length using the world
 	/// anchors.
 	void Initialize(b2Body* bodyA, b2Body* bodyB,
-					const b2Vec2& anchorA, const b2Vec2& anchorB);
+					const b2vec2& anchorA, const b2vec2& anchorB);
 
 	/// The local anchor point relative to body1's origin.
-	b2Vec2 localAnchorA;
+	b2vec2 localAnchorA;
 
 	/// The local anchor point relative to body2's origin.
-	b2Vec2 localAnchorB;
+	b2vec2 localAnchorB;
 
 	/// The natural length between the anchor points.
 	float32 length;
@@ -67,10 +67,10 @@ class b2DistanceJoint : public b2Joint
 {
 public:
 
-	b2Vec2 GetAnchorA() const;
-	b2Vec2 GetAnchorB() const;
+	b2vec2 GetAnchorA() const;
+	b2vec2 GetAnchorB() const;
 
-	b2Vec2 GetReactionForce(float32 inv_dt) const;
+	b2vec2 GetReactionForce(float32 inv_dt) const;
 	float32 GetReactionTorque(float32 inv_dt) const;
 
 	/// Set/get the natural length.
@@ -95,9 +95,9 @@ protected:
 	void SolveVelocityConstraints(const b2TimeStep& step);
 	bool SolvePositionConstraints(float32 baumgarte);
 
-	b2Vec2 m_localAnchor1;
-	b2Vec2 m_localAnchor2;
-	b2Vec2 m_u;
+	b2vec2 m_localAnchor1;
+	b2vec2 m_localAnchor2;
+	b2vec2 m_u;
 	float32 m_frequencyHz;
 	float32 m_dampingRatio;
 	float32 m_gamma;

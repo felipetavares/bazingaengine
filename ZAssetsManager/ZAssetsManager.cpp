@@ -54,7 +54,7 @@ ZTextureAsset::ZTextureAsset (long int _id, ZFilePath _path, string _name):
 	ZAsset::ZAsset (_id,_path,_name) {
 		type = ZAsset::Texture;
 	opacity = 1;
-	color = Vec3 (0.25,0.25,0.25);
+	color = vec3 (0.25,0.25,0.25);
 }
 
 ZTextureAsset::~ZTextureAsset () {
@@ -142,7 +142,7 @@ void ZTextureAsset::sync () {
 	loaded = true;
 }
 
-void ZTextureAsset::setColor (Vec3 _color) {
+void ZTextureAsset::setColor (vec3 _color) {
 	color = _color;
 }
 
@@ -150,7 +150,7 @@ void ZTextureAsset::setOpacity (float _opacity) {
 	opacity = _opacity;
 }
 
-void ZTextureAsset::draw (Vec3 _pos) {
+void ZTextureAsset::draw (vec3 _pos) {
 	float sX = (float)width/(float)rwidth;
 	float sY = (float)height/(float)rheight;
 	glPushMatrix();
@@ -170,7 +170,7 @@ void ZTextureAsset::draw (Vec3 _pos) {
 	glPopMatrix();
 }
 
-void ZTextureAsset::drawCentered (Vec3 _pos) {
+void ZTextureAsset::drawCentered (vec3 _pos) {
 	float sX = (float)width/(float)rwidth;
 	float sY = (float)height/(float)rheight;
 	glPushMatrix();

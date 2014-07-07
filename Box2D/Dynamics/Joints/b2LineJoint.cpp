@@ -80,7 +80,7 @@
 // Now compute impulse to be applied:
 // df = f2 - f1
 
-void b2LineJointDef::Initialize(b2Body* b1, b2Body* b2, const b2Vec2& anchor, const b2Vec2& axis)
+void b2LineJointDef::Initialize(b2Body* b1, b2Body* b2, const b2vec2& anchor, const b2vec2& axis)
 {
 	bodyA = b1;
 	bodyB = b2;
@@ -125,9 +125,9 @@ void b2LineJoint::InitVelocityConstraints(const b2TimeStep& step)
 	b2Transform xf2 = b2->GetTransform();
 
 	// Compute the effective masses.
-	b2Vec2 r1 = b2Mul(xf1.R, m_localAnchor1 - m_localCenterA);
-	b2Vec2 r2 = b2Mul(xf2.R, m_localAnchor2 - m_localCenterB);
-	b2Vec2 d = b2->m_sweep.c + r2 - b1->m_sweep.c - r1;
+	b2vec2 r1 = b2Mul(xf1.R, m_localAnchor1 - m_localCenterA);
+	b2vec2 r2 = b2Mul(xf2.R, m_localAnchor2 - m_localCenterB);
+	b2vec2 d = b2->m_sweep.c + r2 - b1->m_sweep.c - r1;
 
 	m_invMassA = b1->m_invMass;
 	m_invIA = b1->m_invI;
@@ -215,7 +215,7 @@ void b2LineJoint::InitVelocityConstraints(const b2TimeStep& step)
 		m_impulse *= step.dtRatio;
 		m_motorImpulse *= step.dtRatio;
 
-		b2Vec2 P = m_impulse.x * m_perp + (m_motorImpulse + m_impulse.y) * m_axis;
+		b2vec2 P = m_impulse.x * m_perp + (m_motorImpulse + m_impulse.y) * m_axis;
 		float32 L1 = m_impulse.x * m_s1 + (m_motorImpulse + m_impulse.y) * m_a1;
 		float32 L2 = m_impulse.x * m_s2 + (m_motorImpulse + m_impulse.y) * m_a2;
 
@@ -237,9 +237,9 @@ void b2LineJoint::SolveVelocityConstraints(const b2TimeStep& step)
 	b2Body* b1 = m_bodyA;
 	b2Body* b2 = m_bodyB;
 
-	b2Vec2 v1 = b1->m_linearVelocity;
+	b2vec2 v1 = b1->m_linearVelocity;
 	float32 w1 = b1->m_angularVelocity;
-	b2Vec2 v2 = b2->m_linearVelocity;
+	b2vec2 v2 = b2->m_linearVelocity;
 	float32 w2 = b2->m_angularVelocity;
 
 	// Solve linear motor constraint.
@@ -252,7 +252,7 @@ void b2LineJoint::SolveVelocityConstraints(const b2TimeStep& step)
 		m_motorImpulse = b2Clamp(m_motorImpulse + impulse, -maxImpulse, maxImpulse);
 		impulse = m_motorImpulse - oldImpulse;
 
-		b2Vec2 P = impulse * m_axis;
+		b2vec2 P = impulse * m_axis;
 		float32 L1 = impulse * m_a1;
 		float32 L2 = impulse * m_a2;
 
@@ -269,10 +269,10 @@ void b2LineJoint::SolveVelocityConstraints(const b2TimeStep& step)
 	{
 		// Solve prismatic and limit constraint in block form.
 		float32 Cdot2 = b2Dot(m_axis, v2 - v1) + m_a2 * w2 - m_a1 * w1;
-		b2Vec2 Cdot(Cdot1, Cdot2);
+		b2vec2 Cdot(Cdot1, Cdot2);
 
-		b2Vec2 f1 = m_impulse;
-		b2Vec2 df =  m_K.Solve(-Cdot);
+		b2vec2 f1 = m_impulse;
+		b2vec2 df =  m_K.Solve(-Cdot);
 		m_impulse += df;
 
 		if (m_limitState == e_atLowerLimit)
@@ -293,14 +293,14 @@ void b2LineJoint::SolveVelocityConstraints(const b2TimeStep& step)
 		}
 		else
 		{
-			f2r = f1.x;	
+			f2r = f1.x;
 		}
 
 		m_impulse.x = f2r;
 
 		df = m_impulse - f1;
 
-		b2Vec2 P = df.x * m_perp + df.y * m_axis;
+		b2vec2 P = df.x * m_perp + df.y * m_axis;
 		float32 L1 = df.x * m_s1 + df.y * m_a1;
 		float32 L2 = df.x * m_s2 + df.y * m_a2;
 
@@ -324,7 +324,7 @@ void b2LineJoint::SolveVelocityConstraints(const b2TimeStep& step)
 		}
 		m_impulse.x += df;
 
-		b2Vec2 P = df * m_perp;
+		b2vec2 P = df * m_perp;
 		float32 L1 = df * m_s1;
 		float32 L2 = df * m_s2;
 
@@ -348,10 +348,10 @@ bool b2LineJoint::SolvePositionConstraints(float32 baumgarte)
 	b2Body* b1 = m_bodyA;
 	b2Body* b2 = m_bodyB;
 
-	b2Vec2 c1 = b1->m_sweep.c;
+	b2vec2 c1 = b1->m_sweep.c;
 	float32 a1 = b1->m_sweep.a;
 
-	b2Vec2 c2 = b2->m_sweep.c;
+	b2vec2 c2 = b2->m_sweep.c;
 	float32 a2 = b2->m_sweep.a;
 
 	// Solve linear limit constraint.
@@ -361,9 +361,9 @@ bool b2LineJoint::SolvePositionConstraints(float32 baumgarte)
 
 	b2Mat22 R1(a1), R2(a2);
 
-	b2Vec2 r1 = b2Mul(R1, m_localAnchor1 - m_localCenterA);
-	b2Vec2 r2 = b2Mul(R2, m_localAnchor2 - m_localCenterB);
-	b2Vec2 d = c2 + r2 - c1 - r1;
+	b2vec2 r1 = b2Mul(R1, m_localAnchor1 - m_localCenterA);
+	b2vec2 r2 = b2Mul(R2, m_localAnchor2 - m_localCenterB);
+	b2vec2 d = c2 + r2 - c1 - r1;
 
 	if (m_enableLimit)
 	{
@@ -401,7 +401,7 @@ bool b2LineJoint::SolvePositionConstraints(float32 baumgarte)
 	m_s1 = b2Cross(d + r1, m_perp);
 	m_s2 = b2Cross(r2, m_perp);
 
-	b2Vec2 impulse;
+	b2vec2 impulse;
 	float32 C1;
 	C1 = b2Dot(m_perp, d);
 
@@ -420,7 +420,7 @@ bool b2LineJoint::SolvePositionConstraints(float32 baumgarte)
 		m_K.col1.Set(k11, k12);
 		m_K.col2.Set(k12, k22);
 
-		b2Vec2 C;
+		b2vec2 C;
 		C.x = C1;
 		C.y = C2;
 
@@ -447,7 +447,7 @@ bool b2LineJoint::SolvePositionConstraints(float32 baumgarte)
 		impulse.y = 0.0f;
 	}
 
-	b2Vec2 P = impulse.x * m_perp + impulse.y * m_axis;
+	b2vec2 P = impulse.x * m_perp + impulse.y * m_axis;
 	float32 L1 = impulse.x * m_s1 + impulse.y * m_a1;
 	float32 L2 = impulse.x * m_s2 + impulse.y * m_a2;
 
@@ -467,17 +467,17 @@ bool b2LineJoint::SolvePositionConstraints(float32 baumgarte)
 	return linearError <= b2_linearSlop && angularError <= b2_angularSlop;
 }
 
-b2Vec2 b2LineJoint::GetAnchorA() const
+b2vec2 b2LineJoint::GetAnchorA() const
 {
 	return m_bodyA->GetWorldPoint(m_localAnchor1);
 }
 
-b2Vec2 b2LineJoint::GetAnchorB() const
+b2vec2 b2LineJoint::GetAnchorB() const
 {
 	return m_bodyB->GetWorldPoint(m_localAnchor2);
 }
 
-b2Vec2 b2LineJoint::GetReactionForce(float32 inv_dt) const
+b2vec2 b2LineJoint::GetReactionForce(float32 inv_dt) const
 {
 	return inv_dt * (m_impulse.x * m_perp + (m_motorImpulse + m_impulse.y) * m_axis);
 }
@@ -493,10 +493,10 @@ float32 b2LineJoint::GetJointTranslation() const
 	b2Body* b1 = m_bodyA;
 	b2Body* b2 = m_bodyB;
 
-	b2Vec2 p1 = b1->GetWorldPoint(m_localAnchor1);
-	b2Vec2 p2 = b2->GetWorldPoint(m_localAnchor2);
-	b2Vec2 d = p2 - p1;
-	b2Vec2 axis = b1->GetWorldVector(m_localXAxis1);
+	b2vec2 p1 = b1->GetWorldPoint(m_localAnchor1);
+	b2vec2 p2 = b2->GetWorldPoint(m_localAnchor2);
+	b2vec2 d = p2 - p1;
+	b2vec2 axis = b1->GetWorldVector(m_localXAxis1);
 
 	float32 translation = b2Dot(d, axis);
 	return translation;
@@ -507,15 +507,15 @@ float32 b2LineJoint::GetJointSpeed() const
 	b2Body* b1 = m_bodyA;
 	b2Body* b2 = m_bodyB;
 
-	b2Vec2 r1 = b2Mul(b1->GetTransform().R, m_localAnchor1 - b1->GetLocalCenter());
-	b2Vec2 r2 = b2Mul(b2->GetTransform().R, m_localAnchor2 - b2->GetLocalCenter());
-	b2Vec2 p1 = b1->m_sweep.c + r1;
-	b2Vec2 p2 = b2->m_sweep.c + r2;
-	b2Vec2 d = p2 - p1;
-	b2Vec2 axis = b1->GetWorldVector(m_localXAxis1);
+	b2vec2 r1 = b2Mul(b1->GetTransform().R, m_localAnchor1 - b1->GetLocalCenter());
+	b2vec2 r2 = b2Mul(b2->GetTransform().R, m_localAnchor2 - b2->GetLocalCenter());
+	b2vec2 p1 = b1->m_sweep.c + r1;
+	b2vec2 p2 = b2->m_sweep.c + r2;
+	b2vec2 d = p2 - p1;
+	b2vec2 axis = b1->GetWorldVector(m_localXAxis1);
 
-	b2Vec2 v1 = b1->m_linearVelocity;
-	b2Vec2 v2 = b2->m_linearVelocity;
+	b2vec2 v1 = b1->m_linearVelocity;
+	b2vec2 v2 = b2->m_linearVelocity;
 	float32 w1 = b1->m_angularVelocity;
 	float32 w2 = b2->m_angularVelocity;
 

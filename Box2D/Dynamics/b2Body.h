@@ -72,13 +72,13 @@ struct b2BodyDef
 
 	/// The world position of the body. Avoid creating bodies at the origin
 	/// since this can lead to many overlapping shapes.
-	b2Vec2 position;
+	b2vec2 position;
 
 	/// The world angle of the body in radians.
 	float32 angle;
 
 	/// The linear velocity of the body's origin in world co-ordinates.
-	b2Vec2 linearVelocity;
+	b2vec2 linearVelocity;
 
 	/// The angular velocity of the body.
 	float32 angularVelocity;
@@ -155,7 +155,7 @@ public:
 	/// Manipulating a body's transform may cause non-physical behavior.
 	/// @param position the world position of the body's local origin.
 	/// @param angle the world rotation in radians.
-	void SetTransform(const b2Vec2& position, float32 angle);
+	void SetTransform(const b2vec2& position, float32 angle);
 
 	/// Get the body transform for the body's origin.
 	/// @return the world transform of the body's origin.
@@ -163,25 +163,25 @@ public:
 
 	/// Get the world body origin position.
 	/// @return the world position of the body's origin.
-	const b2Vec2& GetPosition() const;
+	const b2vec2& GetPosition() const;
 
 	/// Get the angle in radians.
 	/// @return the current world rotation angle in radians.
 	float32 GetAngle() const;
 
 	/// Get the world position of the center of mass.
-	const b2Vec2& GetWorldCenter() const;
+	const b2vec2& GetWorldCenter() const;
 
 	/// Get the local position of the center of mass.
-	const b2Vec2& GetLocalCenter() const;
+	const b2vec2& GetLocalCenter() const;
 
 	/// Set the linear velocity of the center of mass.
 	/// @param v the new linear velocity of the center of mass.
-	void SetLinearVelocity(const b2Vec2& v);
+	void SetLinearVelocity(const b2vec2& v);
 
 	/// Get the linear velocity of the center of mass.
 	/// @return the linear velocity of the center of mass.
-	b2Vec2 GetLinearVelocity() const;
+	b2vec2 GetLinearVelocity() const;
 
 	/// Set the angular velocity.
 	/// @param omega the new angular velocity in radians/second.
@@ -196,7 +196,7 @@ public:
 	/// affect the angular velocity. This wakes up the body.
 	/// @param force the world force vector, usually in Newtons (N).
 	/// @param point the world position of the point of application.
-	void ApplyForce(const b2Vec2& force, const b2Vec2& point);
+	void ApplyForce(const b2vec2& force, const b2vec2& point);
 
 	/// Apply a torque. This affects the angular velocity
 	/// without affecting the linear velocity of the center of mass.
@@ -209,7 +209,7 @@ public:
 	/// is not at the center of mass. This wakes up the body.
 	/// @param impulse the world impulse vector, usually in N-seconds or kg-m/s.
 	/// @param point the world position of the point of application.
-	void ApplyLinearImpulse(const b2Vec2& impulse, const b2Vec2& point);
+	void ApplyLinearImpulse(const b2vec2& impulse, const b2vec2& point);
 
 	/// Apply an angular impulse.
 	/// @param impulse the angular impulse in units of kg*m*m/s
@@ -242,32 +242,32 @@ public:
 	/// Get the world coordinates of a point given the local coordinates.
 	/// @param localPoint a point on the body measured relative the the body's origin.
 	/// @return the same point expressed in world coordinates.
-	b2Vec2 GetWorldPoint(const b2Vec2& localPoint) const;
+	b2vec2 GetWorldPoint(const b2vec2& localPoint) const;
 
 	/// Get the world coordinates of a vector given the local coordinates.
 	/// @param localVector a vector fixed in the body.
 	/// @return the same vector expressed in world coordinates.
-	b2Vec2 GetWorldVector(const b2Vec2& localVector) const;
+	b2vec2 GetWorldVector(const b2vec2& localVector) const;
 
 	/// Gets a local point relative to the body's origin given a world point.
 	/// @param a point in world coordinates.
 	/// @return the corresponding local point relative to the body's origin.
-	b2Vec2 GetLocalPoint(const b2Vec2& worldPoint) const;
+	b2vec2 GetLocalPoint(const b2vec2& worldPoint) const;
 
 	/// Gets a local vector given a world vector.
 	/// @param a vector in world coordinates.
 	/// @return the corresponding local vector.
-	b2Vec2 GetLocalVector(const b2Vec2& worldVector) const;
+	b2vec2 GetLocalVector(const b2vec2& worldVector) const;
 
 	/// Get the world linear velocity of a world point attached to this body.
 	/// @param a point in world coordinates.
 	/// @return the world velocity of a point.
-	b2Vec2 GetLinearVelocityFromWorldPoint(const b2Vec2& worldPoint) const;
+	b2vec2 GetLinearVelocityFromWorldPoint(const b2vec2& worldPoint) const;
 
 	/// Get the world velocity of a local point.
 	/// @param a point in local coordinates.
 	/// @return the world velocity of a point.
-	b2Vec2 GetLinearVelocityFromLocalPoint(const b2Vec2& localPoint) const;
+	b2vec2 GetLinearVelocityFromLocalPoint(const b2vec2& localPoint) const;
 
 	/// Get the linear damping of the body.
 	float32 GetLinearDamping() const;
@@ -369,7 +369,7 @@ private:
 	friend class b2ContactManager;
 	friend class b2ContactSolver;
 	friend class b2TOISolver;
-	
+
 	friend class b2DistanceJoint;
 	friend class b2GearJoint;
 	friend class b2LineJoint;
@@ -413,10 +413,10 @@ private:
 	b2Transform m_xf;		// the body origin transform
 	b2Sweep m_sweep;		// the swept motion for CCD
 
-	b2Vec2 m_linearVelocity;
+	b2vec2 m_linearVelocity;
 	float32 m_angularVelocity;
 
-	b2Vec2 m_force;
+	b2vec2 m_force;
 	float32 m_torque;
 
 	b2World* m_world;
@@ -452,7 +452,7 @@ inline const b2Transform& b2Body::GetTransform() const
 	return m_xf;
 }
 
-inline const b2Vec2& b2Body::GetPosition() const
+inline const b2vec2& b2Body::GetPosition() const
 {
 	return m_xf.position;
 }
@@ -462,17 +462,17 @@ inline float32 b2Body::GetAngle() const
 	return m_sweep.a;
 }
 
-inline const b2Vec2& b2Body::GetWorldCenter() const
+inline const b2vec2& b2Body::GetWorldCenter() const
 {
 	return m_sweep.c;
 }
 
-inline const b2Vec2& b2Body::GetLocalCenter() const
+inline const b2vec2& b2Body::GetLocalCenter() const
 {
 	return m_sweep.localCenter;
 }
 
-inline void b2Body::SetLinearVelocity(const b2Vec2& v)
+inline void b2Body::SetLinearVelocity(const b2vec2& v)
 {
 	if (m_type == b2_staticBody)
 	{
@@ -487,7 +487,7 @@ inline void b2Body::SetLinearVelocity(const b2Vec2& v)
 	m_linearVelocity = v;
 }
 
-inline b2Vec2 b2Body::GetLinearVelocity() const
+inline b2vec2 b2Body::GetLinearVelocity() const
 {
 	return m_linearVelocity;
 }
@@ -529,32 +529,32 @@ inline void b2Body::GetMassData(b2MassData* data) const
 	data->center = m_sweep.localCenter;
 }
 
-inline b2Vec2 b2Body::GetWorldPoint(const b2Vec2& localPoint) const
+inline b2vec2 b2Body::GetWorldPoint(const b2vec2& localPoint) const
 {
 	return b2Mul(m_xf, localPoint);
 }
 
-inline b2Vec2 b2Body::GetWorldVector(const b2Vec2& localVector) const
+inline b2vec2 b2Body::GetWorldVector(const b2vec2& localVector) const
 {
 	return b2Mul(m_xf.R, localVector);
 }
 
-inline b2Vec2 b2Body::GetLocalPoint(const b2Vec2& worldPoint) const
+inline b2vec2 b2Body::GetLocalPoint(const b2vec2& worldPoint) const
 {
 	return b2MulT(m_xf, worldPoint);
 }
 
-inline b2Vec2 b2Body::GetLocalVector(const b2Vec2& worldVector) const
+inline b2vec2 b2Body::GetLocalVector(const b2vec2& worldVector) const
 {
 	return b2MulT(m_xf.R, worldVector);
 }
 
-inline b2Vec2 b2Body::GetLinearVelocityFromWorldPoint(const b2Vec2& worldPoint) const
+inline b2vec2 b2Body::GetLinearVelocityFromWorldPoint(const b2vec2& worldPoint) const
 {
 	return m_linearVelocity + b2Cross(m_angularVelocity, worldPoint - m_sweep.c);
 }
 
-inline b2Vec2 b2Body::GetLinearVelocityFromLocalPoint(const b2Vec2& localPoint) const
+inline b2vec2 b2Body::GetLinearVelocityFromLocalPoint(const b2vec2& localPoint) const
 {
 	return GetLinearVelocityFromWorldPoint(GetWorldPoint(localPoint));
 }
@@ -714,7 +714,7 @@ inline void* b2Body::GetUserData() const
 	return m_userData;
 }
 
-inline void b2Body::ApplyForce(const b2Vec2& force, const b2Vec2& point)
+inline void b2Body::ApplyForce(const b2vec2& force, const b2vec2& point)
 {
 	if (m_type != b2_dynamicBody)
 	{
@@ -745,7 +745,7 @@ inline void b2Body::ApplyTorque(float32 torque)
 	m_torque += torque;
 }
 
-inline void b2Body::ApplyLinearImpulse(const b2Vec2& impulse, const b2Vec2& point)
+inline void b2Body::ApplyLinearImpulse(const b2vec2& impulse, const b2vec2& point)
 {
 	if (m_type != b2_dynamicBody)
 	{

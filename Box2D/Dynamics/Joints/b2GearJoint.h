@@ -60,10 +60,10 @@ struct b2GearJointDef : public b2JointDef
 class b2GearJoint : public b2Joint
 {
 public:
-	b2Vec2 GetAnchorA() const;
-	b2Vec2 GetAnchorB() const;
+	b2vec2 GetAnchorA() const;
+	b2vec2 GetAnchorB() const;
 
-	b2Vec2 GetReactionForce(float32 inv_dt) const;
+	b2vec2 GetReactionForce(float32 inv_dt) const;
 	float32 GetReactionTorque(float32 inv_dt) const;
 
 	/// Set/Get the gear ratio.
@@ -90,11 +90,11 @@ protected:
 	b2RevoluteJoint* m_revolute2;
 	b2PrismaticJoint* m_prismatic2;
 
-	b2Vec2 m_groundAnchor1;
-	b2Vec2 m_groundAnchor2;
+	b2vec2 m_groundAnchor1;
+	b2vec2 m_groundAnchor2;
 
-	b2Vec2 m_localAnchor1;
-	b2Vec2 m_localAnchor2;
+	b2vec2 m_localAnchor1;
+	b2vec2 m_localAnchor2;
 
 	b2Jacobian m_J;
 

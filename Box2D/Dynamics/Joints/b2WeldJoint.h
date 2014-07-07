@@ -36,13 +36,13 @@ struct b2WeldJointDef : public b2JointDef
 
 	/// Initialize the bodies, anchors, and reference angle using a world
 	/// anchor point.
-	void Initialize(b2Body* body1, b2Body* body2, const b2Vec2& anchor);
+	void Initialize(b2Body* body1, b2Body* body2, const b2vec2& anchor);
 
 	/// The local anchor point relative to body1's origin.
-	b2Vec2 localAnchorA;
+	b2vec2 localAnchorA;
 
 	/// The local anchor point relative to body2's origin.
-	b2Vec2 localAnchorB;
+	b2vec2 localAnchorB;
 
 	/// The body2 angle minus body1 angle in the reference state (radians).
 	float32 referenceAngle;
@@ -53,10 +53,10 @@ struct b2WeldJointDef : public b2JointDef
 class b2WeldJoint : public b2Joint
 {
 public:
-	b2Vec2 GetAnchorA() const;
-	b2Vec2 GetAnchorB() const;
+	b2vec2 GetAnchorA() const;
+	b2vec2 GetAnchorB() const;
 
-	b2Vec2 GetReactionForce(float32 inv_dt) const;
+	b2vec2 GetReactionForce(float32 inv_dt) const;
 	float32 GetReactionTorque(float32 inv_dt) const;
 
 protected:
@@ -70,11 +70,11 @@ protected:
 
 	bool SolvePositionConstraints(float32 baumgarte);
 
-	b2Vec2 m_localAnchorA;
-	b2Vec2 m_localAnchorB;
+	b2vec2 m_localAnchorA;
+	b2vec2 m_localAnchorB;
 	float32 m_referenceAngle;
 
-	b2Vec3 m_impulse;
+	b2vec3 m_impulse;
 
 	b2Mat33 m_mass;
 };

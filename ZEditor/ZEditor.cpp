@@ -4,8 +4,8 @@
 ZEditor::ZEditor () {
 	drag = false;
 	subject = NULL;
-	gridSize = new Vec3(1,1,1);
-	gridColor = new Vec3 (1,0,1);
+	gridSize = new vec3(1,1,1);
+	gridColor = new vec3 (1,0,1);
 	grid = false;
 }
 
@@ -18,11 +18,11 @@ void ZEditor::drawHUD () {
 	if (subject) {
 		glPushMatrix();
 			glScalef (0.5,0.5,0.5);
-			Vec3 top = Vec3(-Engine->videoManager->windowWidth/2/0.5,-Engine->videoManager->windowHeight/2/0.5,50);
-			string oPos = "Pos  " + subject->position->_str();
-			string oSiz = "Size " + subject->size->_str();
-			string ogPos = "gaphPos  " + subject->graphic->position->_str();
-			string ogSiz = "graphSize " + subject->graphic->size->_str();
+			vec3 top = vec3(-Engine->videoManager->windowWidth/2/0.5,-Engine->videoManager->windowHeight/2/0.5,50);
+			string oPos = "Pos  " + subject->position->str();
+			string oSiz = "Size " + subject->size->str();
+			string ogPos = "gaphPos  " + subject->graphic->position->str();
+			string ogSiz = "graphSize " + subject->graphic->size->str();
 			string oCol  = "Col ";
 
 			if (subject->phys)
@@ -46,7 +46,7 @@ void ZEditor::drawHUD () {
 
 void ZEditor::run () {
     if (Engine->inputManager->getMice().size() > 0) {
-		Vec3 *mp = new Vec3();
+		vec3 *mp = new vec3();
 
 		mp->x = (Engine->camera->position->x-Engine->videoManager->windowWidth/2/Engine->camera->scale->x)+Engine->inputManager->getMice()[0]->pos.x/Engine->camera->scale->x;
 		mp->y = (Engine->camera->position->y-Engine->videoManager->windowHeight/2/Engine->camera->scale->y)+Engine->inputManager->getMice()[0]->pos.y/Engine->camera->scale->y;
@@ -75,7 +75,7 @@ void ZEditor::run () {
 			gridedX += subject->size->x/2;
 			gridedY += subject->size->y/2;
 
-			subject->box2dBody->SetTransform (b2Vec2((float)gridedX,(float)gridedY),ang);
+			subject->box2dBody->SetTransform (b2vec2((float)gridedX,(float)gridedY),ang);
 		}
 
 		if (drag) {
@@ -89,7 +89,7 @@ void ZEditor::run () {
 			gridedX += subject->size->x/2;
 			gridedY += subject->size->y/2;
 
-			subject->box2dBody->SetTransform (b2Vec2((float)gridedX,(float)gridedY),ang);
+			subject->box2dBody->SetTransform (b2vec2((float)gridedX,(float)gridedY),ang);
 		}
 
 		if (Engine->inputManager->getKeyboards()[0]->isShot(SDLK_TAB)) {

@@ -30,7 +30,7 @@ struct b2MassData
 	float32 mass;
 
 	/// The position of the shape's centroid relative to the shape's origin.
-	b2Vec2 center;
+	b2vec2 center;
 
 	/// The rotational inertia of the shape about the local origin.
 	float32 I;
@@ -42,7 +42,7 @@ struct b2MassData
 class b2Shape
 {
 public:
-	
+
 	enum Type
 	{
 		e_unknown= -1,
@@ -64,7 +64,7 @@ public:
 	/// Test a point for containment in this shape. This only works for convex shapes.
 	/// @param xf the shape world transform.
 	/// @param p a point in world coordinates.
-	virtual bool TestPoint(const b2Transform& xf, const b2Vec2& p) const = 0;
+	virtual bool TestPoint(const b2Transform& xf, const b2vec2& p) const = 0;
 
 	/// Cast a ray against this shape.
 	/// @param output the ray-cast results.

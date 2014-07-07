@@ -32,7 +32,7 @@
 // J = [0 0 -1 0 0 1]
 // K = invI1 + invI2
 
-void b2FrictionJointDef::Initialize(b2Body* bA, b2Body* bB, const b2Vec2& anchor)
+void b2FrictionJointDef::Initialize(b2Body* bA, b2Body* bB, const b2vec2& anchor)
 {
 	bodyA = bA;
 	bodyB = bB;
@@ -59,8 +59,8 @@ void b2FrictionJoint::InitVelocityConstraints(const b2TimeStep& step)
 	b2Body* bB = m_bodyB;
 
 	// Compute the effective mass matrix.
-	b2Vec2 rA = b2Mul(bA->GetTransform().R, m_localAnchorA - bA->GetLocalCenter());
-	b2Vec2 rB = b2Mul(bB->GetTransform().R, m_localAnchorB - bB->GetLocalCenter());
+	b2vec2 rA = b2Mul(bA->GetTransform().R, m_localAnchorA - bA->GetLocalCenter());
+	b2vec2 rB = b2Mul(bB->GetTransform().R, m_localAnchorB - bB->GetLocalCenter());
 
 	// J = [-I -r1_skew I r2_skew]
 	//     [ 0       -1 0       1]
@@ -101,7 +101,7 @@ void b2FrictionJoint::InitVelocityConstraints(const b2TimeStep& step)
 		m_linearImpulse *= step.dtRatio;
 		m_angularImpulse *= step.dtRatio;
 
-		b2Vec2 P(m_linearImpulse.x, m_linearImpulse.y);
+		b2vec2 P(m_linearImpulse.x, m_linearImpulse.y);
 
 		bA->m_linearVelocity -= mA * P;
 		bA->m_angularVelocity -= iA * (b2Cross(rA, P) + m_angularImpulse);
@@ -123,16 +123,16 @@ void b2FrictionJoint::SolveVelocityConstraints(const b2TimeStep& step)
 	b2Body* bA = m_bodyA;
 	b2Body* bB = m_bodyB;
 
-	b2Vec2 vA = bA->m_linearVelocity;
+	b2vec2 vA = bA->m_linearVelocity;
 	float32 wA = bA->m_angularVelocity;
-	b2Vec2 vB = bB->m_linearVelocity;
+	b2vec2 vB = bB->m_linearVelocity;
 	float32 wB = bB->m_angularVelocity;
 
 	float32 mA = bA->m_invMass, mB = bB->m_invMass;
 	float32 iA = bA->m_invI, iB = bB->m_invI;
 
-	b2Vec2 rA = b2Mul(bA->GetTransform().R, m_localAnchorA - bA->GetLocalCenter());
-	b2Vec2 rB = b2Mul(bB->GetTransform().R, m_localAnchorB - bB->GetLocalCenter());
+	b2vec2 rA = b2Mul(bA->GetTransform().R, m_localAnchorA - bA->GetLocalCenter());
+	b2vec2 rB = b2Mul(bB->GetTransform().R, m_localAnchorB - bB->GetLocalCenter());
 
 	// Solve angular friction
 	{
@@ -150,10 +150,10 @@ void b2FrictionJoint::SolveVelocityConstraints(const b2TimeStep& step)
 
 	// Solve linear friction
 	{
-		b2Vec2 Cdot = vB + b2Cross(wB, rB) - vA - b2Cross(wA, rA);
+		b2vec2 Cdot = vB + b2Cross(wB, rB) - vA - b2Cross(wA, rA);
 
-		b2Vec2 impulse = -b2Mul(m_linearMass, Cdot);
-		b2Vec2 oldImpulse = m_linearImpulse;
+		b2vec2 impulse = -b2Mul(m_linearMass, Cdot);
+		b2vec2 oldImpulse = m_linearImpulse;
 		m_linearImpulse += impulse;
 
 		float32 maxImpulse = step.dt * m_maxForce;
@@ -186,17 +186,17 @@ bool b2FrictionJoint::SolvePositionConstraints(float32 baumgarte)
 	return true;
 }
 
-b2Vec2 b2FrictionJoint::GetAnchorA() const
+b2vec2 b2FrictionJoint::GetAnchorA() const
 {
 	return m_bodyA->GetWorldPoint(m_localAnchorA);
 }
 
-b2Vec2 b2FrictionJoint::GetAnchorB() const
+b2vec2 b2FrictionJoint::GetAnchorB() const
 {
 	return m_bodyB->GetWorldPoint(m_localAnchorB);
 }
 
-b2Vec2 b2FrictionJoint::GetReactionForce(float32 inv_dt) const
+b2vec2 b2FrictionJoint::GetReactionForce(float32 inv_dt) const
 {
 	return inv_dt * m_linearImpulse;
 }

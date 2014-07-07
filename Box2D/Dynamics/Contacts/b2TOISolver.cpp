@@ -24,9 +24,9 @@
 
 struct b2TOIConstraint
 {
-	b2Vec2 localPoints[b2_maxManifoldPoints];
-	b2Vec2 localNormal;
-	b2Vec2 localPoint;
+	b2vec2 localPoints[b2_maxManifoldPoints];
+	b2vec2 localNormal;
+	b2vec2 localPoint;
 	b2Manifold::Type type;
 	float32 radius;
 	int32 pointCount;
@@ -108,8 +108,8 @@ struct b2TOISolverManifold
 		{
 		case b2Manifold::e_circles:
 			{
-				b2Vec2 pointA = cc->bodyA->GetWorldPoint(cc->localPoint);
-				b2Vec2 pointB = cc->bodyB->GetWorldPoint(cc->localPoints[0]);
+				b2vec2 pointA = cc->bodyA->GetWorldPoint(cc->localPoint);
+				b2vec2 pointB = cc->bodyB->GetWorldPoint(cc->localPoints[0]);
 				if (b2DistanceSquared(pointA, pointB) > b2_epsilon * b2_epsilon)
 				{
 					normal = pointB - pointA;
@@ -128,9 +128,9 @@ struct b2TOISolverManifold
 		case b2Manifold::e_faceA:
 			{
 				normal = cc->bodyA->GetWorldVector(cc->localNormal);
-				b2Vec2 planePoint = cc->bodyA->GetWorldPoint(cc->localPoint);
+				b2vec2 planePoint = cc->bodyA->GetWorldPoint(cc->localPoint);
 
-				b2Vec2 clipPoint = cc->bodyB->GetWorldPoint(cc->localPoints[index]);
+				b2vec2 clipPoint = cc->bodyB->GetWorldPoint(cc->localPoints[index]);
 				separation = b2Dot(clipPoint - planePoint, normal) - cc->radius;
 				point = clipPoint;
 			}
@@ -139,9 +139,9 @@ struct b2TOISolverManifold
 		case b2Manifold::e_faceB:
 			{
 				normal = cc->bodyB->GetWorldVector(cc->localNormal);
-				b2Vec2 planePoint = cc->bodyB->GetWorldPoint(cc->localPoint);
+				b2vec2 planePoint = cc->bodyB->GetWorldPoint(cc->localPoint);
 
-				b2Vec2 clipPoint = cc->bodyA->GetWorldPoint(cc->localPoints[index]);
+				b2vec2 clipPoint = cc->bodyA->GetWorldPoint(cc->localPoints[index]);
 				separation = b2Dot(clipPoint - planePoint, normal) - cc->radius;
 				point = clipPoint;
 
@@ -152,8 +152,8 @@ struct b2TOISolverManifold
 		}
 	}
 
-	b2Vec2 normal;
-	b2Vec2 point;
+	b2vec2 normal;
+	b2vec2 point;
 	float32 separation;
 };
 
@@ -191,13 +191,13 @@ bool b2TOISolver::Solve(float32 baumgarte)
 		{
 			b2TOISolverManifold psm;
 			psm.Initialize(c, j);
-			b2Vec2 normal = psm.normal;
+			b2vec2 normal = psm.normal;
 
-			b2Vec2 point = psm.point;
+			b2vec2 point = psm.point;
 			float32 separation = psm.separation;
 
-			b2Vec2 rA = point - bodyA->m_sweep.c;
-			b2Vec2 rB = point - bodyB->m_sweep.c;
+			b2vec2 rA = point - bodyA->m_sweep.c;
+			b2vec2 rB = point - bodyB->m_sweep.c;
 
 			// Track max constraint error.
 			minSeparation = b2Min(minSeparation, separation);
@@ -213,7 +213,7 @@ bool b2TOISolver::Solve(float32 baumgarte)
 			// Compute normal impulse
 			float32 impulse = K > 0.0f ? - C / K : 0.0f;
 
-			b2Vec2 P = impulse * normal;
+			b2vec2 P = impulse * normal;
 
 			bodyA->m_sweep.c -= invMassA * P;
 			bodyA->m_sweep.a -= invIA * b2Cross(rA, P);

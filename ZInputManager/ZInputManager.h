@@ -7,7 +7,7 @@
 #include <sstream>
 #include <vector>
 #include <SDL/SDL.h>
-#include "../ZMath/Vec3.h"
+#include "ZMath/math/vec3/vec3.h"
 
 using namespace std;
 
@@ -70,7 +70,7 @@ public:
 	int getUnicode ();
 
 	bool isShot(int);
-	long int getKid();	
+	long int getKid();
 private:
 	void sendEvent();
 };
@@ -78,7 +78,7 @@ private:
 class ZMouse {
 	long int mid;
 public:
-	Vec3 pos; // x,y, scroll
+	vec3 pos; // x,y, scroll
 	bool lshot,rshot,cshot;
 	bool left,right,center;
 

@@ -45,16 +45,16 @@ struct b2LineJointDef : public b2JointDef
 
 	/// Initialize the bodies, anchors, axis, and reference angle using the world
 	/// anchor and world axis.
-	void Initialize(b2Body* bodyA, b2Body* bodyB, const b2Vec2& anchor, const b2Vec2& axis);
+	void Initialize(b2Body* bodyA, b2Body* bodyB, const b2vec2& anchor, const b2vec2& axis);
 
 	/// The local anchor point relative to body1's origin.
-	b2Vec2 localAnchorA;
+	b2vec2 localAnchorA;
 
 	/// The local anchor point relative to body2's origin.
-	b2Vec2 localAnchorB;
+	b2vec2 localAnchorB;
 
 	/// The local translation axis in body1.
-	b2Vec2 localAxisA;
+	b2vec2 localAxisA;
 
 	/// Enable/disable the joint limit.
 	bool enableLimit;
@@ -82,10 +82,10 @@ struct b2LineJointDef : public b2JointDef
 class b2LineJoint : public b2Joint
 {
 public:
-	b2Vec2 GetAnchorA() const;
-	b2Vec2 GetAnchorB() const;
+	b2vec2 GetAnchorA() const;
+	b2vec2 GetAnchorB() const;
 
-	b2Vec2 GetReactionForce(float32 inv_dt) const;
+	b2vec2 GetReactionForce(float32 inv_dt) const;
 	float32 GetReactionTorque(float32 inv_dt) const;
 
 	/// Get the current joint translation, usually in meters.
@@ -137,17 +137,17 @@ protected:
 	void SolveVelocityConstraints(const b2TimeStep& step);
 	bool SolvePositionConstraints(float32 baumgarte);
 
-	b2Vec2 m_localAnchor1;
-	b2Vec2 m_localAnchor2;
-	b2Vec2 m_localXAxis1;
-	b2Vec2 m_localYAxis1;
+	b2vec2 m_localAnchor1;
+	b2vec2 m_localAnchor2;
+	b2vec2 m_localXAxis1;
+	b2vec2 m_localYAxis1;
 
-	b2Vec2 m_axis, m_perp;
+	b2vec2 m_axis, m_perp;
 	float32 m_s1, m_s2;
 	float32 m_a1, m_a2;
 
 	b2Mat22 m_K;
-	b2Vec2 m_impulse;
+	b2vec2 m_impulse;
 
 	float32 m_motorMass;			// effective mass for motor/limit translational constraint.
 	float32 m_motorImpulse;

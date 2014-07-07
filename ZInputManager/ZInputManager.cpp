@@ -152,7 +152,7 @@ void ZKeyboard::sendEvent () {
 
 ZMouse::ZMouse (long int _mid) {
 	mid = _mid;
-	pos = Vec3();
+	pos = vec3();
 }
 
 ZMouse::~ZMouse () {
@@ -261,7 +261,7 @@ bool ZMouse::centerIsShot () {
 void ZMouse::clear () {
 	cshot = false;
 	rshot = false;
-	lshot = false;	
+	lshot = false;
 }
 
 void ZMouse::sendEvent () {
@@ -330,7 +330,7 @@ ZInputManager::~ZInputManager () {
 void ZInputManager::clear () {
 	for (auto m :(*mice)) {
 		m->clear();
-	}	
+	}
 }
 
 void ZInputManager::joystickAxisEvent (SDL_Event& _evt) {

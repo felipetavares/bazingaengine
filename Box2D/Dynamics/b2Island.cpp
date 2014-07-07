@@ -178,7 +178,7 @@ b2Island::~b2Island()
 	m_allocator->Free(m_bodies);
 }
 
-void b2Island::Solve(const b2TimeStep& step, const b2Vec2& gravity, bool allowSleep)
+void b2Island::Solve(const b2TimeStep& step, const b2vec2& gravity, bool allowSleep)
 {
 	// Integrate velocities and apply damping.
 	for (int32 i = 0; i < m_bodyCount; ++i)
@@ -254,7 +254,7 @@ void b2Island::Solve(const b2TimeStep& step, const b2Vec2& gravity, bool allowSl
 		}
 
 		// Check for large velocities.
-		b2Vec2 translation = step.dt * b->m_linearVelocity;
+		b2vec2 translation = step.dt * b->m_linearVelocity;
 		if (b2Dot(translation, translation) > b2_maxTranslationSquared)
 		{
 			float32 ratio = b2_maxTranslation / translation.Length();
@@ -361,7 +361,7 @@ void b2Island::Report(const b2ContactConstraint* constraints)
 		b2Contact* c = m_contacts[i];
 
 		const b2ContactConstraint* cc = constraints + i;
-		
+
 		b2ContactImpulse impulse;
 		for (int32 j = 0; j < cc->pointCount; ++j)
 		{

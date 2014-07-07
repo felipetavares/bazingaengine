@@ -18,21 +18,22 @@ PI::Item::Item (ZTextureAsset *_texture) {
 	texture = _texture;
 }
 
-void PI::Item::draw (Vec3 _pos) {
+void PI::Item::draw (vec3 _pos) {
 	texture->drawCentered(_pos);
 
 	string name = getName();
-	Engine->textManager->setColor(Vec3(0.5,0.5,0.5));
-	Engine->textManager->drawStringCentered (_pos+Vec3(0,texture->height/2+12,0),name,16);
+	Engine->textManager->setColor(vec3(0.5,0.5,0.5));
+	Engine->textManager->drawStringCentered (_pos+vec3(0,texture->height/2+12,0),name,16);
 }
 
-Vec2 PI::Item::getSize () {
+vec2 PI::Item::getSize () {
 	// 20 = 16 + 4
-	return Vec2 (texture->width, texture->height+20);
+	return vec2 (texture->width, texture->height+20);
 }
 
 PI::Inventory::Inventory () {
         currentItem = 0;
+        currentPos = -1;
 }
 
 void PI::Inventory::addItem (Item* _item) {
@@ -54,22 +55,41 @@ void PI::Inventory::removeItem (Item* _item) {
 }
 
 void PI::Inventory::draw() {
+    int windowWidth = Engine->videoManager->windowWidth;
+    int windowHeight = Engine->videoManager->windowHeight;
+
 	float startY = 0;
 	if (getItem()) {
 		startY = -getItem()->getSize().y*currentItem;
 	}
-	Vec3 pos {0,startY,99};
 
 	glPushMatrix();
-		glLoadIdentity();
+
+        glMatrixMode( GL_PROJECTION );
+        glPushMatrix();
+
+        glLoadIdentity();
+        glFrustum (-windowWidth/20, windowWidth/20, windowHeight/20, -windowHeight/20, 0.1, 10);
+
+        glMatrixMode( GL_MODELVIEW );
+        glLoadIdentity();
+
+        glTranslatef(0.0, 0.0, currentPos);
+
+        vec3 pos {0,0,-1};
+        int n = 0;
 		for (auto i :items) {
-			float d = pos.len();
 			glPushMatrix();
-				glScalef (d,d,d);
-				i->draw(pos/d);
+				glRotatef (10*(n+1), 0, 1, 0);
+				glTranslatef (pos.x,pos.y,pos.z);
+                i->draw(vec3());
 			glPopMatrix();
-			pos.y += i->getSize().y;
+            n++;
 		}
+
+        glMatrixMode( GL_PROJECTION );
+        glPopMatrix();
+        glMatrixMode( GL_MODELVIEW );
 	glPopMatrix();
 }
 
@@ -82,17 +102,19 @@ PI::Item* PI::Inventory::getItem () {
 void PI::Inventory::nextItem() {
 	if (currentItem < items.size()-1)
 		currentItem++;
+    currentPos -= 0.1;
 }
 
 void PI::Inventory::prevItem() {
 	if (currentItem > 0)
 		currentItem--;
+    currentPos += 0.1;
 }
 
 
 ZPlayerObject::ZPlayerObject (long int _oid,
-						Vec3 _position,
-						Vec3 _rotation):
+						vec3 _position,
+						vec3 _rotation):
 	ZObject (_oid, _position, _rotation) {
 }
 
@@ -176,7 +198,7 @@ void ZPlayerObject::step () {
 	//if (graphic->animation != NULL)
 	//	graphic->animation->isPlaying = false;
 
-	///dir = Vec3();
+	///dir = vec3();
 
 	graphic->animation->isPlaying = false;
 
@@ -189,21 +211,21 @@ void ZPlayerObject::step () {
 		}
 	} else {
 	if (getAxis(1) < -0.1 || keyboard->keys[SDLK_UP]) {
-		box2dBody->ApplyLinearImpulse (b2Vec2 (0,-80), box2dBody->GetWorldPoint(b2Vec2(0,0)));
+		box2dBody->ApplyLinearImpulse (b2vec2 (0,-80), box2dBody->GetWorldPoint(b2vec2(0,0)));
 		graphic->animation = anims[0];
 		graphic->animation->isPlaying = true;
 		dir.y = -1;
 		dir.x = 0;
 	}
 	if (getAxis(1) > 0.1 || keyboard->keys[SDLK_DOWN]) {
-		box2dBody->ApplyLinearImpulse (b2Vec2 (0,80), box2dBody->GetWorldPoint(b2Vec2(0,0)));
+		box2dBody->ApplyLinearImpulse (b2vec2 (0,80), box2dBody->GetWorldPoint(b2vec2(0,0)));
 		graphic->animation = anims[1];
 		graphic->animation->isPlaying = true;
 		dir.y = +1;
 		dir.x = 0;
 	}
 	if (getAxis(0) < -0.1 || keyboard->keys[SDLK_LEFT]) {
-		box2dBody->ApplyLinearImpulse (b2Vec2 (-80,0), box2dBody->GetWorldPoint(b2Vec2(0,0)));
+		box2dBody->ApplyLinearImpulse (b2vec2 (-80,0), box2dBody->GetWorldPoint(b2vec2(0,0)));
 		graphic->animation = anims[2];
 		graphic->animation->isPlaying = true;
 		graphic->animation->flipH = false;
@@ -211,7 +233,7 @@ void ZPlayerObject::step () {
 		dir.y = 0;
 	}
 	if (getAxis(0) > 0.1 || keyboard->keys[SDLK_RIGHT]) {
-		box2dBody->ApplyLinearImpulse (b2Vec2 (80,0), box2dBody->GetWorldPoint(b2Vec2(0,0)));
+		box2dBody->ApplyLinearImpulse (b2vec2 (80,0), box2dBody->GetWorldPoint(b2vec2(0,0)));
 		graphic->animation = anims[3];
 		graphic->animation->isPlaying = true;
 		graphic->animation->flipH = true;
@@ -239,8 +261,8 @@ void ZPlayerObject::shot () {
 		return;
 
 	ShotCallback callback;
-	b2Vec2 point1(position->x+dir.x*2, position->y+dir.y*2);
-	b2Vec2 point2(position->x+dir.x*320, position->y+dir.y*320);
+	b2vec2 point1(position->x+dir.x*2, position->y+dir.y*2);
+	b2vec2 point2(position->x+dir.x*320, position->y+dir.y*320);
 	//Engine->box2dWorld->RayCast(&callback, point1, point2);
 
 	if (!callback.c)
@@ -270,8 +292,8 @@ ShotCallback::ShotCallback () {
 	m_fixture = NULL;
 }
 
-float32 ShotCallback::ReportFixture(b2Fixture* fixture, const b2Vec2& point,
-					const b2Vec2& normal, float32 fraction) {
+float32 ShotCallback::ReportFixture(b2Fixture* fixture, const b2vec2& point,
+					const b2vec2& normal, float32 fraction) {
 	const b2Filter& filter = fixture->GetFilterData();
 
 	if (filter.groupIndex != 0)

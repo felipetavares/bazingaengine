@@ -2,10 +2,10 @@
 #include "ZCamera.h"
 
 ZCamera::ZCamera () {
-	position = new Vec3();
-	scale	 = new Vec3(3,3,1);
+	position = new vec3();
+	scale	 = new vec3(3,3,1);
     drag = false;
-    dragPos = Vec2(0,0);
+    dragPos = vec2(0,0);
 }
 
 ZCamera::~ZCamera () {
@@ -44,7 +44,7 @@ void ZCamera::debugMovement () {
 
         if (!drag && mouse->left && keyboard->keys[SDLK_SPACE]) {
             drag = true;
-            dragPos = Vec2(mouse->pos.x,mouse->pos.y);
+            dragPos = vec2(mouse->pos.x,mouse->pos.y);
         }
         if (!mouse->left || !keyboard->keys[SDLK_SPACE]) {
             drag = false;
@@ -52,7 +52,7 @@ void ZCamera::debugMovement () {
         if (drag) {
             position->x -= (mouse->pos.x - dragPos.x)/scale->x;
             position->y -= (mouse->pos.y - dragPos.y)/scale->y;
-            dragPos = Vec2(mouse->pos.x,mouse->pos.y);
+            dragPos = vec2(mouse->pos.x,mouse->pos.y);
         }
     }
 }

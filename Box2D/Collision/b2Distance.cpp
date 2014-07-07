@@ -53,9 +53,9 @@ void b2DistanceProxy::Set(const b2Shape* shape)
 
 struct b2SimplexVertex
 {
-	b2Vec2 wA;		// support point in proxyA
-	b2Vec2 wB;		// support point in proxyB
-	b2Vec2 w;		// wB - wA
+	b2vec2 wA;		// support point in proxyA
+	b2vec2 wB;		// support point in proxyB
+	b2vec2 w;		// wB - wA
 	float32 a;		// barycentric coordinate for closest point
 	int32 indexA;	// wA index
 	int32 indexB;	// wB index
@@ -68,7 +68,7 @@ struct b2Simplex
 					const b2DistanceProxy* proxyB, const b2Transform& transformB)
 	{
 		b2Assert(cache->count <= 3);
-		
+
 		// Copy data from cache.
 		m_count = cache->count;
 		b2SimplexVertex* vertices = &m_v1;
@@ -77,8 +77,8 @@ struct b2Simplex
 			b2SimplexVertex* v = vertices + i;
 			v->indexA = cache->indexA[i];
 			v->indexB = cache->indexB[i];
-			b2Vec2 wALocal = proxyA->GetVertex(v->indexA);
-			b2Vec2 wBLocal = proxyB->GetVertex(v->indexB);
+			b2vec2 wALocal = proxyA->GetVertex(v->indexA);
+			b2vec2 wBLocal = proxyB->GetVertex(v->indexB);
 			v->wA = b2Mul(transformA, wALocal);
 			v->wB = b2Mul(transformB, wBLocal);
 			v->w = v->wB - v->wA;
@@ -104,8 +104,8 @@ struct b2Simplex
 			b2SimplexVertex* v = vertices + 0;
 			v->indexA = 0;
 			v->indexB = 0;
-			b2Vec2 wALocal = proxyA->GetVertex(0);
-			b2Vec2 wBLocal = proxyB->GetVertex(0);
+			b2vec2 wALocal = proxyA->GetVertex(0);
+			b2vec2 wBLocal = proxyB->GetVertex(0);
 			v->wA = b2Mul(transformA, wALocal);
 			v->wB = b2Mul(transformB, wBLocal);
 			v->w = v->wB - v->wA;
@@ -125,7 +125,7 @@ struct b2Simplex
 		}
 	}
 
-	b2Vec2 GetSearchDirection() const
+	b2vec2 GetSearchDirection() const
 	{
 		switch (m_count)
 		{
@@ -134,7 +134,7 @@ struct b2Simplex
 
 		case 2:
 			{
-				b2Vec2 e12 = m_v2.w - m_v1.w;
+				b2vec2 e12 = m_v2.w - m_v1.w;
 				float32 sgn = b2Cross(e12, -m_v1.w);
 				if (sgn > 0.0f)
 				{
@@ -150,17 +150,17 @@ struct b2Simplex
 
 		default:
 			b2Assert(false);
-			return b2Vec2_zero;
+			return b2vec2_zero;
 		}
 	}
 
-	b2Vec2 GetClosestPoint() const
+	b2vec2 GetClosestPoint() const
 	{
 		switch (m_count)
 		{
 		case 0:
 			b2Assert(false);
-			return b2Vec2_zero;
+			return b2vec2_zero;
 
 		case 1:
 			return m_v1.w;
@@ -169,15 +169,15 @@ struct b2Simplex
 			return m_v1.a * m_v1.w + m_v2.a * m_v2.w;
 
 		case 3:
-			return b2Vec2_zero;
+			return b2vec2_zero;
 
 		default:
 			b2Assert(false);
-			return b2Vec2_zero;
+			return b2vec2_zero;
 		}
 	}
 
-	void GetWitnessPoints(b2Vec2* pA, b2Vec2* pB) const
+	void GetWitnessPoints(b2vec2* pA, b2vec2* pB) const
 	{
 		switch (m_count)
 		{
@@ -262,9 +262,9 @@ struct b2Simplex
 // a2 = d12_2 / d12
 void b2Simplex::Solve2()
 {
-	b2Vec2 w1 = m_v1.w;
-	b2Vec2 w2 = m_v2.w;
-	b2Vec2 e12 = w2 - w1;
+	b2vec2 w1 = m_v1.w;
+	b2vec2 w2 = m_v2.w;
+	b2vec2 e12 = w2 - w1;
 
 	// w1 region
 	float32 d12_2 = -b2Dot(w1, e12);
@@ -301,15 +301,15 @@ void b2Simplex::Solve2()
 // - inside the triangle
 void b2Simplex::Solve3()
 {
-	b2Vec2 w1 = m_v1.w;
-	b2Vec2 w2 = m_v2.w;
-	b2Vec2 w3 = m_v3.w;
+	b2vec2 w1 = m_v1.w;
+	b2vec2 w2 = m_v2.w;
+	b2vec2 w3 = m_v3.w;
 
 	// Edge12
 	// [1      1     ][a1] = [1]
 	// [w1.e12 w2.e12][a2] = [0]
 	// a3 = 0
-	b2Vec2 e12 = w2 - w1;
+	b2vec2 e12 = w2 - w1;
 	float32 w1e12 = b2Dot(w1, e12);
 	float32 w2e12 = b2Dot(w2, e12);
 	float32 d12_1 = w2e12;
@@ -319,7 +319,7 @@ void b2Simplex::Solve3()
 	// [1      1     ][a1] = [1]
 	// [w1.e13 w3.e13][a3] = [0]
 	// a2 = 0
-	b2Vec2 e13 = w3 - w1;
+	b2vec2 e13 = w3 - w1;
 	float32 w1e13 = b2Dot(w1, e13);
 	float32 w3e13 = b2Dot(w3, e13);
 	float32 d13_1 = w3e13;
@@ -329,12 +329,12 @@ void b2Simplex::Solve3()
 	// [1      1     ][a2] = [1]
 	// [w2.e23 w3.e23][a3] = [0]
 	// a1 = 0
-	b2Vec2 e23 = w3 - w2;
+	b2vec2 e23 = w3 - w2;
 	float32 w2e23 = b2Dot(w2, e23);
 	float32 w3e23 = b2Dot(w3, e23);
 	float32 d23_1 = w3e23;
 	float32 d23_2 = -w2e23;
-	
+
 	// Triangle123
 	float32 n123 = b2Cross(e12, e13);
 
@@ -433,7 +433,7 @@ void b2Distance(b2DistanceOutput* output,
 	int32 saveA[3], saveB[3];
 	int32 saveCount = 0;
 
-	b2Vec2 closestPoint = simplex.GetClosestPoint();
+	b2vec2 closestPoint = simplex.GetClosestPoint();
 	float32 distanceSqr1 = closestPoint.LengthSquared();
 	float32 distanceSqr2 = distanceSqr1;
 
@@ -473,7 +473,7 @@ void b2Distance(b2DistanceOutput* output,
 		}
 
 		// Compute closest point.
-		b2Vec2 p = simplex.GetClosestPoint();
+		b2vec2 p = simplex.GetClosestPoint();
 		distanceSqr2 = p.LengthSquared();
 
 		// Ensure progress
@@ -484,7 +484,7 @@ void b2Distance(b2DistanceOutput* output,
 		distanceSqr1 = distanceSqr2;
 
 		// Get search direction.
-		b2Vec2 d = simplex.GetSearchDirection();
+		b2vec2 d = simplex.GetSearchDirection();
 
 		// Ensure the search direction is numerically fit.
 		if (d.LengthSquared() < b2_epsilon * b2_epsilon)
@@ -502,7 +502,7 @@ void b2Distance(b2DistanceOutput* output,
 		b2SimplexVertex* vertex = vertices + simplex.m_count;
 		vertex->indexA = proxyA->GetSupport(b2MulT(transformA.R, -d));
 		vertex->wA = b2Mul(transformA, proxyA->GetVertex(vertex->indexA));
-		b2Vec2 wBLocal;
+		b2vec2 wBLocal;
 		vertex->indexB = proxyB->GetSupport(b2MulT(transformB.R, d));
 		vertex->wB = b2Mul(transformB, proxyB->GetVertex(vertex->indexB));
 		vertex->w = vertex->wB - vertex->wA;
@@ -553,7 +553,7 @@ void b2Distance(b2DistanceOutput* output,
 			// Shapes are still no overlapped.
 			// Move the witness points to the outer surface.
 			output->distance -= rA + rB;
-			b2Vec2 normal = output->pointB - output->pointA;
+			b2vec2 normal = output->pointB - output->pointA;
 			normal.Normalize();
 			output->pointA += rA * normal;
 			output->pointB -= rB * normal;
@@ -562,7 +562,7 @@ void b2Distance(b2DistanceOutput* output,
 		{
 			// Shapes are overlapped when radii are considered.
 			// Move the witness points to the middle.
-			b2Vec2 p = 0.5f * (output->pointA + output->pointB);
+			b2vec2 p = 0.5f * (output->pointA + output->pointB);
 			output->pointA = p;
 			output->pointB = p;
 			output->distance = 0.0f;

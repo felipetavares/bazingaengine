@@ -55,7 +55,7 @@ public:
 
 	/// Call MoveProxy as many times as you like, then when you are done
 	/// call UpdatePairs to finalized the proxy pairs (for your time step).
-	void MoveProxy(int32 proxyId, const b2AABB& aabb, const b2Vec2& displacement);
+	void MoveProxy(int32 proxyId, const b2AABB& aabb, const b2vec2& displacement);
 
 	/// Get the fat AABB for a proxy.
 	const b2AABB& GetFatAABB(int32 proxyId) const;

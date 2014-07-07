@@ -91,6 +91,11 @@ void scnIntro::load () {
 }
 
 void scnIntro::render () {
+    // For debugging purposes ONLY
+    auto gameScene = new scnGame ("Game.scene");
+    Engine->sceneManager->addScene(gameScene);
+    // END OF DEBUG CODE
+
     static bool end = false;
 
     //int w = Engine->videoManager->windowWidth;
@@ -133,12 +138,12 @@ void scnIntro::render () {
 		string texPath = data->getJSON()->get("image")->array->array[currentImage]->str;
 		auto tex = Engine->assetsManager->getAsset <ZTextureAsset*>(texPath);
 		py += tex->height+10;
-		tex->setColor (Vec3(0.25,0.25,0.25));
+		tex->setColor (vec3(0.25,0.25,0.25));
 		tex->setOpacity (1.0-color);
 
 		glPushMatrix();
 			glScalef (2,2,2);
-			tex->drawCentered(Vec3(0,0,0));
+			tex->drawCentered(vec3(0,0,0));
 		glPopMatrix();
 
 		text = text.substr(1);
@@ -149,10 +154,10 @@ void scnIntro::render () {
 	//string percent = pc.str();
 
         Engine->textManager->setOpacity (1);
-        Engine->textManager->setColor(Vec3(color,color,color));
-        Engine->textManager->drawStringCentered(Vec3(0,py,0), text, 32);
-        //Engine->textManager->setColor(Vec3(0,0,0));
-        //Engine->textManager->drawStringCentered(Vec3(0,py+32,0), percent, 16);
+        Engine->textManager->setColor(vec3(color,color,color));
+        Engine->textManager->drawStringCentered(vec3(0,py,0), text, 32);
+        //Engine->textManager->setColor(vec3(0,0,0));
+        //Engine->textManager->drawStringCentered(vec3(0,py+32,0), percent, 16);
     }
 }
 
@@ -170,7 +175,8 @@ void scnGame::render () {
 
 	float gloom = 1;
 
-	glClearColor(Engine->colorMultiplier,Engine->colorMultiplier,Engine->colorMultiplier,1);
+	//glClearColor(Engine->colorMultiplier,Engine->colorMultiplier,Engine->colorMultiplier,1);
+	glClearColor (0,0,0,1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
@@ -183,7 +189,7 @@ void scnGame::render () {
 	ZCamera *camera = Engine->camera;
 	camera->run();
 
-	Vec3 mp;
+	vec3 mp;
 
 	mp.x = camera->position->x-Engine->videoManager->windowWidth/2/camera->scale->x+Engine->inputManager->getMice()[0]->pos.x/camera->scale->x;
 	mp.y = camera->position->y-Engine->videoManager->windowHeight/2/camera->scale->y+Engine->inputManager->getMice()[0]->pos.y/camera->scale->y;
@@ -247,6 +253,7 @@ void scnGame::render () {
 		obj->position->z = objz;
 
 
+        /*
 		glPushMatrix();
 			glTranslatef(obj->position->x,obj->position->y,objz);
 			glRotatef	(obj->rotation->x, 1, 0 ,0);
@@ -331,7 +338,7 @@ void scnGame::render () {
 				}
 			glPopMatrix();
 		glPopMatrix();
-
+        */
 		obj->draw();
 	}
 }

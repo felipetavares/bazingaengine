@@ -36,18 +36,18 @@ struct b2DistanceProxy
 	void Set(const b2Shape* shape);
 
 	/// Get the supporting vertex index in the given direction.
-	int32 GetSupport(const b2Vec2& d) const;
+	int32 GetSupport(const b2vec2& d) const;
 
 	/// Get the supporting vertex in the given direction.
-	const b2Vec2& GetSupportVertex(const b2Vec2& d) const;
+	const b2vec2& GetSupportVertex(const b2vec2& d) const;
 
 	/// Get the vertex count.
 	int32 GetVertexCount() const;
 
 	/// Get a vertex by index. Used by b2Distance.
-	const b2Vec2& GetVertex(int32 index) const;
+	const b2vec2& GetVertex(int32 index) const;
 
-	const b2Vec2* m_vertices;
+	const b2vec2* m_vertices;
 	int32 m_count;
 	float32 m_radius;
 };
@@ -64,7 +64,7 @@ struct b2SimplexCache
 
 /// Input for b2Distance.
 /// You have to option to use the shape radii
-/// in the computation. Even 
+/// in the computation. Even
 struct b2DistanceInput
 {
 	b2DistanceProxy proxyA;
@@ -77,8 +77,8 @@ struct b2DistanceInput
 /// Output for b2Distance.
 struct b2DistanceOutput
 {
-	b2Vec2 pointA;		///< closest point on shapeA
-	b2Vec2 pointB;		///< closest point on shapeB
+	b2vec2 pointA;		///< closest point on shapeA
+	b2vec2 pointB;		///< closest point on shapeB
 	float32 distance;
 	int32 iterations;	///< number of GJK iterations used
 };
@@ -87,7 +87,7 @@ struct b2DistanceOutput
 /// b2CircleShape, b2PolygonShape, b2EdgeShape. The simplex cache is input/output.
 /// On the first call set b2SimplexCache.count to zero.
 void b2Distance(b2DistanceOutput* output,
-				b2SimplexCache* cache, 
+				b2SimplexCache* cache,
 				const b2DistanceInput* input);
 
 
@@ -98,13 +98,13 @@ inline int32 b2DistanceProxy::GetVertexCount() const
 	return m_count;
 }
 
-inline const b2Vec2& b2DistanceProxy::GetVertex(int32 index) const
+inline const b2vec2& b2DistanceProxy::GetVertex(int32 index) const
 {
 	b2Assert(0 <= index && index < m_count);
 	return m_vertices[index];
 }
 
-inline int32 b2DistanceProxy::GetSupport(const b2Vec2& d) const
+inline int32 b2DistanceProxy::GetSupport(const b2vec2& d) const
 {
 	int32 bestIndex = 0;
 	float32 bestValue = b2Dot(m_vertices[0], d);
@@ -121,7 +121,7 @@ inline int32 b2DistanceProxy::GetSupport(const b2Vec2& d) const
 	return bestIndex;
 }
 
-inline const b2Vec2& b2DistanceProxy::GetSupportVertex(const b2Vec2& d) const
+inline const b2vec2& b2DistanceProxy::GetSupportVertex(const b2vec2& d) const
 {
 	int32 bestIndex = 0;
 	float32 bestValue = b2Dot(m_vertices[0], d);

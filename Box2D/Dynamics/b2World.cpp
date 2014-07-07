@@ -31,7 +31,7 @@
 #include <Box2D/Collision/b2TimeOfImpact.h>
 #include <new>
 
-b2World::b2World(const b2Vec2& gravity, bool doSleep)
+b2World::b2World(const b2vec2& gravity, bool doSleep)
 {
 	m_destructionListener = NULL;
 	m_debugDraw = NULL;
@@ -872,7 +872,7 @@ struct b2WorldRayCastWrapper
 		if (hit)
 		{
 			float32 fraction = output.fraction;
-			b2Vec2 point = (1.0f - fraction) * input.p1 + fraction * input.p2;
+			b2vec2 point = (1.0f - fraction) * input.p1 + fraction * input.p2;
 			return callback->ReportFixture(fixture, point, output.normal, fraction);
 		}
 
@@ -883,7 +883,7 @@ struct b2WorldRayCastWrapper
 	b2RayCastCallback* callback;
 };
 
-void b2World::RayCast(b2RayCastCallback* callback, const b2Vec2& point1, const b2Vec2& point2) const
+void b2World::RayCast(b2RayCastCallback* callback, const b2vec2& point1, const b2vec2& point2) const
 {
 	b2WorldRayCastWrapper wrapper;
 	wrapper.broadPhase = &m_contactManager.m_broadPhase;
@@ -903,9 +903,9 @@ void b2World::DrawShape(b2Fixture* fixture, const b2Transform& xf, const b2Color
 		{
 			b2CircleShape* circle = (b2CircleShape*)fixture->GetShape();
 
-			b2Vec2 center = b2Mul(xf, circle->m_p);
+			b2vec2 center = b2Mul(xf, circle->m_p);
 			float32 radius = circle->m_radius;
-			b2Vec2 axis = xf.R.col1;
+			b2vec2 axis = xf.R.col1;
 
 			m_debugDraw->DrawSolidCircle(center, radius, axis, color);
 		}
@@ -916,7 +916,7 @@ void b2World::DrawShape(b2Fixture* fixture, const b2Transform& xf, const b2Color
 			b2PolygonShape* poly = (b2PolygonShape*)fixture->GetShape();
 			int32 vertexCount = poly->m_vertexCount;
 			b2Assert(vertexCount <= b2_maxPolygonVertices);
-			b2Vec2 vertices[b2_maxPolygonVertices];
+			b2vec2 vertices[b2_maxPolygonVertices];
 
 			for (int32 i = 0; i < vertexCount; ++i)
 			{
@@ -935,10 +935,10 @@ void b2World::DrawJoint(b2Joint* joint)
 	b2Body* bodyB = joint->GetBodyB();
 	const b2Transform& xf1 = bodyA->GetTransform();
 	const b2Transform& xf2 = bodyB->GetTransform();
-	b2Vec2 x1 = xf1.position;
-	b2Vec2 x2 = xf2.position;
-	b2Vec2 p1 = joint->GetAnchorA();
-	b2Vec2 p2 = joint->GetAnchorB();
+	b2vec2 x1 = xf1.position;
+	b2vec2 x2 = xf2.position;
+	b2vec2 p1 = joint->GetAnchorA();
+	b2vec2 p2 = joint->GetAnchorB();
 
 	b2Color color(0.5f, 0.8f, 0.8f);
 
@@ -951,8 +951,8 @@ void b2World::DrawJoint(b2Joint* joint)
 	case e_pulleyJoint:
 		{
 			b2PulleyJoint* pulley = (b2PulleyJoint*)joint;
-			b2Vec2 s1 = pulley->GetGroundAnchorA();
-			b2Vec2 s2 = pulley->GetGroundAnchorB();
+			b2vec2 s1 = pulley->GetGroundAnchorA();
+			b2vec2 s2 = pulley->GetGroundAnchorB();
 			m_debugDraw->DrawSegment(s1, p1, color);
 			m_debugDraw->DrawSegment(s2, p2, color);
 			m_debugDraw->DrawSegment(s1, s2, color);
@@ -1026,8 +1026,8 @@ void b2World::DrawDebugData()
 			b2Fixture* fixtureA = c->GetFixtureA();
 			b2Fixture* fixtureB = c->GetFixtureB();
 
-			b2Vec2 cA = fixtureA->GetAABB().GetCenter();
-			b2Vec2 cB = fixtureB->GetAABB().GetCenter();
+			b2vec2 cA = fixtureA->GetAABB().GetCenter();
+			b2vec2 cB = fixtureB->GetAABB().GetCenter();
 
 			m_debugDraw->DrawSegment(cA, cB, color);
 		}
@@ -1048,7 +1048,7 @@ void b2World::DrawDebugData()
 			for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
 			{
 				b2AABB aabb = bp->GetFatAABB(f->m_proxyId);
-				b2Vec2 vs[4];
+				b2vec2 vs[4];
 				vs[0].Set(aabb.lowerBound.x, aabb.lowerBound.y);
 				vs[1].Set(aabb.upperBound.x, aabb.lowerBound.y);
 				vs[2].Set(aabb.upperBound.x, aabb.upperBound.y);

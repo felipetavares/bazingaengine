@@ -438,7 +438,7 @@ void ZTextManager::initTextureMaps (ZFontAsset *_font) {
     utf8atlas = new ZUTF8Atlas(*defaultFont);
  }
 
-void ZTextManager::drawString (Vec3 _pos, string& _text, float _h) {
+void ZTextManager::drawString (vec3 _pos, string& _text, float _h) {
    float scale = (float)_h/32.0;
 
     glPushMatrix();
@@ -491,12 +491,12 @@ float ZTextManager::measureString (string& _text, float _h) {
     return len;
 }
 
-void ZTextManager::drawStringCentered (Vec3 _pos, string& _text, float _h) {
+void ZTextManager::drawStringCentered (vec3 _pos, string& _text, float _h) {
     uint8_t *text = (uint8_t*) _text.c_str();
 
     float scale = (float)_h/32.0;
 
-    Vec2 size = Vec2(measureString(_text,_h),32.0);
+    vec2 size = vec2(measureString(_text,_h),32.0);
 
     glPushMatrix();
         if (opacity < 1)
@@ -519,7 +519,7 @@ void ZTextManager::drawStringCentered (Vec3 _pos, string& _text, float _h) {
     glPopMatrix();
 }
 
-void ZTextManager::setColor (Vec3 _color) {
+void ZTextManager::setColor (vec3 _color) {
 	color = _color;
 }
 

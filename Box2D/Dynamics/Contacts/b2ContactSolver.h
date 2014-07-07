@@ -29,9 +29,9 @@ class b2StackAllocator;
 
 struct b2ContactConstraintPoint
 {
-	b2Vec2 localPoint;
-	b2Vec2 rA;
-	b2Vec2 rB;
+	b2vec2 localPoint;
+	b2vec2 rA;
+	b2vec2 rB;
 	float32 normalImpulse;
 	float32 tangentImpulse;
 	float32 normalMass;
@@ -42,9 +42,9 @@ struct b2ContactConstraintPoint
 struct b2ContactConstraint
 {
 	b2ContactConstraintPoint points[b2_maxManifoldPoints];
-	b2Vec2 localNormal;
-	b2Vec2 localPoint;
-	b2Vec2 normal;
+	b2vec2 localNormal;
+	b2vec2 localPoint;
+	b2vec2 normal;
 	b2Mat22 normalMass;
 	b2Mat22 K;
 	b2Body* bodyA;

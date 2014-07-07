@@ -101,7 +101,7 @@ int32 b2DynamicTree::CreateProxy(const b2AABB& aabb, void* userData)
 	int32 proxyId = AllocateNode();
 
 	// Fatten the aabb.
-	b2Vec2 r(b2_aabbExtension, b2_aabbExtension);
+	b2vec2 r(b2_aabbExtension, b2_aabbExtension);
 	m_nodes[proxyId].aabb.lowerBound = aabb.lowerBound - r;
 	m_nodes[proxyId].aabb.upperBound = aabb.upperBound + r;
 	m_nodes[proxyId].userData = userData;
@@ -131,7 +131,7 @@ void b2DynamicTree::DestroyProxy(int32 proxyId)
 	FreeNode(proxyId);
 }
 
-bool b2DynamicTree::MoveProxy(int32 proxyId, const b2AABB& aabb, const b2Vec2& displacement)
+bool b2DynamicTree::MoveProxy(int32 proxyId, const b2AABB& aabb, const b2vec2& displacement)
 {
 	b2Assert(0 <= proxyId && proxyId < m_nodeCapacity);
 
@@ -146,12 +146,12 @@ bool b2DynamicTree::MoveProxy(int32 proxyId, const b2AABB& aabb, const b2Vec2& d
 
 	// Extend AABB.
 	b2AABB b = aabb;
-	b2Vec2 r(b2_aabbExtension, b2_aabbExtension);
+	b2vec2 r(b2_aabbExtension, b2_aabbExtension);
 	b.lowerBound = b.lowerBound - r;
 	b.upperBound = b.upperBound + r;
 
 	// Predict AABB displacement.
-	b2Vec2 d = b2_aabbMultiplier * displacement;
+	b2vec2 d = b2_aabbMultiplier * displacement;
 
 	if (d.x < 0.0f)
 	{
@@ -189,17 +189,17 @@ void b2DynamicTree::InsertLeaf(int32 leaf)
 	}
 
 	// Find the best sibling for this node.
-	b2Vec2 center = m_nodes[leaf].aabb.GetCenter();
+	b2vec2 center = m_nodes[leaf].aabb.GetCenter();
 	int32 sibling = m_root;
 	if (m_nodes[sibling].IsLeaf() == false)
 	{
-		do 
+		do
 		{
 			int32 child1 = m_nodes[sibling].child1;
 			int32 child2 = m_nodes[sibling].child2;
 
-			b2Vec2 delta1 = b2Abs(m_nodes[child1].aabb.GetCenter() - center);
-			b2Vec2 delta2 = b2Abs(m_nodes[child2].aabb.GetCenter() - center);
+			b2vec2 delta1 = b2Abs(m_nodes[child1].aabb.GetCenter() - center);
+			b2vec2 delta2 = b2Abs(m_nodes[child2].aabb.GetCenter() - center);
 
 			float32 norm1 = delta1.x + delta1.y;
 			float32 norm2 = delta2.x + delta2.y;
@@ -240,7 +240,7 @@ void b2DynamicTree::InsertLeaf(int32 leaf)
 		m_nodes[sibling].parent = node2;
 		m_nodes[leaf].parent = node2;
 
-		do 
+		do
 		{
 			if (m_nodes[node1].aabb.Contains(m_nodes[node2].aabb))
 			{

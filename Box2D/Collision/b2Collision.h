@@ -58,7 +58,7 @@ union b2ContactID
 /// provide reliable contact forces, especially for high speed collisions.
 struct b2ManifoldPoint
 {
-	b2Vec2 localPoint;		///< usage depends on manifold type
+	b2vec2 localPoint;		///< usage depends on manifold type
 	float32 normalImpulse;	///< the non-penetration impulse
 	float32 tangentImpulse;	///< the friction impulse
 	b2ContactID id;			///< uniquely identifies a contact point between two shapes
@@ -90,8 +90,8 @@ struct b2Manifold
 	};
 
 	b2ManifoldPoint points[b2_maxManifoldPoints];	///< the points of contact
-	b2Vec2 localNormal;								///< not use for Type::e_points
-	b2Vec2 localPoint;								///< usage depends on manifold type
+	b2vec2 localNormal;								///< not use for Type::e_points
+	b2vec2 localPoint;								///< usage depends on manifold type
 	Type type;
 	int32 pointCount;								///< the number of manifold points
 };
@@ -107,8 +107,8 @@ struct b2WorldManifold
 					const b2Transform& xfA, float32 radiusA,
 					const b2Transform& xfB, float32 radiusB);
 
-	b2Vec2 normal;						///< world vector pointing from A to B
-	b2Vec2 points[b2_maxManifoldPoints];	///< world contact point (point of intersection)
+	b2vec2 normal;						///< world vector pointing from A to B
+	b2vec2 points[b2_maxManifoldPoints];	///< world contact point (point of intersection)
 };
 
 /// This is used for determining the state of contact points.
@@ -128,14 +128,14 @@ void b2GetPointStates(b2PointState state1[b2_maxManifoldPoints], b2PointState st
 /// Used for computing contact manifolds.
 struct b2ClipVertex
 {
-	b2Vec2 v;
+	b2vec2 v;
 	b2ContactID id;
 };
 
 /// Ray-cast input data. The ray extends from p1 to p1 + maxFraction * (p2 - p1).
 struct b2RayCastInput
 {
-	b2Vec2 p1, p2;
+	b2vec2 p1, p2;
 	float32 maxFraction;
 };
 
@@ -143,7 +143,7 @@ struct b2RayCastInput
 /// come from b2RayCastInput.
 struct b2RayCastOutput
 {
-	b2Vec2 normal;
+	b2vec2 normal;
 	float32 fraction;
 };
 
@@ -154,13 +154,13 @@ struct b2AABB
 	bool IsValid() const;
 
 	/// Get the center of the AABB.
-	b2Vec2 GetCenter() const
+	b2vec2 GetCenter() const
 	{
 		return 0.5f * (lowerBound + upperBound);
 	}
 
 	/// Get the extents of the AABB (half-widths).
-	b2Vec2 GetExtents() const
+	b2vec2 GetExtents() const
 	{
 		return 0.5f * (upperBound - lowerBound);
 	}
@@ -185,8 +185,8 @@ struct b2AABB
 
 	bool RayCast(b2RayCastOutput* output, const b2RayCastInput& input) const;
 
-	b2Vec2 lowerBound;	///< the lower vertex
-	b2Vec2 upperBound;	///< the upper vertex
+	b2vec2 lowerBound;	///< the lower vertex
+	b2vec2 upperBound;	///< the upper vertex
 };
 
 /// Compute the collision manifold between two circles.
@@ -206,7 +206,7 @@ void b2CollidePolygons(b2Manifold* manifold,
 
 /// Clipping for contact manifolds.
 int32 b2ClipSegmentToLine(b2ClipVertex vOut[2], const b2ClipVertex vIn[2],
-							const b2Vec2& normal, float32 offset);
+							const b2vec2& normal, float32 offset);
 
 /// Determine if two generic shapes overlap.
 bool b2TestOverlap(const b2Shape* shapeA, const b2Shape* shapeB,
@@ -216,7 +216,7 @@ bool b2TestOverlap(const b2Shape* shapeA, const b2Shape* shapeB,
 
 inline bool b2AABB::IsValid() const
 {
-	b2Vec2 d = upperBound - lowerBound;
+	b2vec2 d = upperBound - lowerBound;
 	bool valid = d.x >= 0.0f && d.y >= 0.0f;
 	valid = valid && lowerBound.IsValid() && upperBound.IsValid();
 	return valid;
@@ -224,7 +224,7 @@ inline bool b2AABB::IsValid() const
 
 inline bool b2TestOverlap(const b2AABB& a, const b2AABB& b)
 {
-	b2Vec2 d1, d2;
+	b2vec2 d1, d2;
 	d1 = b.lowerBound - a.upperBound;
 	d2 = a.lowerBound - b.upperBound;
 

@@ -36,7 +36,7 @@ struct b2MouseJointDef : public b2JointDef
 
 	/// The initial world target point. This is assumed
 	/// to coincide with the body anchor initially.
-	b2Vec2 target;
+	b2vec2 target;
 
 	/// The maximum constraint force that can be exerted
 	/// to move the candidate body. Usually you will express
@@ -62,20 +62,20 @@ class b2MouseJoint : public b2Joint
 public:
 
 	/// Implements b2Joint.
-	b2Vec2 GetAnchorA() const;
+	b2vec2 GetAnchorA() const;
 
 	/// Implements b2Joint.
-	b2Vec2 GetAnchorB() const;
+	b2vec2 GetAnchorB() const;
 
 	/// Implements b2Joint.
-	b2Vec2 GetReactionForce(float32 inv_dt) const;
+	b2vec2 GetReactionForce(float32 inv_dt) const;
 
 	/// Implements b2Joint.
 	float32 GetReactionTorque(float32 inv_dt) const;
 
 	/// Use this to update the target point.
-	void SetTarget(const b2Vec2& target);
-	const b2Vec2& GetTarget() const;
+	void SetTarget(const b2vec2& target);
+	const b2vec2& GetTarget() const;
 
 	/// Set/get the maximum force in Newtons.
 	void SetMaxForce(float32 force);
@@ -98,12 +98,12 @@ protected:
 	void SolveVelocityConstraints(const b2TimeStep& step);
 	bool SolvePositionConstraints(float32 baumgarte) { B2_NOT_USED(baumgarte); return true; }
 
-	b2Vec2 m_localAnchor;
-	b2Vec2 m_target;
-	b2Vec2 m_impulse;
+	b2vec2 m_localAnchor;
+	b2vec2 m_target;
+	b2vec2 m_impulse;
 
 	b2Mat22 m_mass;		// effective mass for point-to-point constraint.
-	b2Vec2 m_C;				// position error
+	b2vec2 m_C;				// position error
 	float32 m_maxForce;
 	float32 m_frequencyHz;
 	float32 m_dampingRatio;

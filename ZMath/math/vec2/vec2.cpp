@@ -2,25 +2,25 @@
   Copyright (C) 2013 by Felipe Tavares
 
   This file is part of Render TRI.
-  
+
   Render TRI is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   Render TRI is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU General Public License
-  along with Render TRI.  If not, see <http://www.gnu.org/licenses/>. 
+  along with Render TRI.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "vec2.h"
 #include <cmath>
 
-vec2::vec2 (double x, double y) {
+vec2::vec2 (float x, float y) {
   this->x = x;
   this->y = y;
 }
@@ -39,7 +39,7 @@ vec2::~vec2 () {
   // Nothing to do here
 }
 
-double vec2::operator [] (const int i) {
+float vec2::operator [] (const int i) {
   switch (i) {
   case 0:
     return x;
@@ -57,7 +57,7 @@ vec2 vec2::operator = (const vec2& vec) {
   return *this;
 }
 
-vec2 vec2::operator * (const double s) {
+vec2 vec2::operator * (const float s) {
   vec2 r;
 
   r.x = x*s;
@@ -66,7 +66,7 @@ vec2 vec2::operator * (const double s) {
   return r;
 }
 
-vec2 vec2::operator / (const double s) {
+vec2 vec2::operator / (const float s) {
   vec2 r;
 
   r.x = x/s;
@@ -93,22 +93,22 @@ vec2 vec2::operator - (const vec2& vec) {
   return r;
 }
 
-double vec2::operator * (const vec2& vec) {
-  double r;
+float vec2::operator * (const vec2& vec) {
+  float r;
 
   r = x*vec.y-y*vec.x;
 
   return r;
 }
 
-vec2 vec2::operator *= (const double s) {
+vec2 vec2::operator *= (const float s) {
   x *= s;
   y *= s;
 
   return *this;
 }
 
-vec2 vec2::operator /= (const double s) {
+vec2 vec2::operator /= (const float s) {
   x *= s;
   y *= s;
 
@@ -129,7 +129,7 @@ vec2 vec2::operator -= (const vec2& vec) {
   return *this;
 }
 
-double vec2::dot (const vec2& vec) {
+float vec2::dot (const vec2& vec) {
   return x*vec.x + y*vec.y;
 }
 
@@ -145,14 +145,14 @@ std::string vec2::str () {
   return ss.str();
 }
 
-double vec2::length () {
+float vec2::length () {
   return sqrt (x*x+y*y);
 }
 
 vec2 vec2::normal () {
   vec2 r;
-  double l = length();
-  
+  float l = length();
+
   r.x = x/l;
   r.y = y/l;
 
@@ -160,7 +160,7 @@ vec2 vec2::normal () {
 }
 
 vec2 vec2::normalize () {
-  double l = length();
+  float l = length();
 
   x /= l;
   y /= l;

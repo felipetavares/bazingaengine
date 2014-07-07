@@ -66,13 +66,13 @@ inline float32 b2Abs(float32 a)
 }
 
 /// A 2D column vector.
-struct b2Vec2
+struct b2vec2
 {
 	/// Default constructor does nothing (for performance).
-	b2Vec2() {}
+	b2vec2() {}
 
 	/// Construct using coordinates.
-	b2Vec2(float32 x, float32 y) : x(x), y(y) {}
+	b2vec2(float32 x, float32 y) : x(x), y(y) {}
 
 	/// Set this vector to all zeros.
 	void SetZero() { x = 0.0f; y = 0.0f; }
@@ -81,8 +81,8 @@ struct b2Vec2
 	void Set(float32 x_, float32 y_) { x = x_; y = y_; }
 
 	/// Negate this vector.
-	b2Vec2 operator -() const { b2Vec2 v; v.Set(-x, -y); return v; }
-	
+	b2vec2 operator -() const { b2vec2 v; v.Set(-x, -y); return v; }
+
 	/// Read from and indexed element.
 	float32 operator () (int32 i) const
 	{
@@ -96,13 +96,13 @@ struct b2Vec2
 	}
 
 	/// Add a vector to this vector.
-	void operator += (const b2Vec2& v)
+	void operator += (const b2vec2& v)
 	{
 		x += v.x; y += v.y;
 	}
-	
+
 	/// Subtract a vector from this vector.
-	void operator -= (const b2Vec2& v)
+	void operator -= (const b2vec2& v)
 	{
 		x -= v.x; y -= v.y;
 	}
@@ -120,7 +120,7 @@ struct b2Vec2
 	}
 
 	/// Get the length squared. For performance, use this instead of
-	/// b2Vec2::Length (if possible).
+	/// b2vec2::Length (if possible).
 	float32 LengthSquared() const
 	{
 		return x * x + y * y;
@@ -151,13 +151,13 @@ struct b2Vec2
 };
 
 /// A 2D column vector with 3 elements.
-struct b2Vec3
+struct b2vec3
 {
 	/// Default constructor does nothing (for performance).
-	b2Vec3() {}
+	b2vec3() {}
 
 	/// Construct using coordinates.
-	b2Vec3(float32 x, float32 y, float32 z) : x(x), y(y), z(z) {}
+	b2vec3(float32 x, float32 y, float32 z) : x(x), y(y), z(z) {}
 
 	/// Set this vector to all zeros.
 	void SetZero() { x = 0.0f; y = 0.0f; z = 0.0f; }
@@ -166,16 +166,16 @@ struct b2Vec3
 	void Set(float32 x_, float32 y_, float32 z_) { x = x_; y = y_; z = z_; }
 
 	/// Negate this vector.
-	b2Vec3 operator -() const { b2Vec3 v; v.Set(-x, -y, -z); return v; }
+	b2vec3 operator -() const { b2vec3 v; v.Set(-x, -y, -z); return v; }
 
 	/// Add a vector to this vector.
-	void operator += (const b2Vec3& v)
+	void operator += (const b2vec3& v)
 	{
 		x += v.x; y += v.y; z += v.z;
 	}
 
 	/// Subtract a vector from this vector.
-	void operator -= (const b2Vec3& v)
+	void operator -= (const b2vec3& v)
 	{
 		x -= v.x; y -= v.y; z -= v.z;
 	}
@@ -196,7 +196,7 @@ struct b2Mat22
 	b2Mat22() {}
 
 	/// Construct this matrix using columns.
-	b2Mat22(const b2Vec2& c1, const b2Vec2& c2)
+	b2Mat22(const b2vec2& c1, const b2vec2& c2)
 	{
 		col1 = c1;
 		col2 = c2;
@@ -220,7 +220,7 @@ struct b2Mat22
 	}
 
 	/// Initialize this matrix using columns.
-	void Set(const b2Vec2& c1, const b2Vec2& c2)
+	void Set(const b2vec2& c1, const b2vec2& c2)
 	{
 		col1 = c1;
 		col2 = c2;
@@ -272,7 +272,7 @@ struct b2Mat22
 
 	/// Solve A * x = b, where b is a column vector. This is more efficient
 	/// than computing the inverse in one-shot cases.
-	b2Vec2 Solve(const b2Vec2& b) const
+	b2vec2 Solve(const b2vec2& b) const
 	{
 		float32 a11 = col1.x, a12 = col2.x, a21 = col1.y, a22 = col2.y;
 		float32 det = a11 * a22 - a12 * a21;
@@ -280,13 +280,13 @@ struct b2Mat22
 		{
 			det = 1.0f / det;
 		}
-		b2Vec2 x;
+		b2vec2 x;
 		x.x = det * (a22 * b.x - a12 * b.y);
 		x.y = det * (a11 * b.y - a21 * b.x);
 		return x;
 	}
 
-	b2Vec2 col1, col2;
+	b2vec2 col1, col2;
 };
 
 /// A 3-by-3 matrix. Stored in column-major order.
@@ -296,7 +296,7 @@ struct b2Mat33
 	b2Mat33() {}
 
 	/// Construct this matrix using columns.
-	b2Mat33(const b2Vec3& c1, const b2Vec3& c2, const b2Vec3& c3)
+	b2Mat33(const b2vec3& c1, const b2vec3& c2, const b2vec3& c3)
 	{
 		col1 = c1;
 		col2 = c2;
@@ -313,14 +313,14 @@ struct b2Mat33
 
 	/// Solve A * x = b, where b is a column vector. This is more efficient
 	/// than computing the inverse in one-shot cases.
-	b2Vec3 Solve33(const b2Vec3& b) const;
+	b2vec3 Solve33(const b2vec3& b) const;
 
 	/// Solve A * x = b, where b is a column vector. This is more efficient
 	/// than computing the inverse in one-shot cases. Solve only the upper
 	/// 2-by-2 matrix equation.
-	b2Vec2 Solve22(const b2Vec2& b) const;
+	b2vec2 Solve22(const b2vec2& b) const;
 
-	b2Vec3 col1, col2, col3;
+	b2vec3 col1, col2, col3;
 };
 
 /// A transform contains translation and rotation. It is used to represent
@@ -331,7 +331,7 @@ struct b2Transform
 	b2Transform() {}
 
 	/// Initialize using a position vector and a rotation matrix.
-	b2Transform(const b2Vec2& position, const b2Mat22& R) : position(position), R(R) {}
+	b2Transform(const b2vec2& position, const b2Mat22& R) : position(position), R(R) {}
 
 	/// Set this to the identity transform.
 	void SetIdentity()
@@ -341,7 +341,7 @@ struct b2Transform
 	}
 
 	/// Set this based on the position and angle.
-	void Set(const b2Vec2& p, float32 angle)
+	void Set(const b2vec2& p, float32 angle)
 	{
 		position = p;
 		R.Set(angle);
@@ -353,7 +353,7 @@ struct b2Transform
 		return b2Atan2(R.col1.y, R.col1.x);
 	}
 
-	b2Vec2 position;
+	b2vec2 position;
 	b2Mat22 R;
 };
 
@@ -374,117 +374,117 @@ struct b2Sweep
 	/// Normalize the angles.
 	void Normalize();
 
-	b2Vec2 localCenter;	///< local center of mass position
-	b2Vec2 c0, c;		///< center world positions
+	b2vec2 localCenter;	///< local center of mass position
+	b2vec2 c0, c;		///< center world positions
 	float32 a0, a;		///< world angles
 };
 
 
-extern const b2Vec2 b2Vec2_zero;
+extern const b2vec2 b2vec2_zero;
 extern const b2Mat22 b2Mat22_identity;
 extern const b2Transform b2Transform_identity;
 
 /// Perform the dot product on two vectors.
-inline float32 b2Dot(const b2Vec2& a, const b2Vec2& b)
+inline float32 b2Dot(const b2vec2& a, const b2vec2& b)
 {
 	return a.x * b.x + a.y * b.y;
 }
 
 /// Perform the cross product on two vectors. In 2D this produces a scalar.
-inline float32 b2Cross(const b2Vec2& a, const b2Vec2& b)
+inline float32 b2Cross(const b2vec2& a, const b2vec2& b)
 {
 	return a.x * b.y - a.y * b.x;
 }
 
 /// Perform the cross product on a vector and a scalar. In 2D this produces
 /// a vector.
-inline b2Vec2 b2Cross(const b2Vec2& a, float32 s)
+inline b2vec2 b2Cross(const b2vec2& a, float32 s)
 {
-	return b2Vec2(s * a.y, -s * a.x);
+	return b2vec2(s * a.y, -s * a.x);
 }
 
 /// Perform the cross product on a scalar and a vector. In 2D this produces
 /// a vector.
-inline b2Vec2 b2Cross(float32 s, const b2Vec2& a)
+inline b2vec2 b2Cross(float32 s, const b2vec2& a)
 {
-	return b2Vec2(-s * a.y, s * a.x);
+	return b2vec2(-s * a.y, s * a.x);
 }
 
 /// Multiply a matrix times a vector. If a rotation matrix is provided,
 /// then this transforms the vector from one frame to another.
-inline b2Vec2 b2Mul(const b2Mat22& A, const b2Vec2& v)
+inline b2vec2 b2Mul(const b2Mat22& A, const b2vec2& v)
 {
-	return b2Vec2(A.col1.x * v.x + A.col2.x * v.y, A.col1.y * v.x + A.col2.y * v.y);
+	return b2vec2(A.col1.x * v.x + A.col2.x * v.y, A.col1.y * v.x + A.col2.y * v.y);
 }
 
 /// Multiply a matrix transpose times a vector. If a rotation matrix is provided,
 /// then this transforms the vector from one frame to another (inverse transform).
-inline b2Vec2 b2MulT(const b2Mat22& A, const b2Vec2& v)
+inline b2vec2 b2MulT(const b2Mat22& A, const b2vec2& v)
 {
-	return b2Vec2(b2Dot(v, A.col1), b2Dot(v, A.col2));
+	return b2vec2(b2Dot(v, A.col1), b2Dot(v, A.col2));
 }
 
 /// Add two vectors component-wise.
-inline b2Vec2 operator + (const b2Vec2& a, const b2Vec2& b)
+inline b2vec2 operator + (const b2vec2& a, const b2vec2& b)
 {
-	return b2Vec2(a.x + b.x, a.y + b.y);
+	return b2vec2(a.x + b.x, a.y + b.y);
 }
 
 /// Subtract two vectors component-wise.
-inline b2Vec2 operator - (const b2Vec2& a, const b2Vec2& b)
+inline b2vec2 operator - (const b2vec2& a, const b2vec2& b)
 {
-	return b2Vec2(a.x - b.x, a.y - b.y);
+	return b2vec2(a.x - b.x, a.y - b.y);
 }
 
-inline b2Vec2 operator * (float32 s, const b2Vec2& a)
+inline b2vec2 operator * (float32 s, const b2vec2& a)
 {
-	return b2Vec2(s * a.x, s * a.y);
+	return b2vec2(s * a.x, s * a.y);
 }
 
-inline bool operator == (const b2Vec2& a, const b2Vec2& b)
+inline bool operator == (const b2vec2& a, const b2vec2& b)
 {
 	return a.x == b.x && a.y == b.y;
 }
 
-inline float32 b2Distance(const b2Vec2& a, const b2Vec2& b)
+inline float32 b2Distance(const b2vec2& a, const b2vec2& b)
 {
-	b2Vec2 c = a - b;
+	b2vec2 c = a - b;
 	return c.Length();
 }
 
-inline float32 b2DistanceSquared(const b2Vec2& a, const b2Vec2& b)
+inline float32 b2DistanceSquared(const b2vec2& a, const b2vec2& b)
 {
-	b2Vec2 c = a - b;
+	b2vec2 c = a - b;
 	return b2Dot(c, c);
 }
 
-inline b2Vec3 operator * (float32 s, const b2Vec3& a)
+inline b2vec3 operator * (float32 s, const b2vec3& a)
 {
-	return b2Vec3(s * a.x, s * a.y, s * a.z);
+	return b2vec3(s * a.x, s * a.y, s * a.z);
 }
 
 /// Add two vectors component-wise.
-inline b2Vec3 operator + (const b2Vec3& a, const b2Vec3& b)
+inline b2vec3 operator + (const b2vec3& a, const b2vec3& b)
 {
-	return b2Vec3(a.x + b.x, a.y + b.y, a.z + b.z);
+	return b2vec3(a.x + b.x, a.y + b.y, a.z + b.z);
 }
 
 /// Subtract two vectors component-wise.
-inline b2Vec3 operator - (const b2Vec3& a, const b2Vec3& b)
+inline b2vec3 operator - (const b2vec3& a, const b2vec3& b)
 {
-	return b2Vec3(a.x - b.x, a.y - b.y, a.z - b.z);
+	return b2vec3(a.x - b.x, a.y - b.y, a.z - b.z);
 }
 
 /// Perform the dot product on two vectors.
-inline float32 b2Dot(const b2Vec3& a, const b2Vec3& b)
+inline float32 b2Dot(const b2vec3& a, const b2vec3& b)
 {
 	return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
 /// Perform the cross product on two vectors.
-inline b2Vec3 b2Cross(const b2Vec3& a, const b2Vec3& b)
+inline b2vec3 b2Cross(const b2vec3& a, const b2vec3& b)
 {
-	return b2Vec3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
+	return b2vec3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
 }
 
 inline b2Mat22 operator + (const b2Mat22& A, const b2Mat22& B)
@@ -501,33 +501,33 @@ inline b2Mat22 b2Mul(const b2Mat22& A, const b2Mat22& B)
 // A^T * B
 inline b2Mat22 b2MulT(const b2Mat22& A, const b2Mat22& B)
 {
-	b2Vec2 c1(b2Dot(A.col1, B.col1), b2Dot(A.col2, B.col1));
-	b2Vec2 c2(b2Dot(A.col1, B.col2), b2Dot(A.col2, B.col2));
+	b2vec2 c1(b2Dot(A.col1, B.col1), b2Dot(A.col2, B.col1));
+	b2vec2 c2(b2Dot(A.col1, B.col2), b2Dot(A.col2, B.col2));
 	return b2Mat22(c1, c2);
 }
 
 /// Multiply a matrix times a vector.
-inline b2Vec3 b2Mul(const b2Mat33& A, const b2Vec3& v)
+inline b2vec3 b2Mul(const b2Mat33& A, const b2vec3& v)
 {
 	return v.x * A.col1 + v.y * A.col2 + v.z * A.col3;
 }
 
-inline b2Vec2 b2Mul(const b2Transform& T, const b2Vec2& v)
+inline b2vec2 b2Mul(const b2Transform& T, const b2vec2& v)
 {
 	float32 x = T.position.x + T.R.col1.x * v.x + T.R.col2.x * v.y;
 	float32 y = T.position.y + T.R.col1.y * v.x + T.R.col2.y * v.y;
 
-	return b2Vec2(x, y);
+	return b2vec2(x, y);
 }
 
-inline b2Vec2 b2MulT(const b2Transform& T, const b2Vec2& v)
+inline b2vec2 b2MulT(const b2Transform& T, const b2vec2& v)
 {
 	return b2MulT(T.R, v - T.position);
 }
 
-inline b2Vec2 b2Abs(const b2Vec2& a)
+inline b2vec2 b2Abs(const b2vec2& a)
 {
-	return b2Vec2(b2Abs(a.x), b2Abs(a.y));
+	return b2vec2(b2Abs(a.x), b2Abs(a.y));
 }
 
 inline b2Mat22 b2Abs(const b2Mat22& A)
@@ -541,9 +541,9 @@ inline T b2Min(T a, T b)
 	return a < b ? a : b;
 }
 
-inline b2Vec2 b2Min(const b2Vec2& a, const b2Vec2& b)
+inline b2vec2 b2Min(const b2vec2& a, const b2vec2& b)
 {
-	return b2Vec2(b2Min(a.x, b.x), b2Min(a.y, b.y));
+	return b2vec2(b2Min(a.x, b.x), b2Min(a.y, b.y));
 }
 
 template <typename T>
@@ -552,9 +552,9 @@ inline T b2Max(T a, T b)
 	return a > b ? a : b;
 }
 
-inline b2Vec2 b2Max(const b2Vec2& a, const b2Vec2& b)
+inline b2vec2 b2Max(const b2vec2& a, const b2vec2& b)
 {
-	return b2Vec2(b2Max(a.x, b.x), b2Max(a.y, b.y));
+	return b2vec2(b2Max(a.x, b.x), b2Max(a.y, b.y));
 }
 
 template <typename T>
@@ -563,7 +563,7 @@ inline T b2Clamp(T a, T low, T high)
 	return b2Max(low, b2Min(a, high));
 }
 
-inline b2Vec2 b2Clamp(const b2Vec2& a, const b2Vec2& low, const b2Vec2& high)
+inline b2vec2 b2Clamp(const b2vec2& a, const b2vec2& low, const b2vec2& high)
 {
 	return b2Max(low, b2Min(a, high));
 }

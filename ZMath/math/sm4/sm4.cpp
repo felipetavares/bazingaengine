@@ -2,19 +2,19 @@
   Copyright (C) 2013 by Felipe Tavares
 
   This file is part of Render TRI.
-  
+
   Render TRI is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   Render TRI is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU General Public License
-  along with Render TRI.  If not, see <http://www.gnu.org/licenses/>. 
+  along with Render TRI.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "sm4.h"
@@ -61,7 +61,7 @@ sm4 sm4::operator - (const sm4& mat) {
   return r;
 }
 
-sm4 sm4::operator * (const double s) {
+sm4 sm4::operator * (const float s) {
   sm4 r;
 
   r.a = a*s;
@@ -88,12 +88,12 @@ sm4 sm4::operator * (sm4& mat) {
   r.c.x = c.dot(mat.getColumn(0));
   r.c.y = c.dot(mat.getColumn(1));
   r.c.z = c.dot(mat.getColumn(2));
-  r.c.w = c.dot(mat.getColumn(3));  
+  r.c.w = c.dot(mat.getColumn(3));
 
   r.d.x = d.dot(mat.getColumn(0));
   r.d.y = d.dot(mat.getColumn(1));
   r.d.z = d.dot(mat.getColumn(2));
-  r.d.w = d.dot(mat.getColumn(3));  
+  r.d.w = d.dot(mat.getColumn(3));
 
   return r;
 }
@@ -104,7 +104,7 @@ sm4 sm4::operator += (const sm4& mat) {
   c += mat.c;
   d += mat.d;
 
-  return *this;  
+  return *this;
 }
 
 
@@ -114,7 +114,7 @@ sm4 sm4::operator -= (const sm4& mat) {
   c -= mat.c;
   d -= mat.d;
 
-  return *this;  
+  return *this;
 }
 
 sm4 sm4::operator *= (sm4& mat) {
@@ -135,19 +135,19 @@ sm4 sm4::operator *= (sm4& mat) {
   r.x = c.dot(mat.getColumn(0));
   r.y = c.dot(mat.getColumn(1));
   r.z = c.dot(mat.getColumn(2));
-  r.w = c.dot(mat.getColumn(3));  
+  r.w = c.dot(mat.getColumn(3));
   c = r;
 
   r.x = d.dot(mat.getColumn(0));
   r.y = d.dot(mat.getColumn(1));
   r.z = d.dot(mat.getColumn(2));
-  r.w = d.dot(mat.getColumn(3));  
+  r.w = d.dot(mat.getColumn(3));
   d = r;
 
   return *this;
 }
 
-sm4 sm4::operator *= (const double s) {
+sm4 sm4::operator *= (const float s) {
   a *= s;
   b *= s;
   c *= s;
@@ -228,7 +228,7 @@ std::string sm4::str () {
   return ss.str();
 }
 
-sm4 sm4::rotateX (double a) {
+sm4 sm4::rotateX (float a) {
   a = a*M_PI/180;
 
   return sm4 {
@@ -239,7 +239,7 @@ sm4 sm4::rotateX (double a) {
   };
 }
 
-sm4 sm4::rotateY (double a) {
+sm4 sm4::rotateY (float a) {
   a = a*M_PI/180;
 
   return sm4 {
@@ -250,7 +250,7 @@ sm4 sm4::rotateY (double a) {
   };
 }
 
-sm4 sm4::rotateZ (double a) {
+sm4 sm4::rotateZ (float a) {
   a = a*M_PI/180;
 
   return sm4 {

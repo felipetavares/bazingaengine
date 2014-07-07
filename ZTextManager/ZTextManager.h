@@ -5,8 +5,8 @@
 #include <stdexcept>
 #include <SDL/SDL_opengl.h>
 #include "../ZAssetsManager/ZAssetsManager.h"
-#include "../ZMath/Vec3.h"
-#include "../ZMath/Vec2.h"
+#include "ZMath/math/vec3/vec3.h"
+#include "ZMath/math/vec2/vec2.h"
 
 class ZUTF8Atlas {
     class GlyphPosition {
@@ -38,17 +38,17 @@ private:
 class ZTextManager {
 	ZFontAsset *defaultFont;
     ZUTF8Atlas *utf8atlas;
-	Vec3 color;
+	vec3 color;
 	float opacity;
 public:
 	ZTextManager();
 	~ZTextManager();
 
-	void setColor (Vec3);
+	void setColor (vec3);
 
     float measureString (string&, float);
-	void drawString (Vec3,string&, float);
-	void drawStringCentered (Vec3, string&, float);
+	void drawString (vec3,string&, float);
+	void drawStringCentered (vec3, string&, float);
 
 	void initTextureMaps (ZFontAsset*);
     void setOpacity(float);

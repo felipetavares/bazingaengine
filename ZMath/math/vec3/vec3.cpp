@@ -2,19 +2,19 @@
   Copyright (C) 2013 by Felipe Tavares
 
   This file is part of Render TRI.
-  
+
   Render TRI is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   Render TRI is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU General Public License
-  along with Render TRI.  If not, see <http://www.gnu.org/licenses/>. 
+  along with Render TRI.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "vec3.h"
@@ -26,7 +26,7 @@ vec3::vec3 () {
   z = 0;
 }
 
-vec3::vec3 (double x, double y, double z) {
+vec3::vec3 (float x, float y, float z) {
   this->x = x;
   this->y = y;
   this->z = z;
@@ -38,7 +38,7 @@ vec3::vec3 (const vec3& vec) {
   z = vec.z;
 }
 
-vec3::vec3 (const vec2& vec, double z) {
+vec3::vec3 (const vec2& vec, float z) {
   x = vec.x;
   y = vec.y;
 
@@ -49,13 +49,13 @@ vec3::~vec3 () {
   // Nothing to do here
 }
 
-vec2 vec3::toVec2 () {
+vec2 vec3::tovec2 () {
   vec2 r (x,y);
 
   return r;
 }
 
-double vec3::operator [] (const int i) {
+float vec3::operator [] (const int i) {
   switch (i) {
   case 0:
     return x;
@@ -70,7 +70,7 @@ double vec3::operator [] (const int i) {
 
 std::string vec3::str () {
   std::stringstream ss;
-  
+
   ss << "(";
   ss << x;
   ss << ", ";
@@ -82,7 +82,7 @@ std::string vec3::str () {
   return ss.str();
 }
 
-double vec3::dot (const vec3& vec) {
+float vec3::dot (const vec3& vec) {
   return x*vec.x+y*vec.y+z*vec.z;
 }
 
@@ -118,7 +118,7 @@ vec3 vec3::operator = (const vec3& vec) {
   return *this;
 }
 
-vec3 vec3::operator * (const double s) {
+vec3 vec3::operator * (const float s) {
   vec3 r;
 
   r.x = x*s;
@@ -128,7 +128,7 @@ vec3 vec3::operator * (const double s) {
   return r;
 }
 
-vec3 vec3::operator / (const double s) {
+vec3 vec3::operator / (const float s) {
   vec3 r;
 
   r.x = x/s;
@@ -158,7 +158,7 @@ vec3 vec3::operator - (const vec3& vec) {
   return r;
 }
 
-vec3 vec3::operator *= (const double s) {
+vec3 vec3::operator *= (const float s) {
   x *= s;
   y *= s;
   z *= s;
@@ -166,7 +166,7 @@ vec3 vec3::operator *= (const double s) {
   return *this;
 }
 
-vec3 vec3::operator /= (const double s) {
+vec3 vec3::operator /= (const float s) {
   x /= s;
   y /= s;
   z /= s;
@@ -190,13 +190,13 @@ vec3 vec3::operator -= (const vec3& vec) {
   return *this;
 }
 
-double vec3::length () {
+float vec3::length () {
   return sqrt (x*x+y*y+z*z);
 }
 
 vec3 vec3::normal () {
   vec3 r;
-  double l = length();
+  float l = length();
 
   r.x = x/l;
   r.y = y/l;
@@ -206,11 +206,11 @@ vec3 vec3::normal () {
 }
 
 vec3 vec3::normalize () {
-  double l = length();
+  float l = length();
 
   x /= l;
   y /= l;
   z /= l;
 
-  return *this;  
+  return *this;
 }

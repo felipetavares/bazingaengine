@@ -42,7 +42,7 @@ public:
 	/// Construct a world object.
 	/// @param gravity the world gravity vector.
 	/// @param doSleep improve performance by not simulating inactive bodies.
-	b2World(const b2Vec2& gravity, bool doSleep);
+	b2World(const b2vec2& gravity, bool doSleep);
 
 	/// Destruct the world. All physics entities are destroyed and all heap memory is released.
 	~b2World();
@@ -53,7 +53,7 @@ public:
 
 	/// Register a contact filter to provide specific control over collision.
 	/// Otherwise the default filter is used (b2_defaultFilter). The listener is
-	/// owned by you and must remain in scope. 
+	/// owned by you and must remain in scope.
 	void SetContactFilter(b2ContactFilter* filter);
 
 	/// Register a contact event listener. The listener is owned by you and must
@@ -115,7 +115,7 @@ public:
 	/// @param callback a user implemented callback class.
 	/// @param point1 the ray starting point
 	/// @param point2 the ray ending point
-	void RayCast(b2RayCastCallback* callback, const b2Vec2& point1, const b2Vec2& point2) const;
+	void RayCast(b2RayCastCallback* callback, const b2vec2& point1, const b2vec2& point2) const;
 
 	/// Get the world body list. With the returned body, use b2Body::GetNext to get
 	/// the next body in the world list. A NULL body indicates the end of the list.
@@ -130,7 +130,7 @@ public:
 	/// Get the world contact list. With the returned contact, use b2Contact::GetNext to get
 	/// the next contact in the world list. A NULL contact indicates the end of the list.
 	/// @return the head of the world contact list.
-	/// @warning contacts are 
+	/// @warning contacts are
 	b2Contact* GetContactList();
 
 	/// Enable/disable warm starting. For testing.
@@ -152,10 +152,10 @@ public:
 	int32 GetContactCount() const;
 
 	/// Change the global gravity vector.
-	void SetGravity(const b2Vec2& gravity);
-	
+	void SetGravity(const b2vec2& gravity);
+
 	/// Get the global gravity vector.
-	b2Vec2 GetGravity() const;
+	b2vec2 GetGravity() const;
 
 	/// Is the world locked (in the middle of a time step).
 	bool IsLocked() const;
@@ -200,7 +200,7 @@ private:
 	int32 m_bodyCount;
 	int32 m_jointCount;
 
-	b2Vec2 m_gravity;
+	b2vec2 m_gravity;
 	bool m_allowSleep;
 
 	b2Body* m_groundBody;
@@ -249,12 +249,12 @@ inline int32 b2World::GetContactCount() const
 	return m_contactManager.m_contactCount;
 }
 
-inline void b2World::SetGravity(const b2Vec2& gravity)
+inline void b2World::SetGravity(const b2vec2& gravity)
 {
 	m_gravity = gravity;
 }
 
-inline b2Vec2 b2World::GetGravity() const
+inline b2vec2 b2World::GetGravity() const
 {
 	return m_gravity;
 }

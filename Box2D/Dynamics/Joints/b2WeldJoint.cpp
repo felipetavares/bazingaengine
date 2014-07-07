@@ -34,7 +34,7 @@
 // J = [0 0 -1 0 0 1]
 // K = invI1 + invI2
 
-void b2WeldJointDef::Initialize(b2Body* bA, b2Body* bB, const b2Vec2& anchor)
+void b2WeldJointDef::Initialize(b2Body* bA, b2Body* bB, const b2vec2& anchor)
 {
 	bodyA = bA;
 	bodyB = bB;
@@ -59,8 +59,8 @@ void b2WeldJoint::InitVelocityConstraints(const b2TimeStep& step)
 	b2Body* bB = m_bodyB;
 
 	// Compute the effective mass matrix.
-	b2Vec2 rA = b2Mul(bA->GetTransform().R, m_localAnchorA - bA->GetLocalCenter());
-	b2Vec2 rB = b2Mul(bB->GetTransform().R, m_localAnchorB - bB->GetLocalCenter());
+	b2vec2 rA = b2Mul(bA->GetTransform().R, m_localAnchorA - bA->GetLocalCenter());
+	b2vec2 rB = b2Mul(bB->GetTransform().R, m_localAnchorB - bB->GetLocalCenter());
 
 	// J = [-I -r1_skew I r2_skew]
 	//     [ 0       -1 0       1]
@@ -89,7 +89,7 @@ void b2WeldJoint::InitVelocityConstraints(const b2TimeStep& step)
 		// Scale impulses to support a variable time step.
 		m_impulse *= step.dtRatio;
 
-		b2Vec2 P(m_impulse.x, m_impulse.y);
+		b2vec2 P(m_impulse.x, m_impulse.y);
 
 		bA->m_linearVelocity -= mA * P;
 		bA->m_angularVelocity -= iA * (b2Cross(rA, P) + m_impulse.z);
@@ -110,26 +110,26 @@ void b2WeldJoint::SolveVelocityConstraints(const b2TimeStep& step)
 	b2Body* bA = m_bodyA;
 	b2Body* bB = m_bodyB;
 
-	b2Vec2 vA = bA->m_linearVelocity;
+	b2vec2 vA = bA->m_linearVelocity;
 	float32 wA = bA->m_angularVelocity;
-	b2Vec2 vB = bB->m_linearVelocity;
+	b2vec2 vB = bB->m_linearVelocity;
 	float32 wB = bB->m_angularVelocity;
 
 	float32 mA = bA->m_invMass, mB = bB->m_invMass;
 	float32 iA = bA->m_invI, iB = bB->m_invI;
 
-	b2Vec2 rA = b2Mul(bA->GetTransform().R, m_localAnchorA - bA->GetLocalCenter());
-	b2Vec2 rB = b2Mul(bB->GetTransform().R, m_localAnchorB - bB->GetLocalCenter());
+	b2vec2 rA = b2Mul(bA->GetTransform().R, m_localAnchorA - bA->GetLocalCenter());
+	b2vec2 rB = b2Mul(bB->GetTransform().R, m_localAnchorB - bB->GetLocalCenter());
 
 	// Solve point-to-point constraint
-	b2Vec2 Cdot1 = vB + b2Cross(wB, rB) - vA - b2Cross(wA, rA);
+	b2vec2 Cdot1 = vB + b2Cross(wB, rB) - vA - b2Cross(wA, rA);
 	float32 Cdot2 = wB - wA;
-	b2Vec3 Cdot(Cdot1.x, Cdot1.y, Cdot2);
+	b2vec3 Cdot(Cdot1.x, Cdot1.y, Cdot2);
 
-	b2Vec3 impulse = m_mass.Solve33(-Cdot);
+	b2vec3 impulse = m_mass.Solve33(-Cdot);
 	m_impulse += impulse;
 
-	b2Vec2 P(impulse.x, impulse.y);
+	b2vec2 P(impulse.x, impulse.y);
 
 	vA -= mA * P;
 	wA -= iA * (b2Cross(rA, P) + impulse.z);
@@ -153,10 +153,10 @@ bool b2WeldJoint::SolvePositionConstraints(float32 baumgarte)
 	float32 mA = bA->m_invMass, mB = bB->m_invMass;
 	float32 iA = bA->m_invI, iB = bB->m_invI;
 
-	b2Vec2 rA = b2Mul(bA->GetTransform().R, m_localAnchorA - bA->GetLocalCenter());
-	b2Vec2 rB = b2Mul(bB->GetTransform().R, m_localAnchorB - bB->GetLocalCenter());
+	b2vec2 rA = b2Mul(bA->GetTransform().R, m_localAnchorA - bA->GetLocalCenter());
+	b2vec2 rB = b2Mul(bB->GetTransform().R, m_localAnchorB - bB->GetLocalCenter());
 
-	b2Vec2 C1 =  bB->m_sweep.c + rB - bA->m_sweep.c - rA;
+	b2vec2 C1 =  bB->m_sweep.c + rB - bA->m_sweep.c - rA;
 	float32 C2 = bB->m_sweep.a - bA->m_sweep.a - m_referenceAngle;
 
 	// Handle large detachment.
@@ -179,11 +179,11 @@ bool b2WeldJoint::SolvePositionConstraints(float32 baumgarte)
 	m_mass.col2.z = m_mass.col3.y;
 	m_mass.col3.z = iA + iB;
 
-	b2Vec3 C(C1.x, C1.y, C2);
+	b2vec3 C(C1.x, C1.y, C2);
 
-	b2Vec3 impulse = m_mass.Solve33(-C);
+	b2vec3 impulse = m_mass.Solve33(-C);
 
-	b2Vec2 P(impulse.x, impulse.y);
+	b2vec2 P(impulse.x, impulse.y);
 
 	bA->m_sweep.c -= mA * P;
 	bA->m_sweep.a -= iA * (b2Cross(rA, P) + impulse.z);
@@ -197,19 +197,19 @@ bool b2WeldJoint::SolvePositionConstraints(float32 baumgarte)
 	return positionError <= b2_linearSlop && angularError <= b2_angularSlop;
 }
 
-b2Vec2 b2WeldJoint::GetAnchorA() const
+b2vec2 b2WeldJoint::GetAnchorA() const
 {
 	return m_bodyA->GetWorldPoint(m_localAnchorA);
 }
 
-b2Vec2 b2WeldJoint::GetAnchorB() const
+b2vec2 b2WeldJoint::GetAnchorB() const
 {
 	return m_bodyB->GetWorldPoint(m_localAnchorB);
 }
 
-b2Vec2 b2WeldJoint::GetReactionForce(float32 inv_dt) const
+b2vec2 b2WeldJoint::GetReactionForce(float32 inv_dt) const
 {
-	b2Vec2 P(m_impulse.x, m_impulse.y);
+	b2vec2 P(m_impulse.x, m_impulse.y);
 	return inv_dt * P;
 }
 

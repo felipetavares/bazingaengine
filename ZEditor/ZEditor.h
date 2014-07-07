@@ -2,13 +2,13 @@
 #define EDITOR_H
 
 class ZEditor {
-	Vec3 dragPos;
+	vec3 dragPos;
 	bool drag;
 	ZObject* subject;
 public:
 	bool grid;
-	Vec3 *gridColor;
-	Vec3 *gridSize;
+	vec3 *gridColor;
+	vec3 *gridSize;
 
 	ZEditor ();
 	~ZEditor ();

@@ -93,7 +93,7 @@ Widget::~Widget () {
 	delete actions;
 }
 
-void Widget::draw (Vec2 _p, Vec2 _s, float _z) {
+void Widget::draw (vec2 _p, vec2 _s, float _z) {
 	z = _z;
 	p = _p;
 	s = _s;
@@ -112,7 +112,7 @@ void Widget::routeEvent (Event* _event) {
 }
 
 //! Panels
-Panel::Panel (Vec2 _p, Vec2 _s, int _bar) {
+Panel::Panel (vec2 _p, vec2 _s, int _bar) {
 	p = _p;
 	s = _s;
 	z = 99.9;
@@ -170,8 +170,8 @@ void Panel::draw() {
 	float h = (s.y-bar)/widgets.size();
 
 	for (int i=0;i<widgets.size();i++) {
-		widgets[i]->draw(Vec2(p.x,p.y+bar+h*i),
-						 Vec2(s.x,h),
+		widgets[i]->draw(vec2(p.x,p.y+bar+h*i),
+						 vec2(s.x,h),
 						 z+0.05);
 	}
 }
@@ -186,7 +186,7 @@ bool Panel::routeEvent(Event* _event) {
 	if (visible) {
 		//! Panel movement
 		if (_event->getType() == Event::Mouse) {
-			Vec3 mp = _event->getMouse()->pos;
+			vec3 mp = _event->getMouse()->pos;
 			if (mp.x >= p.x && mp.x <= p.x+s.x &&
 				mp.y >= p.y && mp.y <= p.y+s.y) {
 				process = true;
@@ -202,7 +202,7 @@ bool Panel::routeEvent(Event* _event) {
 					mp.y >= p.y && mp.y <= p.y+bar) {
 					if (_event->getMouse()->leftIsShot()) {
 						dragged = true;
-						dragDist = Vec2(mp.x-p.x,mp.y-p.y);
+						dragDist = vec2(mp.x-p.x,mp.y-p.y);
 					}
 				}
 				if (!_event->getMouse()->left) {
@@ -328,7 +328,7 @@ void wButton::setText (string _text) {
 	text = _text;
 }
 
-void wButton::draw (Vec2 _p, Vec2 _s, float _z) {
+void wButton::draw (vec2 _p, vec2 _s, float _z) {
 	Widget::draw(_p,_s,_z);
 
 	glPushMatrix();
@@ -347,8 +347,8 @@ void wButton::draw (Vec2 _p, Vec2 _s, float _z) {
     if (coef < 1)
         textH *= coef;
 
-	Engine->textManager->setColor (Vec3(1,0,0));
-	Engine->textManager->drawStringCentered (Vec3(_p.x+_s.x/2,
+	Engine->textManager->setColor (vec3(1,0,0));
+	Engine->textManager->drawStringCentered (vec3(_p.x+_s.x/2,
 												  _p.y+_s.y/2,
 												  _z)
 											,text, textH);
@@ -370,7 +370,7 @@ void wProgressBar::setText (string _text) {
 	text = _text;
 }
 
-void wProgressBar::draw (Vec2 _p, Vec2 _s, float _z) {
+void wProgressBar::draw (vec2 _p, vec2 _s, float _z) {
 	Widget::draw(_p,_s,_z);
 
 	glPushMatrix();
@@ -396,8 +396,8 @@ void wProgressBar::draw (Vec2 _p, Vec2 _s, float _z) {
     if (coef < 1)
         textH *= coef;
 
-	Engine->textManager->setColor (Vec3(1,0,0));
-	Engine->textManager->drawStringCentered (Vec3(_p.x+_s.x/2,
+	Engine->textManager->setColor (vec3(1,0,0));
+	Engine->textManager->drawStringCentered (vec3(_p.x+_s.x/2,
 												  _p.y+_s.y/2,
 												  _z+0.01)
 											,text, textH);
@@ -414,7 +414,7 @@ unsigned int wIcon::getAid () {
 	return aid;
 }
 
-void wIcon::draw (Vec2 _p, Vec2 _s, float _z) {
+void wIcon::draw (vec2 _p, vec2 _s, float _z) {
 	Widget::draw(_p,_s,_z);
 
 	glPushMatrix();
@@ -443,8 +443,8 @@ void wIcon::draw (Vec2 _p, Vec2 _s, float _z) {
 	glPopMatrix();
 
     /*
-	Engine->textManager->setColor (Vec3(1,0,0));
-	Engine->textManager->drawStringCentered (Vec3(_p.x+_s.x/2,
+	Engine->textManager->setColor (vec3(1,0,0));
+	Engine->textManager->drawStringCentered (vec3(_p.x+_s.x/2,
 												  _p.y+_s.y/2,
 												  _z)
 											,text, 32);
@@ -468,7 +468,7 @@ void wEntry::processKeyEvent(Event* _event) {
 	}
 }
 
-void wEntry::draw (Vec2 _p,Vec2 _s,float _z) {
+void wEntry::draw (vec2 _p,vec2 _s,float _z) {
 	Widget::draw(_p,_s,_z);
 
 	glPushMatrix();
@@ -487,8 +487,8 @@ void wEntry::draw (Vec2 _p,Vec2 _s,float _z) {
     if (coef < 1)
         textH *= coef;
 
-	Engine->textManager->setColor (Vec3(1,0,0));
-	Engine->textManager->drawStringCentered (Vec3(_p.x+_s.x/2,
+	Engine->textManager->setColor (vec3(1,0,0));
+	Engine->textManager->drawStringCentered (vec3(_p.x+_s.x/2,
 												  _p.y+_s.y/2,
 												  _z)
 											,text, textH);

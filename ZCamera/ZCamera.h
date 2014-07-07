@@ -1,15 +1,15 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "../ZMath/Vec3.h"
+#include "ZMath/math/vec3/vec3.h"
 
 class ZCamera {
     bool drag;
-    Vec2 dragPos;
+    vec2 dragPos;
 public:
 	long int playerOid;
-	Vec3 *position;
-	Vec3 *scale;
+	vec3 *position;
+	vec3 *scale;
 
 	void run();
 	void debugMovement ();

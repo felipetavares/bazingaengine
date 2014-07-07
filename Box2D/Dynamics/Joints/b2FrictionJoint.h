@@ -35,13 +35,13 @@ struct b2FrictionJointDef : public b2JointDef
 
 	/// Initialize the bodies, anchors, axis, and reference angle using the world
 	/// anchor and world axis.
-	void Initialize(b2Body* bodyA, b2Body* bodyB, const b2Vec2& anchor);
+	void Initialize(b2Body* bodyA, b2Body* bodyB, const b2vec2& anchor);
 
 	/// The local anchor point relative to bodyA's origin.
-	b2Vec2 localAnchorA;
+	b2vec2 localAnchorA;
 
 	/// The local anchor point relative to bodyB's origin.
-	b2Vec2 localAnchorB;
+	b2vec2 localAnchorB;
 
 	/// The maximum friction force in N.
 	float32 maxForce;
@@ -55,10 +55,10 @@ struct b2FrictionJointDef : public b2JointDef
 class b2FrictionJoint : public b2Joint
 {
 public:
-	b2Vec2 GetAnchorA() const;
-	b2Vec2 GetAnchorB() const;
+	b2vec2 GetAnchorA() const;
+	b2vec2 GetAnchorB() const;
 
-	b2Vec2 GetReactionForce(float32 inv_dt) const;
+	b2vec2 GetReactionForce(float32 inv_dt) const;
 	float32 GetReactionTorque(float32 inv_dt) const;
 
 	/// Set the maximum friction force in N.
@@ -83,13 +83,13 @@ protected:
 	void SolveVelocityConstraints(const b2TimeStep& step);
 	bool SolvePositionConstraints(float32 baumgarte);
 
-	b2Vec2 m_localAnchorA;
-	b2Vec2 m_localAnchorB;
+	b2vec2 m_localAnchorA;
+	b2vec2 m_localAnchorB;
 
 	b2Mat22 m_linearMass;
 	float32 m_angularMass;
 
-	b2Vec2 m_linearImpulse;
+	b2vec2 m_linearImpulse;
 	float32 m_angularImpulse;
 
 	float32 m_maxForce;

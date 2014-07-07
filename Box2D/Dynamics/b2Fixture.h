@@ -140,7 +140,7 @@ public:
 	/// Test a point for containment in this fixture.
 	/// @param xf the shape world transform.
 	/// @param p a point in world coordinates.
-	bool TestPoint(const b2Vec2& p) const;
+	bool TestPoint(const b2vec2& p) const;
 
 	/// Cast a ray against this shape.
 	/// @param output the ray-cast results.
@@ -303,7 +303,7 @@ inline void b2Fixture::SetRestitution(float32 restitution)
 	m_restitution = restitution;
 }
 
-inline bool b2Fixture::TestPoint(const b2Vec2& p) const
+inline bool b2Fixture::TestPoint(const b2vec2& p) const
 {
 	return m_shape->TestPoint(m_body->GetTransform(), p);
 }

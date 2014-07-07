@@ -50,14 +50,14 @@ enum b2LimitState
 
 struct b2Jacobian
 {
-	b2Vec2 linearA;
+	b2vec2 linearA;
 	float32 angularA;
-	b2Vec2 linearB;
+	b2vec2 linearB;
 	float32 angularB;
 
 	void SetZero();
-	void Set(const b2Vec2& x1, float32 a1, const b2Vec2& x2, float32 a2);
-	float32 Compute(const b2Vec2& x1, float32 a1, const b2Vec2& x2, float32 a2);
+	void Set(const b2vec2& x1, float32 a1, const b2vec2& x2, float32 a2);
+	float32 Compute(const b2vec2& x1, float32 a1, const b2vec2& x2, float32 a2);
 };
 
 /// A joint edge is used to connect bodies and joints together
@@ -117,13 +117,13 @@ public:
 	b2Body* GetBodyB();
 
 	/// Get the anchor point on bodyA in world coordinates.
-	virtual b2Vec2 GetAnchorA() const = 0;
+	virtual b2vec2 GetAnchorA() const = 0;
 
 	/// Get the anchor point on bodyB in world coordinates.
-	virtual b2Vec2 GetAnchorB() const = 0;
+	virtual b2vec2 GetAnchorB() const = 0;
 
 	/// Get the reaction force on body2 at the joint anchor in Newtons.
-	virtual b2Vec2 GetReactionForce(float32 inv_dt) const = 0;
+	virtual b2vec2 GetReactionForce(float32 inv_dt) const = 0;
 
 	/// Get the reaction torque on body2 in N*m.
 	virtual float32 GetReactionTorque(float32 inv_dt) const = 0;
@@ -171,7 +171,7 @@ protected:
 	void* m_userData;
 
 	// Cache here per time step to reduce cache misses.
-	b2Vec2 m_localCenterA, m_localCenterB;
+	b2vec2 m_localCenterA, m_localCenterB;
 	float32 m_invMassA, m_invIA;
 	float32 m_invMassB, m_invIB;
 };
@@ -182,13 +182,13 @@ inline void b2Jacobian::SetZero()
 	linearB.SetZero(); angularB = 0.0f;
 }
 
-inline void b2Jacobian::Set(const b2Vec2& x1, float32 a1, const b2Vec2& x2, float32 a2)
+inline void b2Jacobian::Set(const b2vec2& x1, float32 a1, const b2vec2& x2, float32 a2)
 {
 	linearA = x1; angularA = a1;
 	linearB = x2; angularB = a2;
 }
 
-inline float32 b2Jacobian::Compute(const b2Vec2& x1, float32 a1, const b2Vec2& x2, float32 a2)
+inline float32 b2Jacobian::Compute(const b2vec2& x1, float32 a1, const b2vec2& x2, float32 a2)
 {
 	return b2Dot(linearA, x1) + angularA * a1 + b2Dot(linearB, x2) + angularB * a2;
 }

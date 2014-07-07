@@ -3,9 +3,9 @@
 ZGraphic::ZGraphic (bool _visible) {
 	visible = _visible;
 
-	position = new Vec3();
-	rotation = new Vec3();
-	size     = new Vec3(1,1,1);
+	position = new vec3();
+	rotation = new vec3();
+	size     = new vec3(1,1,1);
 
 	texture	 = NULL;
 	animation = NULL;

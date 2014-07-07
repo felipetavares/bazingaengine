@@ -50,13 +50,13 @@ struct b2RevoluteJointDef : public b2JointDef
 
 	/// Initialize the bodies, anchors, and reference angle using a world
 	/// anchor point.
-	void Initialize(b2Body* bodyA, b2Body* bodyB, const b2Vec2& anchor);
+	void Initialize(b2Body* bodyA, b2Body* bodyB, const b2vec2& anchor);
 
 	/// The local anchor point relative to body1's origin.
-	b2Vec2 localAnchorA;
+	b2vec2 localAnchorA;
 
 	/// The local anchor point relative to body2's origin.
-	b2Vec2 localAnchorB;
+	b2vec2 localAnchorB;
 
 	/// The body2 angle minus body1 angle in the reference state (radians).
 	float32 referenceAngle;
@@ -90,10 +90,10 @@ struct b2RevoluteJointDef : public b2JointDef
 class b2RevoluteJoint : public b2Joint
 {
 public:
-	b2Vec2 GetAnchorA() const;
-	b2Vec2 GetAnchorB() const;
+	b2vec2 GetAnchorA() const;
+	b2vec2 GetAnchorB() const;
 
-	b2Vec2 GetReactionForce(float32 inv_dt) const;
+	b2vec2 GetReactionForce(float32 inv_dt) const;
 	float32 GetReactionTorque(float32 inv_dt) const;
 
 	/// Get the current joint angle in radians.
@@ -136,7 +136,7 @@ public:
 	float32 GetMotorTorque() const;
 
 protected:
-	
+
 	friend class b2Joint;
 	friend class b2GearJoint;
 
@@ -147,14 +147,14 @@ protected:
 
 	bool SolvePositionConstraints(float32 baumgarte);
 
-	b2Vec2 m_localAnchor1;	// relative
-	b2Vec2 m_localAnchor2;
-	b2Vec3 m_impulse;
+	b2vec2 m_localAnchor1;	// relative
+	b2vec2 m_localAnchor2;
+	b2vec3 m_impulse;
 	float32 m_motorImpulse;
 
 	b2Mat33 m_mass;			// effective mass for point-to-point constraint.
 	float32 m_motorMass;	// effective mass for motor/limit angular constraint.
-	
+
 	bool m_enableMotor;
 	float32 m_maxMotorTorque;
 	float32 m_motorSpeed;

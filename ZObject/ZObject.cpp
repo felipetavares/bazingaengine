@@ -6,13 +6,13 @@
 // oid (object id)
 
 ZObject::ZObject (long int _oid,
-		  Vec3 _position,
-		  Vec3 _rotation) {
+		  vec3 _position,
+		  vec3 _rotation) {
 	oid = _oid;
 
-	position = new Vec3 (_position);
-	rotation = new Vec3 (_rotation);
-	size  	 = new Vec3 ();
+	position = new vec3 (_position);
+	rotation = new vec3 (_rotation);
+	size  	 = new vec3 ();
 
 	graphic = new ZGraphic();
 
@@ -48,8 +48,8 @@ void ZObject::init () {
 }
 
 ZBoxObject::ZBoxObject (long int _oid,
-						Vec3 _position,
-						Vec3 _rotation):
+						vec3 _position,
+						vec3 _rotation):
 	ZObject (_oid, _position, _rotation)
 {
 
@@ -93,8 +93,8 @@ void ZBoxObject::init () {
 }
 
 ZBulletObject::ZBulletObject (long int _oid,
-						Vec3 _position,
-						Vec3 _rotation):
+						vec3 _position,
+						vec3 _rotation):
 	ZObject (_oid, _position, _rotation)
 {
 
@@ -155,8 +155,8 @@ void ZBulletObject::step () {
 }
 
 ZFloorObject::ZFloorObject (long int _oid,
-						Vec3 _position,
-						Vec3 _rotation):
+						vec3 _position,
+						vec3 _rotation):
 	ZObject (_oid, _position, _rotation)
 {
 
