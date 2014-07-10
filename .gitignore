@@ -46,3 +46,6 @@ Icon
 
 # VIM swp files
 *.swp
+
+# Code::Blocks temporary files
+.cbTemp
