@@ -3,6 +3,7 @@
 
 #include "ZObject/ZObject.h"
 #include "ZAssetsManager/ZAssetsManager.h"
+#include "ZMath/math/li/li.h"
 
 class ZPlayerObject;
 
@@ -34,6 +35,9 @@ namespace PI {
 		int currentItem;
 		float currentPos;
 		bool display;
+
+		li y;
+
 	public:
 		Inventory();
 

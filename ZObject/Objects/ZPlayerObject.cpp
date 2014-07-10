@@ -1,6 +1,8 @@
 #include "ZEngine/ZEngine.h"
 #include "ZObject/Objects/ZPlayerObject.h"
 
+#define now Engine->gameTime->currentTime
+
 PI::Matches::Matches ():
 	PI::Item(Engine->assetsManager->getAsset<ZTextureAsset*>("image.door.00")) {
 
@@ -31,7 +33,8 @@ vec2 PI::Item::getSize () {
 	return vec2 (texture->width, texture->height+20);
 }
 
-PI::Inventory::Inventory () {
+PI::Inventory::Inventory ():
+	y(vec2(now, now), vec2(0,0)) {
 		currentItem = 0;
 		currentPos = -1;
 		display = false;
@@ -56,12 +59,20 @@ void PI::Inventory::removeItem (Item* _item) {
 }
 
 void PI::Inventory::setDisplay (bool _display) {
+	// Close
+	if (display == true && _display == false) {
+		y = li(vec2(now, now+0.1), vec2(y.v(), Engine->videoManager->windowHeight));
+	}
+	else if (display == false && _display == true) {
+		y = li(vec2(now, now+0.1), vec2(y.v(), 0));
+	}
+
 	display = _display;
 }
 
 void PI::Inventory::draw() {
-	if (!display)
-		return;
+	//if (!display)
+	//	return;
 
 	float windowWidth = Engine->videoManager->windowWidth;
 	float windowHeight = Engine->videoManager->windowHeight;
@@ -78,10 +89,10 @@ void PI::Inventory::draw() {
 			glDisable(GL_TEXTURE_2D);
 			glColor4f(0,0,0,1);
 			glBegin(GL_QUADS);
-				glVertex3f(-windowWidth, 0, 0);
-				glVertex3f(windowWidth, 0, 0);
-				glVertex3f(windowWidth, windowHeight, 0);
-				glVertex3f(-windowWidth, windowHeight, 0);
+				glVertex3f(-windowWidth, y.v(), 0);
+				glVertex3f(windowWidth, y.v(), 0);
+				glVertex3f(windowWidth, y.v()+windowHeight, 0);
+				glVertex3f(-windowWidth, y.v()+windowHeight, 0);
 			glEnd();
 			glEnable(GL_TEXTURE_2D);
 		glPopMatrix();
@@ -98,7 +109,7 @@ void PI::Inventory::draw() {
 		glMatrixMode( GL_MODELVIEW );
 		glLoadIdentity();
 
-		glTranslatef(0.0, 0.0, 0);
+		glTranslatef(0.0, y.v(), 0);
 
 		glRotatef (-360*(float)currentItem/(float)items.size(), 0, 1, 0);
 
