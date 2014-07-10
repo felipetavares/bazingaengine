@@ -33,6 +33,7 @@ namespace PI {
 		vector <Item*> items;
 		int currentItem;
 		float currentPos;
+		bool display;
 	public:
 		Inventory();
 
@@ -43,6 +44,8 @@ namespace PI {
 		Item* getItem();
 		void nextItem();
 		void prevItem();
+	
+		void setDisplay (bool);
 	};
 }
 
