@@ -220,7 +220,7 @@ void ZEngine::step () {
 	for (auto& o :(*objects)) {
 		o->step();
 	}
-	box2dWorld->Step (1.0f/30.0f,6,2);
+	box2dWorld->Step (Engine->gameTime->deltaTime,6,2);
     box2dWorld->ClearForces();
 }
 

@@ -35,9 +35,12 @@ namespace PI {
 		int currentItem;
 		float currentPos;
 		bool display;
+		
+		ZTextureAsset *back;
+		ZTextureAsset *top;
 
 		li y;
-
+		li angle;
 	public:
 		Inventory();
 

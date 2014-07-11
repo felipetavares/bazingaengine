@@ -27,4 +27,6 @@
 	"image.door.00": ".:Assets:Images:door:door00.png",
 	"image.logo": ".:Assets:BazingaEngine.png",
 	"image.logo.little": ".:Assets:BazingaEngineLittle.png",
+	"image.menu.back": ".:Assets:Images:menu:back.png",
+	"image.menu.top": ".:Assets:Images:menu:top.png",
 }

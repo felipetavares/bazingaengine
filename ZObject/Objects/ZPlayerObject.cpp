@@ -24,7 +24,7 @@ void PI::Item::draw (vec3 _pos) {
 	texture->drawCentered(_pos);
 
 	string name = getName();
-	Engine->textManager->setColor(vec3(0.4,0.2,0.2));
+	Engine->textManager->setColor(vec3(1,1,1));
 	Engine->textManager->drawStringCentered (_pos+vec3(0,texture->height/2+12,0),name,16);
 }
 
@@ -34,10 +34,15 @@ vec2 PI::Item::getSize () {
 }
 
 PI::Inventory::Inventory ():
-	y(vec2(now, now), vec2(0,0)) {
-		currentItem = 0;
-		currentPos = -1;
-		display = false;
+	y(vec2(now, now), vec2(Engine->videoManager->windowHeight/2,
+						   Engine->videoManager->windowHeight/2)),
+	angle(vec2(now,now), vec2(0,0)) {
+
+	currentItem = 0;
+	currentPos = -1;
+	display = false;
+	back = Engine->assetsManager->getAsset <ZTextureAsset*>("image.menu.back");
+	top = Engine->assetsManager->getAsset <ZTextureAsset*>("image.menu.top");
 }
 
 void PI::Inventory::addItem (Item* _item) {
@@ -61,10 +66,10 @@ void PI::Inventory::removeItem (Item* _item) {
 void PI::Inventory::setDisplay (bool _display) {
 	// Close
 	if (display == true && _display == false) {
-		y = li(vec2(now, now+0.1), vec2(y.v(), Engine->videoManager->windowHeight));
+		y = li(vec2(now, now+0.3), vec2(y.v(), Engine->videoManager->windowHeight/2));
 	}
 	else if (display == false && _display == true) {
-		y = li(vec2(now, now+0.1), vec2(y.v(), 0));
+		y = li(vec2(now, now+0.3), vec2(y.v(), 0));
 	}
 
 	display = _display;
@@ -84,19 +89,36 @@ void PI::Inventory::draw() {
 
 	glDisable (GL_DEPTH_TEST);
 	glPushMatrix();
-		glPushMatrix();
-			glLoadIdentity();
-			glDisable(GL_TEXTURE_2D);
-			glColor4f(0,0,0,1);
-			glBegin(GL_QUADS);
-				glVertex3f(-windowWidth, y.v(), 0);
-				glVertex3f(windowWidth, y.v(), 0);
-				glVertex3f(windowWidth, y.v()+windowHeight, 0);
-				glVertex3f(-windowWidth, y.v()+windowHeight, 0);
-			glEnd();
-			glEnable(GL_TEXTURE_2D);
-		glPopMatrix();
+		glLoadIdentity();
+		glBindTexture(GL_TEXTURE_2D, back->id);
+		glColor4f(0.25,0.25,0.25,1);
+		float w = windowWidth*2/(float)back->rwidth/4;
+		float h = windowHeight*2/(float)back->rheight/4;
+		glBegin(GL_QUADS);
+			glTexCoord2f (0,0);
+			glVertex3f(-windowWidth, y.v(), 0);
+			glTexCoord2f (w,0);
+			glVertex3f(windowWidth, y.v(), 0);
+			glTexCoord2f (w,h);
+			glVertex3f(windowWidth, y.v()+windowHeight, 0);
+			glTexCoord2f (0,h);
+			glVertex3f(-windowWidth, y.v()+windowHeight, 0);
+		glEnd();
+		w = windowWidth*2/(float)top->rwidth/4;
+		glBindTexture(GL_TEXTURE_2D, top->id);
+		glBegin(GL_QUADS);
+			glTexCoord2f (0,0);
+			glVertex3f(-windowWidth, y.v()-8, 0);
+			glTexCoord2f (w,0);
+			glVertex3f(windowWidth, y.v()-8, 0);
+			glTexCoord2f (w,1);
+			glVertex3f(windowWidth, y.v()+top->rheight-8, 0);
+			glTexCoord2f (0,1)	;
+			glVertex3f(-windowWidth, y.v()+top->rheight-8, 0);
+		glEnd();
+	glPopMatrix();
 
+	glPushMatrix();
 		// Save the previous proj. matrix
 		glMatrixMode( GL_PROJECTION );
 		glPushMatrix();
@@ -109,15 +131,14 @@ void PI::Inventory::draw() {
 		glMatrixMode( GL_MODELVIEW );
 		glLoadIdentity();
 
-		glTranslatef(0.0, y.v(), 0);
+		glTranslatef(0.0, windowHeight/windowWidth*64 + y.v()*windowHeight/windowWidth/2, 0);
 
-		glRotatef (-360*(float)currentItem/(float)items.size(), 0, 1, 0);
+		glRotatef (angle.v(), 0, 1, 0);
 
-		vec3 pos {0,0,-400};
+		vec3 pos {0,0,-200};
 		float n = 0;
 		for (auto i :items) {
 			glPushMatrix();
-				glTranslatef(0,windowHeight/4,0);
 				glRotatef (360*n/(float)items.size(), 0, 1, 0);
 				glTranslatef (pos.x,pos.y,pos.z);
 				i->draw(vec3());
@@ -143,12 +164,17 @@ void PI::Inventory::nextItem() {
 	if (currentItem < items.size()-1)
 		currentItem++;
 	currentPos -= 0.1;
+	// New angle
+	float na = (float)currentItem/(float)items.size()*360;
+	angle = li(vec2(now, now+0.3), vec2(angle.v(), na));
 }
 
 void PI::Inventory::prevItem() {
 	if (currentItem > 0)
 		currentItem--;
 	currentPos += 0.1;
+	float na = (float)currentItem/(float)items.size()*360;
+	angle = li(vec2(now, now+0.3), vec2(angle.v(), na));
 }
 
 
