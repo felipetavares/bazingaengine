@@ -33,7 +33,6 @@ namespace PI {
 	class Inventory {
 		vector <Item*> items;
 		int currentItem;
-		float currentPos;
 		bool display;
 		
 		ZTextureAsset *back;

@@ -13,3 +13,7 @@ float li::v (float _t) {
 		// The real interpolation
 		return y[0]+(y[1]-y[0])*(_t-t[0])/(t[1]-t[0]);
 }
+
+bool li::complete (float _t) {
+	return _t >= t[1];
+}

@@ -12,6 +12,7 @@ public:
 
 	li(vec2, vec2);
 	float v (float=Engine->gameTime->currentTime);
+	bool complete (float=Engine->gameTime->currentTime);
 };
 
 #endif /* LI_H */

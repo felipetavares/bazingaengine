@@ -4,7 +4,7 @@
 #define now Engine->gameTime->currentTime
 
 PI::Matches::Matches ():
-	PI::Item(Engine->assetsManager->getAsset<ZTextureAsset*>("image.door.00")) {
+	PI::Item(Engine->assetsManager->getAsset<ZTextureAsset*>("image.matches")) {
 
 }
 
@@ -24,7 +24,7 @@ void PI::Item::draw (vec3 _pos) {
 	texture->drawCentered(_pos);
 
 	string name = getName();
-	Engine->textManager->setColor(vec3(1,1,1));
+	Engine->textManager->setColor(vec3(0,0,0));
 	Engine->textManager->drawStringCentered (_pos+vec3(0,texture->height/2+12,0),name,16);
 }
 
@@ -39,7 +39,6 @@ PI::Inventory::Inventory ():
 	angle(vec2(now,now), vec2(0,0)) {
 
 	currentItem = 0;
-	currentPos = -1;
 	display = false;
 	back = Engine->assetsManager->getAsset <ZTextureAsset*>("image.menu.back");
 	top = Engine->assetsManager->getAsset <ZTextureAsset*>("image.menu.top");
@@ -141,7 +140,10 @@ void PI::Inventory::draw() {
 			glPushMatrix();
 				glRotatef (360*n/(float)items.size(), 0, 1, 0);
 				glTranslatef (pos.x,pos.y,pos.z);
-				i->draw(vec3());
+				if (i == items[currentItem] && !display)
+					i->draw(vec3(0, -windowHeight/windowWidth*32,0));				
+				else
+					i->draw(vec3());
 			glPopMatrix();
 			n++;
 		}
@@ -161,19 +163,27 @@ PI::Item* PI::Inventory::getItem () {
 }
 
 void PI::Inventory::nextItem() {
+	if (!angle.complete())
+		return;
+
 	if (currentItem < items.size()-1)
 		currentItem++;
-	currentPos -= 0.1;
+	else
+		currentItem = 0;
 	// New angle
-	float na = (float)currentItem/(float)items.size()*360;
+	float na = angle.v()-(float)1/(float)items.size()*360;
 	angle = li(vec2(now, now+0.3), vec2(angle.v(), na));
 }
 
 void PI::Inventory::prevItem() {
+	if (!angle.complete())
+		return;
+
 	if (currentItem > 0)
 		currentItem--;
-	currentPos += 0.1;
-	float na = (float)currentItem/(float)items.size()*360;
+	else
+		currentItem = items.size()-1;
+	float na = angle.v()+(float)1/(float)items.size()*360;
 	angle = li(vec2(now, now+0.3), vec2(angle.v(), na));
 }
 
@@ -270,10 +280,10 @@ void ZPlayerObject::step () {
 
 	if (keyboard->keys[SDLK_i]) {
 		inventory.setDisplay(true);
-		if (getAxis(1) < -0.1 || keyboard->isShot(SDLK_UP)) {
+		if (getAxis(1) < -0.1 || keyboard->isShot(SDLK_RIGHT)) {
 			inventory.prevItem();
 		}
-		if (getAxis(1) > 0.1 || keyboard->isShot(SDLK_DOWN)) {
+		if (getAxis(1) > 0.1 || keyboard->isShot(SDLK_LEFT)) {
 			inventory.nextItem();
 		}
 	} else {
