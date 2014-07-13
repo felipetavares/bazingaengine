@@ -120,6 +120,10 @@ void scnIntro::render () {
 		Engine->assetsManager->getAsset <ZAudioAsset*>("audio.music.intro")->loop();
 	}
 
+	if (currentText == 5) {
+		Engine->assetsManager->getAsset <ZAudioAsset*>("audio.effect.wind")->loop();
+	}
+
 	startTime = Engine->gameTime->currentTime;
 	changeTime = Engine->gameTime->currentTime+time[currentText]->number;
 }
