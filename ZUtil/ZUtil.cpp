@@ -8,12 +8,13 @@ ZUtil::~ZUtil () {
 
 }
 
-Selector::Selector () {
+Selector::Selector ():
+	y(vec2(tnow, tnow), vec2(-Engine->videoManager->windowHeight/2,-Engine->videoManager->windowHeight/2)) {
 
 }
 
 Selector::Selector (vector <ZTextureAsset*> _icons):
-	y(vec2(tnow, tnow), vec2(0,0)) {
+	y(vec2(tnow, tnow), vec2(-Engine->videoManager->windowHeight/2,-Engine->videoManager->windowHeight/2)) {
 	icons = _icons;
 }
 
@@ -29,7 +30,6 @@ void Selector::draw () {
 
 	auto back = Engine->assetsManager->getAsset<ZTextureAsset*> ("image.menu.back");
 	auto top = Engine->assetsManager->getAsset<ZTextureAsset*> ("image.menu.top");
-	auto matches = Engine->assetsManager->getAsset<ZTextureAsset*> ("image.matches");
 
 	glDisable (GL_DEPTH_TEST);
 	glPushMatrix();
@@ -44,21 +44,21 @@ void Selector::draw () {
 			glTexCoord2f (w,0);
 			glVertex3f(windowWidth, y.v(), 0);
 			glTexCoord2f (w,h);
-			glVertex3f(windowWidth, y.v()+windowHeight, 0);
+			glVertex3f(windowWidth, y.v()-windowHeight, 0);
 			glTexCoord2f (0,h);
-			glVertex3f(-windowWidth, y.v()+windowHeight, 0);
+			glVertex3f(-windowWidth, y.v()-windowHeight, 0);
 		glEnd();
 		w = windowWidth*2/(float)top->rwidth/4;
 		glBindTexture(GL_TEXTURE_2D, top->id);
 		glBegin(GL_QUADS);
 			glTexCoord2f (0,0);
-			glVertex3f(-windowWidth, y.v()-8, 0);
+			glVertex3f(-windowWidth, y.v()+8, 0);
 			glTexCoord2f (w,0);
-			glVertex3f(windowWidth, y.v()-8, 0);
+			glVertex3f(windowWidth, y.v()+8, 0);
 			glTexCoord2f (w,1);
-			glVertex3f(windowWidth, y.v()+top->rheight-8, 0);
+			glVertex3f(windowWidth, y.v()-top->rheight+8, 0);
 			glTexCoord2f (0,1)	;
-			glVertex3f(-windowWidth, y.v()+top->rheight-8, 0);
+			glVertex3f(-windowWidth, y.v()-top->rheight+8, 0);
 		glEnd();
 	glPopMatrix();
 
@@ -75,17 +75,18 @@ void Selector::draw () {
 		glMatrixMode( GL_MODELVIEW );
 		glLoadIdentity();
 
-		glTranslatef(0.0, windowHeight/windowWidth*64 + y.v()*windowHeight/windowWidth/2, 0);
+		glTranslatef(0.0, -windowHeight/4 + windowHeight/windowWidth*64 + y.v()*windowHeight/windowWidth/2, 0);
 
 		glRotatef (0, 0, 1, 0);
 
-		vec3 pos {0,0,-200};
+		vec3 pos {0, 0,-200};
 		float n = 0;
 		for (auto i :icons) {
 			glPushMatrix();
 				glRotatef (360*n/32.0, 0, 1, 0);
 				glTranslatef (pos.x,pos.y,pos.z);
-				matches->draw(vec3());
+				if (i)
+					i->draw(vec3());
 			glPopMatrix();
 			n++;
 		}
@@ -96,4 +97,18 @@ void Selector::draw () {
 		glMatrixMode( GL_MODELVIEW );
 	glPopMatrix();
 	glEnable (GL_DEPTH_TEST);	
+}
+
+void Selector::open () {
+	y = li(vec2(tnow, tnow+0.3), vec2(y.v(), 0));
+}
+
+void Selector::close () {
+	float windowHeight = Engine->videoManager->windowHeight;
+	y = li(vec2(tnow, tnow+0.3), vec2(y.v(), -windowHeight/2));
+}
+
+bool Selector::isHidden () {
+	float windowHeight = Engine->videoManager->windowHeight;
+	return y.v() <= -windowHeight/2;
 }

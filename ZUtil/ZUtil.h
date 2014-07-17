@@ -21,6 +21,11 @@ public:
 
 	void setIcons(vector <ZTextureAsset*>);
 	void draw();
+
+	void open();
+	void close();
+
+	bool isHidden();
 };
 
 #endif /* ZUTIL_H */

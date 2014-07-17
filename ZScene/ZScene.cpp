@@ -252,7 +252,7 @@ void scnGame::render () {
 		if (!obj->background)
 			objz = ((obj->position->y+obj->size->y/2))/1000.0+10.0;
 		else
-			objz = 0;
+			objz = obj->graphic->position->z;
 
 		obj->position->z = objz;
 
@@ -286,9 +286,8 @@ void scnGame::render () {
 			if (gloom < 0.5)
 				glColor3f(0.5*gloom*Engine->colorMultiplier,0.5*gloom*Engine->colorMultiplier,1.4*gloom*Engine->colorMultiplier);
 			else
-				glColor3f(0.55*gloom*Engine->colorMultiplier,0.45*gloom*Engine->colorMultiplier,0.45*gloom*Engine->colorMultiplier);
+				glColor3f(0.35*gloom*Engine->colorMultiplier,0.30*gloom*Engine->colorMultiplier,0.30*gloom*Engine->colorMultiplier);
 		}
-
 
 		glPushMatrix();
 		glRotatef	(obj->graphic->rotation->x, 1, 0 ,0);

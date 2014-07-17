@@ -57,6 +57,7 @@ namespace PI {
 
 class ZPlayerObject: public ZObject {
 	PI::Inventory inventory;
+	bool interacting;
 public:
 	ZAnimation* anims[4];
 
@@ -73,6 +74,33 @@ public:
 	void draw();
 private:
 	float getAxis (int);
+};
+
+class ShotCallback : public b2RayCastCallback {
+public:
+	bool c = false;
+
+	ShotCallback();
+
+	float32 ReportFixture(b2Fixture*, const b2vec2&,const b2vec2&, float32);
+
+	b2Fixture* m_fixture;
+	b2vec2 m_point;
+	b2vec2 m_normal;
+	float32 m_fraction = 99999;
+};
+
+class InteractCallback : public b2RayCastCallback {
+public:
+	bool c = false;
+	b2Fixture* m_fixture;
+	b2vec2 m_point;
+	b2vec2 m_normal;
+	float32 m_fraction = 99999;
+
+	InteractCallback();
+
+	float32 ReportFixture(b2Fixture*, const b2vec2&,const b2vec2&, float32);
 };
 
 #endif /* ZPLAYEROBJECT_H */

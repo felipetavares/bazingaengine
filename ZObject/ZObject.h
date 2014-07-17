@@ -33,15 +33,20 @@ public:
 	virtual void init ();
 	virtual void step ();
 	virtual void draw ();
+	virtual void interact (ZObject*);
+	virtual string getName();
 };
 
 class ZBoxObject: public ZObject {
 	Selector selector;
+	bool showSelector;
 public:
 	ZBoxObject (long int,vec3=vec3(),vec3=vec3());
 
 	void init ();
 	void draw ();
+	void interact (ZObject*);
+	string getName();
 	//void step ();
 };
 
@@ -50,21 +55,6 @@ public:
 	ZFloorObject (long int,vec3=vec3(),vec3=vec3());
 
 	void init ();
-};
-
-
-class ShotCallback : public b2RayCastCallback {
-public:
-	bool c = false;
-
-	ShotCallback();
-
-	float32 ReportFixture(b2Fixture*, const b2vec2&,const b2vec2&, float32);
-
-	b2Fixture* m_fixture;
-	b2vec2 m_point;
-	b2vec2 m_normal;
-	float32 m_fraction = 99999;
 };
 
 class ZBulletObject: public ZObject {

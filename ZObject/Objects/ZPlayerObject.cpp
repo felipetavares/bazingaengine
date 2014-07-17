@@ -253,6 +253,8 @@ void ZPlayerObject::init () {
 	inventory.addItem(new PI::Matches());
 	inventory.addItem(new PI::Matches());
 	inventory.addItem(new PI::Matches());
+
+	interacting = false;
 }
 
 
@@ -284,37 +286,55 @@ void ZPlayerObject::step () {
 		if (getAxis(1) > 0.1 || keyboard->isShot(SDLK_LEFT)) {
 			inventory.nextItem();
 		}
-	} else {
+	} else  {
 		inventory.setDisplay(false);
-		if (getAxis(1) < -0.1 || keyboard->keys[SDLK_UP]) {
-			box2dBody->ApplyLinearImpulse (b2vec2 (0,-80), box2dBody->GetWorldPoint(b2vec2(0,0)));
-			graphic->animation = anims[0];
-			graphic->animation->isPlaying = true;
-			dir.y = -1;
-			dir.x = 0;
+
+		if (keyboard->isShot(SDLK_SPACE)) {
+			ShotCallback callback;
+
+			vec3 d = (*position)+dir*15;
+
+			b2vec2 point1(position->x, position->y);
+			b2vec2 point2(d.x,d.y);
+			Engine->box2dWorld->RayCast(&callback, point1, point2);
+		
+			if (callback.c) {
+				((ZObject*)callback.m_fixture->GetBody()->GetUserData())->interact(this);
+				interacting = !interacting;
+			}
 		}
-		if (getAxis(1) > 0.1 || keyboard->keys[SDLK_DOWN]) {
-			box2dBody->ApplyLinearImpulse (b2vec2 (0,80), box2dBody->GetWorldPoint(b2vec2(0,0)));
-			graphic->animation = anims[1];
-			graphic->animation->isPlaying = true;
-			dir.y = +1;
-			dir.x = 0;
-		}
-		if (getAxis(0) < -0.1 || keyboard->keys[SDLK_LEFT]) {
-			box2dBody->ApplyLinearImpulse (b2vec2 (-80,0), box2dBody->GetWorldPoint(b2vec2(0,0)));
-			graphic->animation = anims[2];
-			graphic->animation->isPlaying = true;
-			graphic->animation->flipH = false;
-			dir.x = -1;
-			dir.y = 0;
-		}
-		if (getAxis(0) > 0.1 || keyboard->keys[SDLK_RIGHT]) {
-			box2dBody->ApplyLinearImpulse (b2vec2 (80,0), box2dBody->GetWorldPoint(b2vec2(0,0)));
-			graphic->animation = anims[3];
-			graphic->animation->isPlaying = true;
-			graphic->animation->flipH = true;
-			dir.x = +1;
-			dir.y = 0;
+
+		if (!interacting) {
+			if (getAxis(1) < -0.1 || keyboard->keys[SDLK_UP]) {
+				box2dBody->ApplyLinearImpulse (b2vec2 (0,-80), box2dBody->GetWorldPoint(b2vec2(0,0)));
+				graphic->animation = anims[0];
+				graphic->animation->isPlaying = true;
+				dir.y = -1;
+				dir.x = 0;
+			}
+			if (getAxis(1) > 0.1 || keyboard->keys[SDLK_DOWN]) {
+				box2dBody->ApplyLinearImpulse (b2vec2 (0,80), box2dBody->GetWorldPoint(b2vec2(0,0)));
+				graphic->animation = anims[1];
+				graphic->animation->isPlaying = true;
+				dir.y = +1;
+				dir.x = 0;
+			}
+			if (getAxis(0) < -0.1 || keyboard->keys[SDLK_LEFT]) {
+				box2dBody->ApplyLinearImpulse (b2vec2 (-80,0), box2dBody->GetWorldPoint(b2vec2(0,0)));
+				graphic->animation = anims[2];
+				graphic->animation->isPlaying = true;
+				graphic->animation->flipH = false;
+				dir.x = -1;
+				dir.y = 0;
+			}
+			if (getAxis(0) > 0.1 || keyboard->keys[SDLK_RIGHT]) {
+				box2dBody->ApplyLinearImpulse (b2vec2 (80,0), box2dBody->GetWorldPoint(b2vec2(0,0)));
+				graphic->animation = anims[3];
+				graphic->animation->isPlaying = true;
+				graphic->animation->flipH = true;
+				dir.x = +1;
+				dir.y = 0;
+			}
 		}
 	}
 }
@@ -369,6 +389,26 @@ ShotCallback::ShotCallback () {
 }
 
 float32 ShotCallback::ReportFixture(b2Fixture* fixture, const b2vec2& point,
+					const b2vec2& normal, float32 fraction) {
+	const b2Filter& filter = fixture->GetFilterData();
+
+	if (filter.groupIndex != 0)
+		if (fraction < m_fraction) {
+			c = true;
+			m_fixture = fixture;
+			m_point = point;
+			m_normal = normal;
+			m_fraction = fraction;
+		}
+
+	return 1;
+}
+
+InteractCallback::InteractCallback () {
+	m_fixture = NULL;
+}
+
+float32 InteractCallback::ReportFixture(b2Fixture* fixture, const b2vec2& point,
 					const b2vec2& normal, float32 fraction) {
 	const b2Filter& filter = fixture->GetFilterData();
 

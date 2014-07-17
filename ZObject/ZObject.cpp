@@ -33,18 +33,21 @@ void ZObject::step () {
 	if (box2dBody) {
 		position->x = box2dBody->GetPosition().x;
 		position->y = box2dBody->GetPosition().y;
-
-		graphic->position->z = (position->y+size->y/2)/100000;
-
 		rotation->z = box2dBody->GetAngle()*57.2957795;
 	}
 }
 
 void ZObject::draw () {
-
 }
 
 void ZObject::init () {
+}
+
+void ZObject::interact (ZObject*) {
+}
+
+string ZObject::getName () {
+	return "Sem nome";
 }
 
 ZBoxObject::ZBoxObject (long int _oid,
@@ -52,11 +55,7 @@ ZBoxObject::ZBoxObject (long int _oid,
 						vec3 _rotation):
 	ZObject (_oid, _position, _rotation)
 {
-	vector <ZTextureAsset*> icons = {
-		Engine->assetsManager->getAsset <ZTextureAsset*> ("image.matches")
-	};
-
-	selector.setIcons(icons);
+	showSelector = false;
 }
 
 void ZBoxObject::init () {
@@ -94,10 +93,32 @@ void ZBoxObject::init () {
 	delete def;
 
 	mapped = true;
+
+	vector <ZTextureAsset*> icons = {
+		//Engine->assetsManager->getAsset <ZTextureAsset*> ("image.matches")
+		this->graphic->texture
+	};
+
+	selector.setIcons(icons);
 }
 
 void ZBoxObject::draw () {
-	selector.draw();
+	if (!selector.isHidden())
+		selector.draw();
+}
+
+string ZBoxObject::getName () {
+	return "Box Object";
+}
+
+void ZBoxObject::interact (ZObject *_object) {
+	if (showSelector) {
+		showSelector = false;
+		selector.close();		
+	} else {
+		showSelector = true;
+		selector.open();
+	}
 }
 
 ZBulletObject::ZBulletObject (long int _oid,

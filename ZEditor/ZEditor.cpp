@@ -218,6 +218,7 @@ void ZEditor::run () {
 
 				object->graphic->position->x = bcall->object->graphic->position->x;
 				object->graphic->position->y = bcall->object->graphic->position->y;
+				object->graphic->position->z = bcall->object->graphic->position->z;
 
 				object->graphic->texture = bcall->object->graphic->texture;
 
@@ -241,7 +242,7 @@ void ZEditor::run () {
 	   		}
 	   		else if (Engine->inputManager->getKeyboards()[0]->keys[SDLK_z]) {
 				if (abs(Engine->inputManager->getMice()[0]->pos.z) >= 1) {
-					bcall->object->position->z += Engine->inputManager->getMice()[0]->pos.z*0.01;
+					bcall->object->graphic->position->z += Engine->inputManager->getMice()[0]->pos.z*0.01;
 					Engine->inputManager->getMice()[0]->pos.z = 0;
 		   			bcall->object->init();
 		   		}
