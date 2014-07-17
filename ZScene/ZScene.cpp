@@ -117,10 +117,10 @@ void scnIntro::render () {
 	}
 
 	if (currentText == 2) {
-		Engine->assetsManager->getAsset <ZAudioAsset*>("audio.music.intro")->loop();
+		Engine->assetsManager->getAsset <ZAudioAsset*>("audio.music.intro2")->loop();
 	}
 
-	if (currentText == 5) {
+	if (currentText == 6) {
 		Engine->assetsManager->getAsset <ZAudioAsset*>("audio.effect.wind")->loop();
 	}
 

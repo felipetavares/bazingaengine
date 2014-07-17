@@ -1,8 +1,6 @@
 #include "ZEngine/ZEngine.h"
 #include "ZObject/Objects/ZPlayerObject.h"
 
-#define now Engine->gameTime->currentTime
-
 PI::Matches::Matches ():
 	PI::Item(Engine->assetsManager->getAsset<ZTextureAsset*>("image.matches")) {
 
@@ -34,9 +32,9 @@ vec2 PI::Item::getSize () {
 }
 
 PI::Inventory::Inventory ():
-	y(vec2(now, now), vec2(Engine->videoManager->windowHeight/2,
+	y(vec2(tnow, tnow), vec2(Engine->videoManager->windowHeight/2,
 						   Engine->videoManager->windowHeight/2)),
-	angle(vec2(now,now), vec2(0,0)) {
+	angle(vec2(tnow,tnow), vec2(0,0)) {
 
 	currentItem = 0;
 	display = false;
@@ -65,10 +63,10 @@ void PI::Inventory::removeItem (Item* _item) {
 void PI::Inventory::setDisplay (bool _display) {
 	// Close
 	if (display == true && _display == false) {
-		y = li(vec2(now, now+0.3), vec2(y.v(), Engine->videoManager->windowHeight/2));
+		y = li(vec2(tnow, tnow+0.3), vec2(y.v(), Engine->videoManager->windowHeight/2));
 	}
 	else if (display == false && _display == true) {
-		y = li(vec2(now, now+0.3), vec2(y.v(), 0));
+		y = li(vec2(tnow, tnow+0.3), vec2(y.v(), 0));
 	}
 
 	display = _display;
@@ -141,7 +139,7 @@ void PI::Inventory::draw() {
 				glRotatef (360*n/(float)items.size(), 0, 1, 0);
 				glTranslatef (pos.x,pos.y,pos.z);
 				//if (i == items[currentItem] && !display)
-				//	i->draw(vec3(0, -windowHeight/windowWidth*32,0));				
+				//	i->draw(vec3(0, -windowHeight/windowWidth*32,0));
 				//else
 					i->draw(vec3());
 			glPopMatrix();
@@ -172,7 +170,7 @@ void PI::Inventory::nextItem() {
 		currentItem = 0;
 	// New angle
 	float na = angle.v()-(float)1/(float)items.size()*360;
-	angle = li(vec2(now, now+0.3), vec2(angle.v(), na));
+	angle = li(vec2(tnow, tnow+0.3), vec2(angle.v(), na));
 }
 
 void PI::Inventory::prevItem() {
@@ -184,7 +182,7 @@ void PI::Inventory::prevItem() {
 	else
 		currentItem = items.size()-1;
 	float na = angle.v()+(float)1/(float)items.size()*360;
-	angle = li(vec2(now, now+0.3), vec2(angle.v(), na));
+	angle = li(vec2(tnow, tnow+0.3), vec2(angle.v(), na));
 }
 
 

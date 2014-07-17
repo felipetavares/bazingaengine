@@ -41,6 +41,7 @@ public:
 	ZBoxObject (long int,vec3=vec3(),vec3=vec3());
 
 	void init ();
+	void draw ();
 	//void step ();
 };
 

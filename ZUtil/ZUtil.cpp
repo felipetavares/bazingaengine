@@ -1,4 +1,4 @@
-#include "ZUtil.h"
+#include "ZEngine/ZEngine.h"
 
 ZUtil::ZUtil () {
 
@@ -8,9 +8,17 @@ ZUtil::~ZUtil () {
 
 }
 
+Selector::Selector () {
+
+}
+
 Selector::Selector (vector <ZTextureAsset*> _icons):
-	y(vec2(now, now), vec2(0,0)) {
+	y(vec2(tnow, tnow), vec2(0,0)) {
 	icons = _icons;
+}
+
+void Selector::setIcons (vector <ZTextureAsset*> _icons) {
+	icons = _icons;	
 }
 
 void Selector::draw () {
@@ -69,7 +77,7 @@ void Selector::draw () {
 
 		glTranslatef(0.0, windowHeight/windowWidth*64 + y.v()*windowHeight/windowWidth/2, 0);
 
-		glRotatef (angle.v(), 0, 1, 0);
+		glRotatef (0, 0, 1, 0);
 
 		vec3 pos {0,0,-200};
 		float n = 0;

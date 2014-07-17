@@ -4,6 +4,7 @@
 	"audio.effect.wind": ".:Assets:Audio:wind:wind.ogg",
 	"audio.effect.sand": ".:Assets:Audio:footsteps:sand.ogg",
 	"audio.music.intro": ".:Assets:Audio:music:intro:intro.ogg",
+	"audio.music.intro2": ".:Assets:Audio:music:intro:foda.ogg",
 	"animation.player.up": ".:Assets:Animations:player-up.anim",
 	"animation.player.left": ".:Assets:Animations:player-left.anim",
 	"animation.player.down": ".:Assets:Animations:player-down.anim",

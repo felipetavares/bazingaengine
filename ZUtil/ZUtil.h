@@ -2,7 +2,9 @@
 #define ZUTIL_H
 
 #include "ZMath/math/li/li.h"
-#include "ZEngineDecl.h"
+#include "ZAssetsManager/ZAssetsManager.h"
+
+#define tnow Engine->gameTime->currentTime
 
 class ZUtil {
 public:
@@ -11,11 +13,13 @@ public:
 };
 
 class Selector {
-	vector <ZTextureAsset> icons;	
+	vector <ZTextureAsset*> icons;
 	li y;
 public:
+	Selector ();
 	Selector (vector <ZTextureAsset*>);
 
+	void setIcons(vector <ZTextureAsset*>);
 	void draw();
 };
 

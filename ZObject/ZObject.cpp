@@ -52,11 +52,11 @@ ZBoxObject::ZBoxObject (long int _oid,
 						vec3 _rotation):
 	ZObject (_oid, _position, _rotation)
 {
-	vector <ZTextureObject*> icons = {
-		ZEngine->assetsManager->getAsset <ZTextureAsset*> ("image.matches");
+	vector <ZTextureAsset*> icons = {
+		Engine->assetsManager->getAsset <ZTextureAsset*> ("image.matches")
 	};
 
-	selector = new Selector (icons);
+	selector.setIcons(icons);
 }
 
 void ZBoxObject::init () {
@@ -94,6 +94,10 @@ void ZBoxObject::init () {
 	delete def;
 
 	mapped = true;
+}
+
+void ZBoxObject::draw () {
+	selector.draw();
 }
 
 ZBulletObject::ZBulletObject (long int _oid,
