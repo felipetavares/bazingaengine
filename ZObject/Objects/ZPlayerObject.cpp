@@ -140,9 +140,9 @@ void PI::Inventory::draw() {
 			glPushMatrix();
 				glRotatef (360*n/(float)items.size(), 0, 1, 0);
 				glTranslatef (pos.x,pos.y,pos.z);
-				if (i == items[currentItem] && !display)
-					i->draw(vec3(0, -windowHeight/windowWidth*32,0));				
-				else
+				//if (i == items[currentItem] && !display)
+				//	i->draw(vec3(0, -windowHeight/windowWidth*32,0));				
+				//else
 					i->draw(vec3());
 			glPopMatrix();
 			n++;

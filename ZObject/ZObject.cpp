@@ -52,7 +52,11 @@ ZBoxObject::ZBoxObject (long int _oid,
 						vec3 _rotation):
 	ZObject (_oid, _position, _rotation)
 {
+	vector <ZTextureObject*> icons = {
+		ZEngine->assetsManager->getAsset <ZTextureAsset*> ("image.matches");
+	};
 
+	selector = new Selector (icons);
 }
 
 void ZBoxObject::init () {

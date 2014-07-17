@@ -11,13 +11,13 @@ using namespace std;
 #include "../ZInputManager/ZInputManager.h"
 #include "../ZVideoManager/ZVideoManager.h"
 #include "../ZAudioManager/ZAudioManager.h"
-#include "../ZUtil/ZUtil.h"
 #include "../ZJSON/ZJSON.h"
 #include "../ZTextManager/ZTextManager.h"
 #include "../ZCamera/ZCamera.h"
 #include "../ZEditor/ZEditor.h"
 #include "../ZGUIManager/ZGUIManager.h"
 #include "../ZScene/ZScene.h"
+#include "../ZUtil/ZUtil.h"
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_opengl.h>

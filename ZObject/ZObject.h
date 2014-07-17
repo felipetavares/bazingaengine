@@ -4,6 +4,7 @@
 #include "Box2D/Box2D.h"
 #include "ZMath/math/vec3/vec3.h"
 #include "ZGraphics.h"
+#include "ZUtil/ZUtil.h"
 
 // All objects in the game engine come from
 // this definition
@@ -35,9 +36,9 @@ public:
 };
 
 class ZBoxObject: public ZObject {
+	Selector selector;
 public:
 	ZBoxObject (long int,vec3=vec3(),vec3=vec3());
-
 
 	void init ();
 	//void step ();
