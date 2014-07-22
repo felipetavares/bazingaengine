@@ -3,6 +3,7 @@
 
 #include "ZMath/math/li/li.h"
 #include "ZAssetsManager/ZAssetsManager.h"
+#include "ZObject/Objects/PI.h"
 
 #define tnow Engine->gameTime->currentTime
 
@@ -13,13 +14,13 @@ public:
 };
 
 class Selector {
-	vector <ZTextureAsset*> icons;
+	vector <PI::Item*> icons;
 	li y;
 public:
 	Selector ();
-	Selector (vector <ZTextureAsset*>);
+	Selector (vector <PI::Item*>);
 
-	void setIcons(vector <ZTextureAsset*>);
+	void setIcons(vector <PI::Item*>);
 	void draw();
 
 	void open();

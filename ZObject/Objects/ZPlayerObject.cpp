@@ -1,5 +1,6 @@
 #include "ZEngine/ZEngine.h"
 #include "ZObject/Objects/ZPlayerObject.h"
+#include "ZUtil/ZUtil.h"
 
 PI::Matches::Matches ():
 	PI::Item(Engine->assetsManager->getAsset<ZTextureAsset*>("image.matches")) {
@@ -300,7 +301,7 @@ void ZPlayerObject::step () {
 		
 			if (callback.c) {
 				((ZObject*)callback.m_fixture->GetBody()->GetUserData())->interact(this);
-				interacting = !interacting;
+				//interacting = !interacting;
 			}
 		}
 

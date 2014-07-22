@@ -34,7 +34,10 @@ public:
 	virtual void step ();
 	virtual void draw ();
 	virtual void interact (ZObject*);
+	virtual void put ();
+	
 	virtual string getName();
+	virtual string getType();
 };
 
 class ZBoxObject: public ZObject {
@@ -47,6 +50,7 @@ public:
 	void draw ();
 	void interact (ZObject*);
 	string getName();
+	string getType();
 	//void step ();
 };
 

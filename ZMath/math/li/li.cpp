@@ -23,5 +23,8 @@ float li::v (float _t) {
 }
 
 bool li::complete (float _t) {
+	if (_t < 0)
+		_t = Engine->gameTime->currentTime;
+
 	return _t >= t[1];
 }

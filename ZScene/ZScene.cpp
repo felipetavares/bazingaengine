@@ -261,7 +261,7 @@ void scnGame::render () {
 		glRotatef	(obj->rotation->x, 1, 0 ,0);
 		glRotatef	(obj->rotation->y, 0, 1 ,0);
 		glRotatef	(obj->rotation->z, 0, 0 ,1);
-		glTranslatef (-obj->size->x/2,-obj->size->y/2,0);
+		glTranslatef ((int)-obj->size->x/2,(int)-obj->size->y/2,0);
 
 		if (Engine->editMode) {
 			glDisable (GL_TEXTURE_2D);
@@ -293,7 +293,7 @@ void scnGame::render () {
 		glRotatef	(obj->graphic->rotation->x, 1, 0 ,0);
 		glRotatef	(obj->graphic->rotation->y, 0, 1 ,0);
 		glRotatef	(obj->graphic->rotation->z, 0, 0 ,1);
-		glTranslatef(obj->graphic->position->x,obj->graphic->position->y,0);
+		glTranslatef((int)obj->graphic->position->x,(int)obj->graphic->position->y,0);
 
 		if (obj->graphic->texture != NULL && obj->graphic->texture->loaded) {
 			glEnable(GL_ALPHA_TEST);
@@ -308,7 +308,7 @@ void scnGame::render () {
 			if (!obj->background) {
 				glPushMatrix();
 				glColor3f(0,0,0);
-				glTranslatef (0, obj->graphic->size->y-obj->size->y, -objz+1);
+				glTranslatef (0, (int)(obj->graphic->size->y-obj->size->y), -objz+1);
 				glScalef (1, (obj->size->y-obj->graphic->position->y)/obj->graphic->size->y*cos(gloom), 1);
 				glBegin(GL_QUADS);
 				glTexCoord2f (0,0);

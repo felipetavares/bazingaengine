@@ -13,13 +13,13 @@ Selector::Selector ():
 
 }
 
-Selector::Selector (vector <ZTextureAsset*> _icons):
+Selector::Selector (vector <PI::Item*> _icons):
 	y(vec2(tnow, tnow), vec2(-Engine->videoManager->windowHeight/2,-Engine->videoManager->windowHeight/2)) {
 	icons = _icons;
 }
 
-void Selector::setIcons (vector <ZTextureAsset*> _icons) {
-	icons = _icons;	
+void Selector::setIcons (vector <PI::Item*> _icons) {
+	icons = _icons;
 }
 
 void Selector::draw () {

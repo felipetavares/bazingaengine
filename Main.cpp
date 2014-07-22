@@ -36,7 +36,7 @@ void createGUI () {
 		new ZUI::Action ([=] (ZUI::Widget* _w, ZUI::Event *_m) {
             // Para não bloquear a UI
             SDL_CreateThread([] (void *_obj) {
-                ZFilePath mapPath = ZFilePath (".:Assets:map.map");
+                ZFilePath mapPath = ZFilePath (".:Assets:map00.map");
 	            Engine->saveMap(mapPath);
 	            return 0;
             },NULL);

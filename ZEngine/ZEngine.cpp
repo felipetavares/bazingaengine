@@ -1,5 +1,7 @@
 #include "ZEngine.h"
 #include "ZObject/Objects/ZPlayerObject.h"
+#include "ZObject/Objects/ZDoorObject.h"
+#include "ZObject/Objects/ZCabinetObject.h"
 
 ZTime::ZTime () {
 	currentTime = 0;
@@ -297,8 +299,13 @@ void ZEngine::loadMap (ZFilePath _path) {
 			auto oDef = def->object;
 			ZObject* object = NULL;
 
+			// Add types overhere
 			if (oDef->values[0]->str == "box")
 			   object = Engine->createObject <ZBoxObject> ();
+			else if (oDef->values[0]->str == "door")
+			   object = Engine->createObject <ZDoorObject> ();
+			else if (oDef->values[0]->str == "cabinet")
+			   object = Engine->createObject <ZCabinetObject> ();
 			else
 				continue;
 
@@ -362,8 +369,8 @@ void ZEngine::saveMap (ZFilePath _path) {
 			continue;
 		ZjObject *jsonObject = new ZjObject();
 
-		string box = "box";
-		jsonObject->keys.push_back ("type"); jsonObject->values.push_back (new ZjValue(box));
+		string objType = o->getType();
+		jsonObject->keys.push_back ("type"); jsonObject->values.push_back (new ZjValue(objType));
 		jsonObject->keys.push_back ("x"); jsonObject->values.push_back (new ZjValue(o->position->x));
 		jsonObject->keys.push_back ("y"); jsonObject->values.push_back (new ZjValue(o->position->y));
 		jsonObject->keys.push_back ("z"); jsonObject->values.push_back (new ZjValue(o->position->z));
