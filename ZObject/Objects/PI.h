@@ -1,3 +1,6 @@
+#ifndef PI_H
+#define PI_H
+
 class ZPlayerObject;
 
 /**
@@ -37,6 +40,7 @@ namespace PI {
 		Inventory();
 
 		void addItem (Item*);
+		Item* pullItem();
 		void removeItem (Item*);
 		void draw();
 
@@ -47,3 +51,5 @@ namespace PI {
 		void setDisplay (bool);
 	};
 }
+
+#endif /* PI_H */

@@ -18,6 +18,10 @@ Selector::Selector (vector <PI::Item*> _icons):
 	icons = _icons;
 }
 
+void Selector::addItem (PI::Item* item) {
+	icons.push_back(item);
+}
+
 void Selector::setIcons (vector <PI::Item*> _icons) {
 	icons = _icons;
 }

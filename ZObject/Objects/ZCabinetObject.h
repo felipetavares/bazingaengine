@@ -15,6 +15,8 @@ class ZCabinetObject : public ZObject {
         void draw();
         string getName();
         string getType();
+        PI::Item* get();
+        void put(PI::Item*);
 };
 
 #endif /* ZCABINETtOBJECT_H */

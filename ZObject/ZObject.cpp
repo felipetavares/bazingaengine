@@ -77,6 +77,14 @@ void ZObject::init () {
     mapped = true;
 }
 
+PI::Item* ZObject::get () {
+	return NULL;
+}
+
+void ZObject::put (PI::Item* item) {
+
+}
+
 void ZObject::interact (ZObject*) {
 }
 

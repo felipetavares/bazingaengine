@@ -21,6 +21,8 @@ public:
 	Selector (vector <PI::Item*>);
 
 	void setIcons(vector <PI::Item*>);
+	void addItem (PI::Item*);
+
 	void draw();
 
 	void open();

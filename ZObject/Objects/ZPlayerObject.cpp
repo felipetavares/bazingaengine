@@ -186,6 +186,16 @@ void PI::Inventory::prevItem() {
 	angle = li(vec2(tnow, tnow+0.3), vec2(angle.v(), na));
 }
 
+PI::Item* PI::Inventory::pullItem() {
+	auto ret = items[currentItem];
+
+	items.erase (items.begin()+currentItem);
+
+	if (currentItem > 0)
+		currentItem--;
+
+	return ret;
+}
 
 ZPlayerObject::ZPlayerObject (long int _oid,
 						vec3 _position,
@@ -301,6 +311,21 @@ void ZPlayerObject::step () {
 		
 			if (callback.c) {
 				((ZObject*)callback.m_fixture->GetBody()->GetUserData())->interact(this);
+				//interacting = !interacting;
+			}
+		}
+
+		if (keyboard->isShot(SDLK_p)) {
+			ShotCallback callback;
+
+			vec3 d = (*position)+dir*15;
+
+			b2vec2 point1(position->x, position->y);
+			b2vec2 point2(d.x,d.y);
+			Engine->box2dWorld->RayCast(&callback, point1, point2);
+		
+			if (callback.c) {
+				((ZObject*)callback.m_fixture->GetBody()->GetUserData())->put(inventory.getItem());
 				//interacting = !interacting;
 			}
 		}

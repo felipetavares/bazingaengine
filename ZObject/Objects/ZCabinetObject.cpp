@@ -69,3 +69,11 @@ string ZCabinetObject::getName() {
 string ZCabinetObject::getType() {
     return "cabinet";
 }
+
+PI::Item* ZCabinetObject::get () {
+    return NULL;
+}
+
+void ZCabinetObject::put (PI::Item* item) {
+    selector.addItem(item);
+}

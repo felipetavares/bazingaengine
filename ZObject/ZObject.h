@@ -5,6 +5,7 @@
 #include "ZMath/math/vec3/vec3.h"
 #include "ZGraphics.h"
 #include "ZUtil/ZUtil.h"
+#include "ZObject/Objects/PI.h"
 
 // All objects in the game engine come from
 // this definition
@@ -34,8 +35,8 @@ public:
 	virtual void step ();
 	virtual void draw ();
 	virtual void interact (ZObject*);
-	virtual void put ();
-	
+	virtual void put (PI::Item*);
+	virtual PI::Item* get ();
 	virtual string getName();
 	virtual string getType();
 };
