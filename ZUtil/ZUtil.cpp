@@ -19,7 +19,8 @@ Selector::Selector (vector <PI::Item*> _icons):
 }
 
 void Selector::addItem (PI::Item* item) {
-	icons.push_back(item);
+	if (item != NULL)
+		icons.push_back(item);
 }
 
 void Selector::setIcons (vector <PI::Item*> _icons) {

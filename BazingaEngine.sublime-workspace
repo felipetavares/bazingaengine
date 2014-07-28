@@ -268,186 +268,26 @@
 	"buffers":
 	[
 		{
-			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/list.json",
-			"settings":
-			{
-				"buffer_size": 1725,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-up.anim",
-			"settings":
-			{
-				"buffer_size": 170,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-left.anim",
-			"settings":
-			{
-				"buffer_size": 172,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-down.anim",
-			"settings":
-			{
-				"buffer_size": 172,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "ZInputManager/ZInputManager.cpp",
-			"settings":
-			{
-				"buffer_size": 7535,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ZTextManager/ZTextManager.h",
-			"settings":
-			{
-				"buffer_size": 1217,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ZTextManager/ZTextManager.cpp",
-			"settings":
-			{
-				"buffer_size": 14369,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Main.cpp",
-			"settings":
-			{
-				"buffer_size": 5296,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ZVideoManager/ZVideoManager.h",
-			"settings":
-			{
-				"buffer_size": 693,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/stdout.txt",
-			"settings":
-			{
-				"buffer_size": 13626,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/map.map",
-			"settings":
-			{
-				"buffer_size": 30137,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ZAssetsManager/ZAssetsManager.h",
-			"settings":
-			{
-				"buffer_size": 4463,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ZEditor/ZEditor.h",
-			"settings":
-			{
-				"buffer_size": 358,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "ZFilesystemManager/ZFilesystemManager.cpp",
-			"settings":
-			{
-				"buffer_size": 4208,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ZGUIManager/ZGUIManager.cpp",
-			"settings":
-			{
-				"buffer_size": 10207,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "ZEditor/ZEditor.cpp",
-			"settings":
-			{
-				"buffer_size": 11520,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ZVideoManager/ZVideoManager.cpp",
-			"settings":
-			{
-				"buffer_size": 2959,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ZInputManager/ZInputManager.h",
-			"settings":
-			{
-				"buffer_size": 2105,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ZAssetsManager/ZAssetsManager.cpp",
-			"settings":
-			{
-				"buffer_size": 15748,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ZGUIManager/ZGUIManager.h",
-			"settings":
-			{
-				"buffer_size": 3862,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ZEngine/ZEngine.cpp",
-			"settings":
-			{
-				"buffer_size": 12187,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "ZObject/Objects/ZPlayerObject.cpp",
 			"settings":
 			{
-				"buffer_size": 9697,
+				"buffer_size": 11158,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "ZMath/math/li/li.h",
+			"file": "ZUtil/ZUtil.cpp",
 			"settings":
 			{
-				"buffer_size": 293,
+				"buffer_size": 3002,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ZObject/ZObject.cpp",
+			"settings":
+			{
+				"buffer_size": 4743,
 				"line_ending": "Windows"
 			}
 		},
@@ -455,31 +295,47 @@
 			"file": "ZObject/Objects/ZPlayerObject.h",
 			"settings":
 			{
-				"buffer_size": 1216,
+				"buffer_size": 1021,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "ZScene/ZScene.cpp",
+			"file": "ZObject/ZObject.h",
 			"settings":
 			{
-				"buffer_size": 10122,
+				"buffer_size": 1349,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "ZMath/math/li/li.cpp",
+			"file": "ZMath/math/li/li.h",
 			"settings":
 			{
-				"buffer_size": 295,
+				"buffer_size": 219,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/bin/dist-1.1.0b/Assets/list.json",
+			"file": "ZEngine/ZEngine.h",
 			"settings":
 			{
-				"buffer_size": 1666,
+				"buffer_size": 2932,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ZEngineDecl.h",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ZUtil/ZUtil.h",
+			"settings":
+			{
+				"buffer_size": 487,
 				"line_ending": "Windows"
 			}
 		}
@@ -508,17 +364,44 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/bin/dist-E-1.1.0b/Assets/list.json",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/Main.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZEngine/ZEngine.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZVideoManager/ZVideoManager.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZScene/ZScene.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/Assets/list.json",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZObject/ZObject.h",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZObject/Objects/ZPlayerObject.h",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZUtil/ZUtil.h",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZMath/math/li/li.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZMath/math/li/li.h",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZGUIManager/ZGUIManager.h",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZAssetsManager/ZAssetsManager.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZInputManager/ZInputManager.h",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZEditor/ZEditor.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZGUIManager/ZGUIManager.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZFilesystemManager/ZFilesystemManager.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZEditor/ZEditor.h",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZAssetsManager/ZAssetsManager.h",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/map.map",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/stdout.txt",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZVideoManager/ZVideoManager.h",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZTextManager/ZTextManager.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZTextManager/ZTextManager.h",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZInputManager/ZInputManager.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-down.anim",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-left.anim",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-up.anim",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZObject/Objects/ZPlayerObject.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZUtil/ZUtil.cpp",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/list.json",
 		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/bin/dist-1.1.0b/Assets/list.json",
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/bin/dist-E-1.1.0b/Assets/list.json",
 		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/Assets/Animations/player-left.anim",
 		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/Assets/Animations/player-up.anim",
 		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/Assets/Animations/player-down.anim",
 		"/C/Users/Rachel/Desktop/Development/Web GL/webgl.js/webgl.js",
 		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/dump.json",
 		"/C/Users/Rachel/Desktop/Development/JSEngine2/web/main.js",
-		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/stdout.txt",
-		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/map.map",
-		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-up.anim",
 		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/map.json",
 		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/file.json",
 		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/WhatINeedToDo.txt",
@@ -632,6 +515,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"pull",
+			"ZEngine",
 			"box2d",
 			"obj->graphic->texture->rheight",
 			"obj->graphic->texture->rwidth",
@@ -757,9 +642,7 @@
 			"16",
 			"desenhar",
 			"8",
-			"CreditosIniciais",
-			"number",
-			"basinga"
+			"CreditosIniciais"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -859,56 +742,56 @@
 	"groups":
 	[
 		{
-			"selected": 21,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/list.json",
+					"file": "ZObject/Objects/ZPlayerObject.cpp",
 					"settings":
 					{
-						"buffer_size": 1725,
+						"buffer_size": 11158,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1722,
-								1722
+								4359,
+								4359
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/C++/C++.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2872.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-up.anim",
+					"file": "ZUtil/ZUtil.cpp",
 					"settings":
 					{
-						"buffer_size": 170,
+						"buffer_size": 3002,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								445,
+								445
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -918,10 +801,10 @@
 				},
 				{
 					"buffer": 2,
-					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-left.anim",
+					"file": "ZObject/ZObject.cpp",
 					"settings":
 					{
-						"buffer_size": 172,
+						"buffer_size": 4743,
 						"regions":
 						{
 						},
@@ -934,33 +817,41 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
 					"buffer": 3,
-					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/Animations/player-down.anim",
+					"file": "ZObject/Objects/ZPlayerObject.h",
 					"settings":
 					{
-						"buffer_size": 172,
+						"buffer_size": 1021,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								235,
+								235
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -970,10 +861,10 @@
 				},
 				{
 					"buffer": 4,
-					"file": "ZInputManager/ZInputManager.cpp",
+					"file": "ZObject/ZObject.h",
 					"settings":
 					{
-						"buffer_size": 7535,
+						"buffer_size": 1349,
 						"regions":
 						{
 						},
@@ -990,17 +881,17 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2171.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "ZTextManager/ZTextManager.h",
+					"file": "ZMath/math/li/li.h",
 					"settings":
 					{
-						"buffer_size": 1217,
+						"buffer_size": 219,
 						"regions":
 						{
 						},
@@ -1013,9 +904,7 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1025,46 +914,18 @@
 				},
 				{
 					"buffer": 6,
-					"file": "ZTextManager/ZTextManager.cpp",
+					"file": "ZEngine/ZEngine.h",
 					"settings":
 					{
-						"buffer_size": 14369,
+						"buffer_size": 2932,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 761.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "Main.cpp",
-					"settings":
-					{
-						"buffer_size": 5296,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
+								590,
+								590
 							]
 						],
 						"settings":
@@ -1073,25 +934,51 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1427.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "ZEngineDecl.h",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 8,
-					"file": "ZVideoManager/ZVideoManager.h",
+					"file": "ZUtil/ZUtil.h",
 					"settings":
 					{
-						"buffer_size": 693,
+						"buffer_size": 487,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								247,
+								247
 							]
 						],
 						"settings":
@@ -1106,619 +993,24 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/stdout.txt",
-					"settings":
-					{
-						"buffer_size": 13626,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/Assets/map.map",
-					"settings":
-					{
-						"buffer_size": 30137,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								98,
-								98
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "ZAssetsManager/ZAssetsManager.h",
-					"settings":
-					{
-						"buffer_size": 4463,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 312.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "ZEditor/ZEditor.h",
-					"settings":
-					{
-						"buffer_size": 358,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "ZFilesystemManager/ZFilesystemManager.cpp",
-					"settings":
-					{
-						"buffer_size": 4208,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1128.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "ZGUIManager/ZGUIManager.cpp",
-					"settings":
-					{
-						"buffer_size": 10207,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 7347.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 15,
-					"file": "ZEditor/ZEditor.cpp",
-					"settings":
-					{
-						"buffer_size": 11520,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 16,
-					"file": "ZVideoManager/ZVideoManager.cpp",
-					"settings":
-					{
-						"buffer_size": 2959,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2142.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 17,
-					"file": "ZInputManager/ZInputManager.h",
-					"settings":
-					{
-						"buffer_size": 2105,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 760.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 18,
-					"file": "ZAssetsManager/ZAssetsManager.cpp",
-					"settings":
-					{
-						"buffer_size": 15748,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 734.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 19,
-					"file": "ZGUIManager/ZGUIManager.h",
-					"settings":
-					{
-						"buffer_size": 3862,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2977.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 20,
-					"file": "ZEngine/ZEngine.cpp",
-					"settings":
-					{
-						"buffer_size": 12187,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 728.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 21,
+					"buffer": 0,
 					"file": "ZObject/Objects/ZPlayerObject.cpp",
 					"settings":
 					{
-						"buffer_size": 9697,
+						"buffer_size": 11158,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								788,
-								788
+								346,
+								346
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 22,
-					"file": "ZMath/math/li/li.h",
-					"settings":
-					{
-						"buffer_size": 293,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								269,
-								269
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 23,
-					"file": "ZObject/Objects/ZPlayerObject.h",
-					"settings":
-					{
-						"buffer_size": 1216,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								882,
-								882
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 24,
-					"file": "ZScene/ZScene.cpp",
-					"settings":
-					{
-						"buffer_size": 10122,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5261.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 6,
-			"sheets":
-			[
-				{
-					"buffer": 25,
-					"file": "ZMath/math/li/li.cpp",
-					"settings":
-					{
-						"buffer_size": 295,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								241,
-								241
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 23,
-					"file": "ZObject/Objects/ZPlayerObject.h",
-					"settings":
-					{
-						"buffer_size": 1216,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								640,
-								640
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 108.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 24,
-					"file": "ZScene/ZScene.cpp",
-					"settings":
-					{
-						"buffer_size": 10122,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 4906.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 16,
-					"file": "ZVideoManager/ZVideoManager.cpp",
-					"settings":
-					{
-						"buffer_size": 2959,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2505,
-								2505
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1391.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 20,
-					"file": "ZEngine/ZEngine.cpp",
-					"settings":
-					{
-						"buffer_size": 12187,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4262,
-								4262
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3538.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "Main.cpp",
-					"settings":
-					{
-						"buffer_size": 5296,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2747.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 26,
-					"file": "/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngineCodeBlocks/bin/dist-1.1.0b/Assets/list.json",
-					"settings":
-					{
-						"buffer_size": 1666,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1192,
-								1191
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -1779,12 +1071,44 @@
 		"selected_items":
 		[
 			[
-				"main",
-				"Main.cpp"
+				"zpa",
+				"ZObject/Objects/ZPlayerObject.h"
+			],
+			[
+				"li.h",
+				"ZMath/math/li/li.h"
+			],
+			[
+				"zobjec",
+				"ZObject/ZObject.h"
+			],
+			[
+				"zplaye",
+				"ZObject/Objects/ZPlayerObject.h"
+			],
+			[
+				"zuti",
+				"ZUtil/ZUtil.cpp"
+			],
+			[
+				"zutil",
+				"ZUtil/ZUtil.h"
 			],
 			[
 				"zpla",
 				"ZObject/Objects/ZPlayerObject.cpp"
+			],
+			[
+				"zobe",
+				"ZObject/ZObject.cpp"
+			],
+			[
+				"list",
+				"Assets/list.json"
+			],
+			[
+				"main",
+				"Main.cpp"
 			],
 			[
 				"zengine",

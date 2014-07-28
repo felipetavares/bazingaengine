@@ -7,7 +7,7 @@
 
 class ZPlayerObject: public ZObject {
 	PI::Inventory inventory;
-	bool interacting;
+	bool openInventory;
 public:
 	ZAnimation* anims[4];
 
