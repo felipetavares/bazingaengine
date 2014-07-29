@@ -24,6 +24,7 @@ public:
 	void draw();
 private:
 	float getAxis (int);
+	bool joyButton (int);
 };
 
 class ShotCallback : public b2RayCastCallback {

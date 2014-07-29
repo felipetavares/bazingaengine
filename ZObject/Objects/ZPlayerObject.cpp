@@ -28,8 +28,9 @@ void PI::Item::draw (vec3 _pos) {
 }
 
 vec2 PI::Item::getSize () {
+	string name = getName();
 	// 20 = 16 + 4
-	return vec2 (texture->width, texture->height+20);
+	return vec2 (Engine->textManager->measureString (name,16), texture->height+20);
 }
 
 PI::Inventory::Inventory ():
@@ -117,41 +118,24 @@ void PI::Inventory::draw() {
 	glPopMatrix();
 
 	glPushMatrix();
-		// Save the previous proj. matrix
-		glMatrixMode( GL_PROJECTION );
-		glPushMatrix();
-
-		// Create a new one, perspective
-		glLoadIdentity();
-		glFrustum (-1, 1, windowHeight/windowWidth, -windowHeight/windowWidth, 1, 1000);
-
-		// Go back to modelview mode
-		glMatrixMode( GL_MODELVIEW );
 		glLoadIdentity();
 
-		glTranslatef(0.0, windowHeight/windowWidth*64 + y.v()*windowHeight/windowWidth/2, 0);
+		glTranslatef(0, y.v()+windowHeight/4, 0);
 
-		glRotatef (angle.v(), 0, 1, 0);
+		glTranslatef(items[0]->getSize().x*angle.v(), 0, 0);
 
-		vec3 pos {0,0,-200};
 		float n = 0;
 		for (auto i :items) {
 			glPushMatrix();
-				glRotatef (360*n/(float)items.size(), 0, 1, 0);
-				glTranslatef (pos.x,pos.y,pos.z);
-				//if (i == items[currentItem] && !display)
-				//	i->draw(vec3(0, -windowHeight/windowWidth*32,0));
-				//else
+				glTranslatef (n, 0, 0);
+				if (i)
 					i->draw(vec3());
 			glPopMatrix();
-			n++;
+			n+=i->getSize().x;
 		}
 
-		// Restore matrices
-		glMatrixMode( GL_PROJECTION );
-		glPopMatrix();
-		glMatrixMode( GL_MODELVIEW );
 	glPopMatrix();
+
 	glEnable (GL_DEPTH_TEST);
 }
 
@@ -170,7 +154,7 @@ void PI::Inventory::nextItem() {
 	else
 		currentItem = 0;
 	// New angle
-	float na = angle.v()-(float)1/(float)items.size()*360;
+	float na = angle.v()-1;
 	angle = li(vec2(tnow, tnow+0.3), vec2(angle.v(), na));
 }
 
@@ -182,7 +166,7 @@ void PI::Inventory::prevItem() {
 		currentItem--;
 	else
 		currentItem = items.size()-1;
-	float na = angle.v()+(float)1/(float)items.size()*360;
+	float na = angle.v()+1;
 	angle = li(vec2(tnow, tnow+0.3), vec2(angle.v(), na));
 }
 
@@ -290,38 +274,11 @@ void ZPlayerObject::step () {
 
 	graphic->animation->isPlaying = false;
 
-	if (openInventory) {
-		inventory.setDisplay(true);
-		if (getAxis(1) < -0.1 || keyboard->isShot(SDLK_RIGHT)) {
-			inventory.prevItem();
-		}
-		if (getAxis(1) > 0.1 || keyboard->isShot(SDLK_LEFT)) {
-			inventory.nextItem();
-		}
-	} else {
-		inventory.setDisplay(false);		
-	}
-
-	if (keyboard->isShot(SDLK_i)) {
+	if (keyboard->isShot(SDLK_i) || joyButton(1)) {
 		openInventory = !openInventory;
 	}
 
-	if (keyboard->isShot(SDLK_SPACE)) {
-		ShotCallback callback;
-
-		vec3 d = (*position)+dir*15;
-
-		b2vec2 point1(position->x, position->y);
-		b2vec2 point2(d.x,d.y);
-		Engine->box2dWorld->RayCast(&callback, point1, point2);
-	
-		if (callback.c) {
-			((ZObject*)callback.m_fixture->GetBody()->GetUserData())->interact(this);
-			//interacting = !interacting;
-		}
-	}
-
-	if (keyboard->isShot(SDLK_p)) {
+	if (keyboard->isShot(SDLK_p) || joyButton(2)) {
 		ShotCallback callback;
 
 		vec3 d = (*position)+dir*15;
@@ -332,6 +289,35 @@ void ZPlayerObject::step () {
 	
 		if (callback.c) {
 			((ZObject*)callback.m_fixture->GetBody()->GetUserData())->put(inventory.pullItem());
+			//interacting = !interacting;
+		}
+	}
+
+	if (openInventory) {
+		inventory.setDisplay(true);
+		if (getAxis(0) > 0.1 || keyboard->isShot(SDLK_RIGHT)) {
+			inventory.prevItem();
+		}
+		if (getAxis(0) < -0.1 || keyboard->isShot(SDLK_LEFT)) {
+			inventory.nextItem();
+		}
+		return;
+	} else {
+		inventory.setDisplay(false);		
+	}
+
+
+	if (keyboard->isShot(SDLK_SPACE) || joyButton(0)) {
+		ShotCallback callback;
+
+		vec3 d = (*position)+dir*15;
+
+		b2vec2 point1(position->x, position->y);
+		b2vec2 point2(d.x,d.y);
+		Engine->box2dWorld->RayCast(&callback, point1, point2);
+	
+		if (callback.c) {
+			((ZObject*)callback.m_fixture->GetBody()->GetUserData())->interact(this);
 			//interacting = !interacting;
 		}
 	}
@@ -379,6 +365,16 @@ float ZPlayerObject::getAxis(int _axis) {
 		return joys[playerNum]->axis[_axis].value;
 	}
 	return 0;
+}
+
+bool ZPlayerObject::joyButton (int _bt) {
+	auto joys = Engine->inputManager->getJoysticks();
+
+	if (joys.size() > playerNum) {
+		if (_bt < joys[playerNum]->buttons.size()) {
+			return joys[playerNum]->buttons[_bt].isShot();
+		}
+	}	
 }
 
 void ZPlayerObject::shot () {

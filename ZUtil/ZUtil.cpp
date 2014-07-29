@@ -68,38 +68,20 @@ void Selector::draw () {
 	glPopMatrix();
 
 	glPushMatrix();
-		// Save the previous proj. matrix
-		glMatrixMode( GL_PROJECTION );
-		glPushMatrix();
-
-		// Create a new one, perspective
-		glLoadIdentity();
-		glFrustum (-1, 1, windowHeight/windowWidth, -windowHeight/windowWidth, 1, 1000);
-
-		// Go back to modelview mode
-		glMatrixMode( GL_MODELVIEW );
 		glLoadIdentity();
 
-		glTranslatef(0.0, -windowHeight/4 + windowHeight/windowWidth*64 + y.v()*windowHeight/windowWidth/2, 0);
+		glTranslatef(0, y.v()-windowHeight/4, 0);
 
-		glRotatef (0, 0, 1, 0);
-
-		vec3 pos {0, 0,-200};
 		float n = 0;
 		for (auto i :icons) {
 			glPushMatrix();
-				glRotatef (360*n/32.0, 0, 1, 0);
-				glTranslatef (pos.x,pos.y,pos.z);
+				glTranslatef (n, 0, 0);
 				if (i)
 					i->draw(vec3());
 			glPopMatrix();
-			n++;
+			n+=i->getSize().x;
 		}
 
-		// Restore matrices
-		glMatrixMode( GL_PROJECTION );
-		glPopMatrix();
-		glMatrixMode( GL_MODELVIEW );
 	glPopMatrix();
 	glEnable (GL_DEPTH_TEST);	
 }
