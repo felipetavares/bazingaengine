@@ -36,7 +36,7 @@ vec2 PI::Item::getSize () {
 PI::Inventory::Inventory ():
 	y(vec2(tnow, tnow), vec2(Engine->videoManager->windowHeight/2,
 						   Engine->videoManager->windowHeight/2)),
-	angle(vec2(tnow,tnow), vec2(0,0)) {
+	position(vec2(tnow,tnow), vec2(0,0)) {
 
 	currentItem = 0;
 	display = false;
@@ -122,7 +122,7 @@ void PI::Inventory::draw() {
 
 		glTranslatef(0, y.v()+windowHeight/4, 0);
 
-		glTranslatef(items[0]->getSize().x*angle.v(), 0, 0);
+		glTranslatef(items[0]->getSize().x*position.v(), 0, 0);
 
 		float n = 0;
 		for (auto i :items) {
@@ -146,28 +146,31 @@ PI::Item* PI::Inventory::getItem () {
 }
 
 void PI::Inventory::nextItem() {
-	if (!angle.complete())
+	if (!position.complete())
 		return;
 
 	if (currentItem < items.size()-1)
 		currentItem++;
 	else
 		currentItem = 0;
-	// New angle
-	float na = angle.v()-1;
-	angle = li(vec2(tnow, tnow+0.3), vec2(angle.v(), na));
+
+	// New position
+	float np = -currentItem;
+	position = li(vec2(tnow, tnow+0.3), vec2(position.v(), np));
 }
 
 void PI::Inventory::prevItem() {
-	if (!angle.complete())
+	if (!position.complete())
 		return;
 
 	if (currentItem > 0)
 		currentItem--;
 	else
 		currentItem = items.size()-1;
-	float na = angle.v()+1;
-	angle = li(vec2(tnow, tnow+0.3), vec2(angle.v(), na));
+
+	// New position
+	float np = -currentItem;
+	position = li(vec2(tnow, tnow+0.3), vec2(position.v(), np));
 }
 
 PI::Item* PI::Inventory::pullItem() {
@@ -179,8 +182,8 @@ PI::Item* PI::Inventory::pullItem() {
 		if (currentItem > 0)
 			currentItem--;
 
-		float na = (float)(currentItem)/(float)items.size()*360;
-		angle = li(vec2(tnow, tnow+0.3), vec2(angle.v(), na));		
+		float np = -(float)(currentItem);
+		position = li(vec2(tnow, tnow+0.3), vec2(position.v(), np));
 
 		return ret;
 	} else {
@@ -286,7 +289,7 @@ void ZPlayerObject::step () {
 		b2vec2 point1(position->x, position->y);
 		b2vec2 point2(d.x,d.y);
 		Engine->box2dWorld->RayCast(&callback, point1, point2);
-	
+
 		if (callback.c) {
 			((ZObject*)callback.m_fixture->GetBody()->GetUserData())->put(inventory.pullItem());
 			//interacting = !interacting;
@@ -303,7 +306,7 @@ void ZPlayerObject::step () {
 		}
 		return;
 	} else {
-		inventory.setDisplay(false);		
+		inventory.setDisplay(false);
 	}
 
 
@@ -315,7 +318,7 @@ void ZPlayerObject::step () {
 		b2vec2 point1(position->x, position->y);
 		b2vec2 point2(d.x,d.y);
 		Engine->box2dWorld->RayCast(&callback, point1, point2);
-	
+
 		if (callback.c) {
 			((ZObject*)callback.m_fixture->GetBody()->GetUserData())->interact(this);
 			//interacting = !interacting;

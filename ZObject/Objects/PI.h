@@ -35,7 +35,7 @@ namespace PI {
 		ZTextureAsset *top;
 
 		li y;
-		li angle;
+		li position;
 	public:
 		Inventory();
 

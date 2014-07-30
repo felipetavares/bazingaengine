@@ -15,7 +15,7 @@ class ZVideoManager {
 
 	SDL_Surface *screen;
 
-	const Uint32 videoFlags = SDL_FULLSCREEN | SDL_OPENGL | SDL_HWSURFACE | SDL_DOUBLEBUF;
+	const Uint32 videoFlags = /*SDL_FULLSCREEN |*/ SDL_OPENGL | SDL_HWSURFACE | SDL_DOUBLEBUF;
 	ZFilePath icon;
 public:
 	int windowBpp;
