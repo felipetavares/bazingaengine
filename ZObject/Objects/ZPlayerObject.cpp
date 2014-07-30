@@ -374,7 +374,9 @@ bool ZPlayerObject::joyButton (int _bt) {
 		if (_bt < joys[playerNum]->buttons.size()) {
 			return joys[playerNum]->buttons[_bt].isShot();
 		}
-	}	
+	}
+
+	return false;
 }
 
 void ZPlayerObject::shot () {
