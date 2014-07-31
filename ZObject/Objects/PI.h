@@ -8,14 +8,13 @@ class ZPlayerObject;
 */
 namespace PI {
 	class Item {
-	protected:
-		ZTextureAsset *texture;
 	public:
+		ZTextureAsset *texture;
+
 		Item (ZTextureAsset*);
 		virtual void action (ZPlayerObject*, vector <Item*>) = 0;
 		virtual string getName() = 0;
 		void draw (vec3);
-
 		vec2 getSize();
 	};
 
@@ -26,29 +25,81 @@ namespace PI {
 		string getName();
 	};
 
-	class Inventory {
-		vector <Item*> items;
-		int currentItem;
-		bool display;
-		
-		ZTextureAsset *back;
-		ZTextureAsset *top;
+	class VerticalList {
+		vector <ZTextureAsset*> icons;
+		function <void (int)> mOnSelect;
+		int position;
 
-		li y;
-		li position;
+		li translation;
 	public:
-		Inventory();
+		VerticalList();
+		VerticalList (vector<ZTextureAsset*>);
+		void onSelect (function <void (int)>);
+		void addIcon (ZTextureAsset*);
+		void draw (vec2, VerticalList*);
+
+		void up();
+		void down();
+		void select ();
+	
+		int getPosition();
+
+		void set (vector<ZTextureAsset*>);
+	};
+
+	class Category {
+		ZTextureAsset *icon;
+		vector <Item*> items;
+		static long nid;
+		bool mIsExtern;
+	public:
+		long id;
+
+		Category(string, bool=false);
+		vector<ZTextureAsset*> getList ();
+		ZTextureAsset* getIcon();
 
 		void addItem (Item*);
-		Item* pullItem();
-		void removeItem (Item*);
-		void draw();
 
-		Item* getItem();
-		void nextItem();
-		void prevItem();
+		bool isExtern();
+	};
+
+	class InventoryTree {
+		vector <Category> categories;
+	public:
+		InventoryTree();
+		vector<ZTextureAsset*> getList ();
+		vector<ZTextureAsset*> getItemList (int);
+		vector<ZTextureAsset*> getExternList ();
 	
-		void setDisplay (bool);
+		void addCategory (Category);
+		void removeCategory (long);
+	};
+
+	class Inventory {
+		bool display;
+
+		int position;
+		VerticalList category;
+		VerticalList items;
+		VerticalList actions;
+
+	public:
+		InventoryTree tree;
+
+		Inventory();
+
+		void draw ();
+
+		void up();
+		void down();
+		void left();
+		void right();
+
+		void show();
+		void hide();
+	private:
+		VerticalList* getList();
 	};
 }
 

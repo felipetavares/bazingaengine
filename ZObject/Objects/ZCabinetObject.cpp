@@ -1,10 +1,16 @@
 #include "ZCabinetObject.h"
 #include "ZEngine/ZEngine.h"
+#include "ZObject/Objects/ZPlayerObject.h"
 
 ZCabinetObject::ZCabinetObject(long int _oid, vec3 _position, vec3 _rotation):
-    ZObject(_oid, _position, _rotation) {
+    ZObject(_oid, _position, _rotation),
+    content ("image.cabinet.00", true) {
     dclosed = true;
     dlocked = false;
+
+    content.addItem (new PI::Matches());
+    content.addItem (new PI::Matches());
+    content.addItem (new PI::Matches());
 }
 
 void ZCabinetObject::init () {
@@ -46,19 +52,17 @@ void ZCabinetObject::init () {
 }
 
 void ZCabinetObject::draw () {
-    if (!selector.isHidden())
-        selector.draw();
 }
 
 void ZCabinetObject::interact (ZObject* _object) {
     if (dclosed) {
-        selector.open();
         graphic->texture = Engine->assetsManager->getAsset<ZTextureAsset*> ("image.cabinet.01");
         dclosed = false;
+       ((ZPlayerObject*)_object)->getInventory()->tree.addCategory (content);
     } else {
-        selector.close();
         graphic->texture = Engine->assetsManager->getAsset<ZTextureAsset*> ("image.cabinet.00");
         dclosed = true;
+       ((ZPlayerObject*)_object)->getInventory()->tree.removeCategory (content.id);
     }
 }
 
@@ -75,5 +79,4 @@ PI::Item* ZCabinetObject::get () {
 }
 
 void ZCabinetObject::put (PI::Item* item) {
-    selector.addItem(item);
 }

@@ -176,7 +176,7 @@ void ZTextureAsset::drawCentered (vec3 _pos) {
 	glPushMatrix();
 		glTranslatef (_pos.x,_pos.y,_pos.z);
 		glTranslatef (-width/2, -height/2, 0);
-		glEnable (GL_TEXTURE);
+		glEnable (GL_TEXTURE_2D);
 		glEnable (GL_ALPHA_TEST);
 		glAlphaFunc (GL_GREATER, 0);
 		glEnable (GL_BLEND);

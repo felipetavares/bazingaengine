@@ -6,8 +6,8 @@
 #include "ZMath/math/li/li.h"
 
 class ZPlayerObject: public ZObject {
-	PI::Inventory inventory;
 	bool openInventory;
+	PI::Inventory inventory;
 public:
 	ZAnimation* anims[4];
 
@@ -22,6 +22,8 @@ public:
 	void step();
 	void shot();
 	void draw();
+
+	PI::Inventory* getInventory ();
 private:
 	float getAxis (int);
 	bool joyButton (int);
