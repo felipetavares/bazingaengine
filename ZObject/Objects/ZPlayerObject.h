@@ -22,8 +22,6 @@ public:
 	void step();
 	void shot();
 	void draw();
-
-	PI::Inventory* getInventory ();
 private:
 	float getAxis (int);
 	bool joyButton (int);

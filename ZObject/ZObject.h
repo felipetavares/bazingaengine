@@ -35,6 +35,7 @@ public:
 	virtual void step ();
 	virtual void draw ();
 	virtual void interact (ZObject*);
+	virtual void inventory (ZObject*, bool);
 	virtual void put (PI::Item*);
 	virtual PI::Item* get ();
 	virtual string getName();

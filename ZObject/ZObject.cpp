@@ -88,6 +88,9 @@ void ZObject::put (PI::Item* item) {
 void ZObject::interact (ZObject*) {
 }
 
+void ZObject::inventory (ZObject*, bool) {
+}
+
 string ZObject::getType () {
 	return "object";
 }

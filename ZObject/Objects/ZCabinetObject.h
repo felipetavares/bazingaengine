@@ -7,7 +7,6 @@
 class ZCabinetObject : public ZObject {
         bool dclosed;
         bool dlocked;
-        PI::Category content;
     public:
         ZCabinetObject(long int, vec3=vec3(), vec3=vec3());
         void init();

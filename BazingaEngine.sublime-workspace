@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"cate",
+				"Category"
+			],
+			[
+				"catr",
+				"Category"
+			],
+			[
 				"item",
 				"items"
 			],
@@ -291,7 +299,7 @@
 			"file": "ZObject/Objects/ZPlayerObject.cpp",
 			"settings":
 			{
-				"buffer_size": 12445,
+				"buffer_size": 8528,
 				"line_ending": "Windows"
 			}
 		},
@@ -299,7 +307,7 @@
 			"file": "ZObject/ZObject.cpp",
 			"settings":
 			{
-				"buffer_size": 4743,
+				"buffer_size": 4789,
 				"line_ending": "Windows"
 			}
 		},
@@ -315,7 +323,7 @@
 			"file": "ZObject/ZObject.h",
 			"settings":
 			{
-				"buffer_size": 1349,
+				"buffer_size": 1391,
 				"line_ending": "Windows"
 			}
 		},
@@ -336,14 +344,6 @@
 			}
 		},
 		{
-			"file": "ZEngineDecl.h",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "ZUtil/ZUtil.h",
 			"settings":
 			{
@@ -355,7 +355,7 @@
 			"file": "ZObject/Objects/ZPlayerObject.h",
 			"settings":
 			{
-				"buffer_size": 1078,
+				"buffer_size": 1044,
 				"line_ending": "Windows"
 			}
 		},
@@ -363,7 +363,7 @@
 			"file": "ZObject/Objects/PI.h",
 			"settings":
 			{
-				"buffer_size": 1723,
+				"buffer_size": 819,
 				"line_ending": "Windows"
 			}
 		},
@@ -379,7 +379,7 @@
 			"file": "ZObject/Objects/ZCabinetObject.cpp",
 			"settings":
 			{
-				"buffer_size": 2080,
+				"buffer_size": 1910,
 				"line_ending": "Windows"
 			}
 		},
@@ -416,6 +416,7 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZEngineDecl.h",
 		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZScene/ZScene.cpp",
 		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZObject/Objects/ZPlayerObject.cpp",
 		"/C/Users/Rachel/Desktop/Development/IFGames/BazingaEngine/ZAssetsManager/ZAssetsManager.cpp",
@@ -567,6 +568,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"openInventory",
 			"food",
 			"Disable",
 			"Math",
@@ -693,8 +695,7 @@
 			"getcomprimento",
 			"altura",
 			"desenhar",
-			"Bomba",
-			"(public int desenhar .*)\\)"
+			"Bomba"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -840,15 +841,15 @@
 					"file": "ZObject/Objects/ZPlayerObject.cpp",
 					"settings":
 					{
-						"buffer_size": 12445,
+						"buffer_size": 8528,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2070,
-								2070
+								1206,
+								1206
 							]
 						],
 						"settings":
@@ -857,7 +858,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 828.0,
+						"translation.y": 531.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -867,15 +868,15 @@
 					"file": "ZObject/ZObject.cpp",
 					"settings":
 					{
-						"buffer_size": 4743,
+						"buffer_size": 4789,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1777,
+								1777
 							]
 						],
 						"settings":
@@ -884,7 +885,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3631.0,
+						"translation.y": 1223.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -919,7 +920,7 @@
 			]
 		},
 		{
-			"selected": 6,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -927,15 +928,15 @@
 					"file": "ZObject/ZObject.h",
 					"settings":
 					{
-						"buffer_size": 1349,
+						"buffer_size": 1391,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								713,
+								713
 							]
 						],
 						"settings":
@@ -944,7 +945,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 340.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1004,32 +1005,6 @@
 				},
 				{
 					"buffer": 7,
-					"file": "ZEngineDecl.h",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
 					"file": "ZUtil/ZUtil.h",
 					"settings":
 					{
@@ -1056,19 +1031,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 8,
 					"file": "ZObject/Objects/ZPlayerObject.h",
 					"settings":
 					{
-						"buffer_size": 1078,
+						"buffer_size": 1044,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								948,
-								948
+								698,
+								698
 							]
 						],
 						"settings":
@@ -1077,40 +1052,40 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 270.0,
+						"translation.y": 10.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "ZObject/Objects/PI.h",
+					"settings":
+					{
+						"buffer_size": 819,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								557,
+								557
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 10,
-					"file": "ZObject/Objects/PI.h",
-					"settings":
-					{
-						"buffer_size": 1723,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								722,
-								722
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 335.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
 					"file": "ZAssetsManager/ZAssetsManager.cpp",
 					"settings":
 					{
@@ -1137,19 +1112,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 11,
 					"file": "ZObject/Objects/ZCabinetObject.cpp",
 					"settings":
 					{
-						"buffer_size": 2080,
+						"buffer_size": 1910,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								258,
-								258
+								427,
+								427
 							]
 						],
 						"settings":
@@ -1165,7 +1140,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 12,
 					"file": "ZObject/Objects/ZCabinetObject.h",
 					"settings":
 					{

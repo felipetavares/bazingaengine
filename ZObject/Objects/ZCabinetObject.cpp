@@ -3,14 +3,9 @@
 #include "ZObject/Objects/ZPlayerObject.h"
 
 ZCabinetObject::ZCabinetObject(long int _oid, vec3 _position, vec3 _rotation):
-    ZObject(_oid, _position, _rotation),
-    content ("image.cabinet.00", true) {
+    ZObject(_oid, _position, _rotation) {
     dclosed = true;
     dlocked = false;
-
-    content.addItem (new PI::Matches());
-    content.addItem (new PI::Matches());
-    content.addItem (new PI::Matches());
 }
 
 void ZCabinetObject::init () {
@@ -58,11 +53,11 @@ void ZCabinetObject::interact (ZObject* _object) {
     if (dclosed) {
         graphic->texture = Engine->assetsManager->getAsset<ZTextureAsset*> ("image.cabinet.01");
         dclosed = false;
-       ((ZPlayerObject*)_object)->getInventory()->tree.addCategory (content);
+       //((ZPlayerObject*)_object)->getInventory()->addCategory (content);
     } else {
         graphic->texture = Engine->assetsManager->getAsset<ZTextureAsset*> ("image.cabinet.00");
         dclosed = true;
-       ((ZPlayerObject*)_object)->getInventory()->tree.removeCategory (content.id);
+       //((ZPlayerObject*)_object)->getInventory()->removeCategory (content.id);
     }
 }
 

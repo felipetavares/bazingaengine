@@ -33,276 +33,84 @@ vec2 PI::Item::getSize () {
 	return vec2 (Engine->textManager->measureString (name,16), texture->height+20);
 }
 
-PI::VerticalList::VerticalList ():
-	translation(vec2(0,0),vec2(0,0)) {
-	position = -1;
-}
-
-PI::VerticalList::VerticalList (vector <ZTextureAsset*> _icons):
-	translation(vec2(0,0),vec2(0,0)) {
-	icons = _icons;
-
-	if (icons.size() > 0)
-		position = 0;
-	else
-		position = -1;
-}
-
-void PI::VerticalList::set (vector<ZTextureAsset*> _icons) {
-	icons = _icons;
-
-	if (icons.size() > 0)
-		position = 0;
-	else
-		position = -1;
-
-	translation = li (vec2(tnow, tnow+0.3), vec2(translation.v(), position));
-}
-
-void PI::VerticalList::onSelect (function <void (int)> _onSelect) {
-	mOnSelect = _onSelect;
-}
-
-void PI::VerticalList::addIcon (ZTextureAsset *_icon) {
-	icons.push_back (_icon);
-	if (position < 0 && icons.size() > 0)
-		position = 0;
-}
-
-void PI::VerticalList::draw (vec2 _position, VerticalList *_selected) {
-	if (position < 0)
-		return;
-
-	// Item size
-	vec2 isize = icons.size()>0?vec2 (icons[0]->width, icons[0]->height):
-								vec2 (0,0);
-
-	glDisable (GL_DEPTH_TEST);
-
-	glPushMatrix();
-		glLoadIdentity();
-		glScalef (2,2,2);
-		glTranslatef (_position.x, _position.y, 0);
-		vec3 p {0,-translation.v()*isize.y,0};
-
-		glDisable (GL_TEXTURE_2D);
-		glDisable (GL_ALPHA_TEST);
-		glDisable (GL_BLEND);
-		if (_selected == this)
-			glColor3f (1,0,0);
-		else
-			glColor3f (0.5,0.5,0.5);			
-		glBegin (GL_QUADS);
-			glVertex3f (-isize.x/2,-isize.y/2,0);
-			glVertex3f (isize.x/2,-isize.y/2,0);
-			glVertex3f (isize.x/2,isize.y/2,0);
-			glVertex3f (-isize.x/2,isize.y/2,0);
-		glEnd();
-		glEnable (GL_ALPHA_TEST);
-		glEnable (GL_BLEND);
-
-		for (auto icon :icons) {
-			icon->drawCentered(p);
-			p.y += isize.y;
-		}
-	glPopMatrix();
-
-	glEnable (GL_DEPTH_TEST);
-}
-
-void PI::VerticalList::select () {
-	if (position >= 0)
-		mOnSelect(position);
-}
-
-void PI::VerticalList::up () {
-	if (!translation.complete())
-		return;
-
-	if (position < icons.size()-1) {
-		position ++;
-	} else {
-		position = 0;
-	}
-
-	translation = li (vec2(tnow, tnow+0.3), vec2(translation.v(), position));
-}
-
-void PI::VerticalList::down () {
-	if (!translation.complete())
-		return;
-
-	if (position > 0) {
-		position --;
-	} else {
-		position = icons.size()-1;
-	}
-
-	translation = li (vec2(tnow, tnow+0.3), vec2(translation.v(), position));
-}
-
-int PI::VerticalList::getPosition () {
-	return position;
-}
-
-PI::Category::Category (string _icon, bool _isExtern) {
-	icon = Engine->assetsManager->getAsset <ZTextureAsset*> (_icon);
-	mIsExtern = _isExtern;
-	id = nid++;
-}
-
-vector<ZTextureAsset*> PI::Category::getList () {
-	vector<ZTextureAsset*> ilist;
-	for (auto item :items)
-		ilist.push_back (item->texture);
-	return ilist;
+PI::Category::Category (string _iconName) {
+	icon = Engine->assetsManager->getAsset<ZTextureAsset*> (_iconName);
 }
 
 ZTextureAsset* PI::Category::getIcon () {
 	return icon;
 }
 
-bool PI::Category::isExtern () {
-	return mIsExtern;
+void PI::Category::draw () {
+	glPushMatrix();
+	glLoadIdentity();
+	glDisable (GL_DEPTH_TEST);
+
+	//glTranslatef (0, translation.v()*items[0]->texture->height, 0);
+
+	for (int i=0;i<items.size();i++) {
+		auto icon = items[i]->texture;
+		icon->draw(vec3(64, i*icon->height, 0));
+	}
+
+	glEnable (GL_DEPTH_TEST);
+	glPopMatrix();
 }
 
-void PI::Category::addItem (Item *_item) {
+void PI::Category::addItem (Item* _item) {
 	items.push_back(_item);
 }
 
-PI::InventoryTree::InventoryTree () {
-}
-
-vector<ZTextureAsset*> PI::InventoryTree::getList () {
-	vector<ZTextureAsset*> ilist;
-	for (auto item :categories)
-		ilist.push_back (item.getIcon());
-	return ilist;
-}
-
-vector<ZTextureAsset*> PI::InventoryTree::getExternList () {
-	vector<ZTextureAsset*> ilist;
-	for (auto item :categories) {
-		if (item.isExtern())
-			ilist.push_back (item.getIcon());
-	}
-	return ilist;
-}
-
-vector<ZTextureAsset*> PI::InventoryTree::getItemList (int _position) {
-	return categories[_position].getList();
-}
-
-void PI::InventoryTree::addCategory (Category _category) {
-	categories.push_back (_category);
-}
-
-void PI::InventoryTree::removeCategory (long _id) {
-	int p;
-	for (auto category :categories) {
-		if (category.id == _id) {
-			categories.erase (categories.begin()+p);
-			break;
-		}
-		p++;
-	}
-}
-
-PI::Inventory::Inventory () {
-	auto food = Category ("image.matches");
-	auto tools = Category ("image.matches");
-
-	food.addItem (new Matches());
-	food.addItem (new Matches());
-	food.addItem (new Matches());
-
-	tools.addItem (new Matches());
-	tools.addItem (new Matches());
-	tools.addItem (new Matches());
-	tools.addItem (new Matches());
-
-	tree.addCategory(food);
-	tree.addCategory(tools);
-
-	category.set(tree.getList());
-	items.set(tree.getItemList(category.getPosition()));
-
+PI::Inventory::Inventory ():
+	translation(vec2(0,0), vec2(0,0)) {
 	position = 0;
 }
 
-void PI::Inventory::draw () {
-	if (!display)
-		return;
+void PI::Inventory::addCategory (Category _category) {
+	categories.push_back (_category);
+}
 
-	category.draw (vec2(-Engine->videoManager->windowWidth/6,0), getList());
-	items.draw (vec2(0,0), getList());
-	actions.draw (vec2(Engine->videoManager->windowWidth/6,0), getList());
+void PI::Inventory::draw () {
+	glPushMatrix();
+	glLoadIdentity();
+	glDisable (GL_DEPTH_TEST);
+
+	glTranslatef (0, translation.v()*categories[0].getIcon()->height, 0);
+
+	for (int i=0;i<categories.size();i++) {
+		auto icon = categories[i].getIcon();
+		icon->draw(vec3(0, i*icon->height, 0));
+	}
+
+	glEnable (GL_DEPTH_TEST);
+	glPopMatrix();
+
+	if (position < categories.size())
+		categories[position].draw();
 }
 
 void PI::Inventory::up () {
-	auto l = getList();
-	l->up();
+	if (!translation.complete())
+		return;
 
-	if (l == &category) {
-		items.set(tree.getItemList(category.getPosition()));
-	}
-	if (l == &items) {
-		actions.set (tree.getExternList());
-	}
+	if (position < categories.size()-1)
+		position++;
+	else
+		position = 0;
+
+	translation = li(vec2(tnow, tnow+0.3), vec2(translation.v(), -position));
 }
 
 void PI::Inventory::down () {
-	auto l = getList();
-	l->down();
+	if (!translation.complete())
+		return;
 
-	if (l == &category) {
-		items.set(tree.getItemList(category.getPosition()));
-	}
-	if (l == &items) {
-		actions.set (tree.getExternList());
-	}
-}
-
-void PI::Inventory::left () {
-	if (position > 0) {
+	if (position > 0)
 		position--;
-	}
-}
+	else
+		position = categories.size()-1;
 
-void PI::Inventory::right () {
-	if (position < 2) {
-		position++;
-	}
-}
-
-void PI::Inventory::show () {
-	display = true;
-	category.set(tree.getList());
-	items.set(tree.getItemList(category.getPosition()));
-}
-
-void PI::Inventory::hide () {
-	display = false;
-}
-
-PI::VerticalList* PI::Inventory::getList () {
-	switch (position) {
-		case 0:
-			return &category;
-		break;
-		case 1:
-			return &items;
-		break;
-		case 2:
-			return &actions;
-		break;
-		default:
-			return &category;
-	}
-}
-
-PI::Inventory* ZPlayerObject::getInventory () {
-	return &inventory;
+	translation = li(vec2(tnow, tnow+0.3), vec2(translation.v(), -position));
 }
 
 ZPlayerObject::ZPlayerObject (long int _oid,
@@ -310,6 +118,16 @@ ZPlayerObject::ZPlayerObject (long int _oid,
 						vec3 _rotation):
 	ZObject (_oid, _position, _rotation) {
 	openInventory = false;
+
+	for (int i=0;i<10;i++) {
+		auto cat = PI::Category("image.matches");
+		auto n = rand()%10;
+
+		for (int j=0;j<n;j++)
+			cat.addItem (new PI::Matches());
+
+		inventory.addCategory(cat);
+	}
 }
 
 void ZPlayerObject::init () {
@@ -385,49 +203,35 @@ void ZPlayerObject::step () {
 	graphic->animation->isPlaying = false;
 
 	if (openInventory) {
-		if (getAxis(1) < -0.1 || keyboard->isShot(SDLK_UP)) {
+		if (getAxis(1) < -0.1 || keyboard->keys[SDLK_UP]) {
 			inventory.down();
 		}
-		if (getAxis(1) > 0.1 || keyboard->isShot(SDLK_DOWN)) {
+		if (getAxis(1) > 0.1 || keyboard->keys[SDLK_DOWN]) {
 			inventory.up();
 		}
-		if (getAxis(0) < -0.1 || keyboard->isShot(SDLK_LEFT)) {
-			inventory.left();
-		}
-		if (getAxis(0) > 0.1 || keyboard->isShot(SDLK_RIGHT)) {
-			inventory.right();
-		}
+		//if (getAxis(0) < -0.1 || keyboard->isShot(SDLK_LEFT)) {
+			//inventory.left();
+		//}
+		//if (getAxis(0) > 0.1 || keyboard->isShot(SDLK_RIGHT)) {
+			//inventory.right();
+		//}
 	}
 
 	if (keyboard->isShot(SDLK_i) || joyButton (0)) {
 		openInventory = !openInventory;
+	}
 
-		if (openInventory) {
-			ShotCallback callback;
+	if (keyboard->isShot(SDLK_SPACE)) {
+		ShotCallback callback;
 
-			vec3 d = (*position)+dir*15;
+		vec3 d = (*position)+dir*15;
 
-			b2vec2 point1(position->x, position->y);
-			b2vec2 point2(d.x,d.y);
-			Engine->box2dWorld->RayCast(&callback, point1, point2);
+		b2vec2 point1(position->x, position->y);
+		b2vec2 point2(d.x,d.y);
+		Engine->box2dWorld->RayCast(&callback, point1, point2);
 
-			if (callback.c) {
-				((ZObject*)callback.m_fixture->GetBody()->GetUserData())->interact(this);
-			}
-			inventory.show();
-		} else {
-			ShotCallback callback;
-
-			vec3 d = (*position)+dir*15;
-
-			b2vec2 point1(position->x, position->y);
-			b2vec2 point2(d.x,d.y);
-			Engine->box2dWorld->RayCast(&callback, point1, point2);
-
-			if (callback.c) {
-				((ZObject*)callback.m_fixture->GetBody()->GetUserData())->interact(this);
-			}
-			inventory.hide();
+		if (callback.c) {
+			((ZObject*)callback.m_fixture->GetBody()->GetUserData())->interact(this);
 		}
 	}
 
@@ -562,5 +366,3 @@ float32 InteractCallback::ReportFixture(b2Fixture* fixture, const b2vec2& point,
 
 	return 1;
 }
-
-long PI::Category::nid;

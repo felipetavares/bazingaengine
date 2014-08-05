@@ -25,81 +25,31 @@ namespace PI {
 		string getName();
 	};
 
-	class VerticalList {
-		vector <ZTextureAsset*> icons;
-		function <void (int)> mOnSelect;
+	class Category {
+		ZTextureAsset* icon;
+		vector <Item*> items;
 		int position;
 
-		li translation;
 	public:
-		VerticalList();
-		VerticalList (vector<ZTextureAsset*>);
-		void onSelect (function <void (int)>);
-		void addIcon (ZTextureAsset*);
-		void draw (vec2, VerticalList*);
+		Category(string);
 
-		void up();
-		void down();
-		void select ();
-	
-		int getPosition();
-
-		void set (vector<ZTextureAsset*>);
-	};
-
-	class Category {
-		ZTextureAsset *icon;
-		vector <Item*> items;
-		static long nid;
-		bool mIsExtern;
-	public:
-		long id;
-
-		Category(string, bool=false);
-		vector<ZTextureAsset*> getList ();
+		void addItem(Item*);
+		void draw();
 		ZTextureAsset* getIcon();
-
-		void addItem (Item*);
-
-		bool isExtern();
-	};
-
-	class InventoryTree {
-		vector <Category> categories;
-	public:
-		InventoryTree();
-		vector<ZTextureAsset*> getList ();
-		vector<ZTextureAsset*> getItemList (int);
-		vector<ZTextureAsset*> getExternList ();
-	
-		void addCategory (Category);
-		void removeCategory (long);
 	};
 
 	class Inventory {
-		bool display;
-
+		vector <Category> categories;
 		int position;
-		VerticalList category;
-		VerticalList items;
-		VerticalList actions;
+		li translation;
 
 	public:
-		InventoryTree tree;
+		Inventory ();
 
-		Inventory();
-
+		void addCategory (Category);
 		void draw ();
-
-		void up();
-		void down();
-		void left();
-		void right();
-
-		void show();
-		void hide();
-	private:
-		VerticalList* getList();
+		void up ();
+		void down ();
 	};
 }
 
