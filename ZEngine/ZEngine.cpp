@@ -222,7 +222,7 @@ void ZEngine::step () {
 	for (auto& o :(*objects)) {
 		o->step();
 	}
-	box2dWorld->Step (Engine->gameTime->deltaTime,6,2);
+	box2dWorld->Step (1.0/30.0,1,1);
     box2dWorld->ClearForces();
 }
 
@@ -430,6 +430,47 @@ void ZEngine::saveMap (ZFilePath _path) {
 		bStatus->setProgress(0);
 	}
 
+}
+
+void ZEngine::listDirectory (ZFilePath _path) {
+	auto panel = new ZUI::Panel (vec2(0,0),vec2(ww,wh), 24);
+
+	bool success;
+	auto directory = Engine->filesystemManager->listDirectory(_path, success);
+
+	if (success) {
+		for (auto file :directory) {
+			file.normalize();
+			auto entry = new ZUI::wButton(file.getPath());
+
+			entry->addAction (
+				new ZUI::Filter (entry, Engine->guiManager->onclick),
+				new ZUI::Action ([=] (ZUI::Widget* _w, ZUI::Event *_m) {
+					if (Engine->filesystemManager->isDir(file)) {
+						Engine->listDirectory(file);
+						Engine->guiManager->removePanel(panel);
+					}
+				})
+			);
+
+			panel->addWidget(entry);
+		}
+	} else {
+		cout << "[ERR] Listing directory: " << _path.getPath() << endl;
+	}
+
+	auto close = new ZUI::wButton("Close");
+
+	close->addAction (
+		new ZUI::Filter (close, Engine->guiManager->onclick),
+		new ZUI::Action ([=] (ZUI::Widget* _w, ZUI::Event *_m) {
+			Engine->guiManager->removePanel(panel);
+		})
+	);
+
+	panel->addWidget(close);
+	panel->setVisibility(true);
+	Engine->guiManager->addPanel(panel);
 }
 
 void ZEngine::init () {

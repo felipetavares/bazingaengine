@@ -1,0 +1,9 @@
+{
+	"file"		: 	".:Assets:Images:x-right.png",
+	"width"		: 	24,
+	"height"	: 	50,
+	"direction"	: 	"forward",
+	"type"		:	"horizontal",
+	"duration"	: 	0.1,
+	"loop"		:	1
+}

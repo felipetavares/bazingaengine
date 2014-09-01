@@ -117,6 +117,7 @@ Panel::Panel (vec2 _p, vec2 _s, int _bar) {
 	s = _s;
 	z = 99.9;
 	bar = _bar;
+	drawStart = 0;
 	visible = false;
 	dragged = false;
 	haveFocus = false;
@@ -167,10 +168,18 @@ void Panel::draw() {
 	glEnable (GL_TEXTURE_2D);
 	glPopMatrix();
 
-	float h = (s.y-bar)/widgets.size();
+	// Drawing start, Drawing end
+	int dStart = drawStart;
+	int dSize = (s.y-bar*2)/32;
+	int dEnd = dStart+dSize;
 
-	for (int i=0;i<widgets.size();i++) {
-		widgets[i]->draw(vec2(p.x,p.y+bar+h*i),
+	if (dEnd > widgets.size())
+		dEnd = widgets.size();
+
+	float h = (s.y-bar*2)/(dEnd-dStart);
+
+	for (int i=dStart;i<dEnd;i++) {
+		widgets[i]->draw(vec2(p.x,p.y+bar+bar/2+h*(i-dStart)),
 						 vec2(s.x,h),
 						 z+0.05);
 	}
@@ -214,6 +223,21 @@ bool Panel::routeEvent(Event* _event) {
 					p.y = mp.y-dragDist.y;
 					return true;
 				}
+
+
+				if (mp.x >= p.x && mp.x <= p.x+s.x &&
+				    mp.y >= p.y+s.y-bar/2 && mp.y <= p.y+s.y &&
+				    _event->getMouse()->leftIsShot()) {
+					if (drawStart+int((s.y-bar*2)/32) < widgets.size()-1)
+						drawStart++;
+				}
+
+				if (mp.x >= p.x && mp.x <= p.x+s.x &&
+				    mp.y >= p.y+bar && mp.y <= p.y+bar+bar/2 &&
+				    _event->getMouse()->leftIsShot()) {
+					if (drawStart > 0)
+						drawStart--;
+				}
 			}
 		}
 
@@ -244,6 +268,75 @@ void Panel::bringFront () {
 	haveFocus = true;
 }
 
+//! Speaks
+Speak::Speak(string _text) {
+	startChar = 0;
+	charsToDraw = 0;
+	cline = 0;
+	lines.push_back ("");
+	lines[lines.size()-1].reserve(128);
+	lastAddTime = 0;
+	text = _text;
+	textSize = text.size();
+}
+
+void Speak::draw () {
+	// Font size
+	int fsize = 32*pw(100)/800.0;
+	// Margin
+	int m = 32,n;
+	// Position
+	vec2 p = vec2(10+pw(10), ph(67)-10);
+	// Size
+	vec2 s = vec2(pw(80)-10, ph(33)-10);
+
+	glColor3f (0.3,0.3,0.3);
+	Engine->util->fillRect (p-vec2(10,-10), s, 50);
+	glColor3f (1,1,1);
+	Engine->util->fillRect (p, s, 51);
+	glColor3f (0,0,0);
+	Engine->util->strokeRect (p, s, 52);
+
+	//if (Engine->realTime->currentTime-lastAddTime > 0.05) {
+		if (charsToDraw < textSize) {
+			lines[cline] += text[charsToDraw];
+			charsToDraw ++;
+			//lastAddTime = Engine->realTime->currentTime;
+		}
+	//}
+
+	/*
+        if (Engine->textManager->measureString(lines[cline], fsize) > s.x-2*m) {
+		int p = lines[cline].size()-1;
+
+		while (lines[cline][p] != ' ' && p >= 0) {
+                        p--;
+			charsToDraw--;
+		}
+
+		lines[cline] = lines[cline].substr(0, p);
+
+
+		if (lines.size()*fsize+fsize < s.y-2*m) {
+			cline++;
+			lines.push_back ("");
+			lines[lines.size()-1].reserve(128);
+		} else {
+			for (int l=0;l<lines.size()-1;l++)
+				lines[l] = lines[l+1];
+			lines[cline] = "";
+		}
+        }
+	*/
+
+	n=0;
+	for (auto line :lines) {
+		Engine->textManager->setColor(vec3(0,0,0));
+		Engine->textManager->drawString (vec3(p.x+m,p.y+fsize*n+m,100),line,fsize);
+		n++;
+	}
+}
+
 //! UI Manager
 ZGUIManager::ZGUIManager () {
 	focus = NULL;
@@ -252,6 +345,9 @@ ZGUIManager::ZGUIManager () {
 ZGUIManager::~ZGUIManager () {
 	for (auto panel :panels) {
 		delete panel;
+	}
+	for (auto speak :speaks) {
+		delete speak;
 	}
 }
 
@@ -268,7 +364,14 @@ void ZGUIManager::render () {
 		panel->setZ(z-=0.1);
 		panel->draw();
 	}
+	for (auto speak :speaks) {
+		speak->draw();
+	}
 	glPopMatrix();
+}
+
+void ZGUIManager::addSpeak(ZUI::Speak* _speak) {
+	speaks.push_back (_speak);
 }
 
 void ZGUIManager::addPanel (ZUI::Panel *_panel) {
@@ -430,7 +533,7 @@ void wIcon::draw (vec2 _p, vec2 _s, float _z) {
 
 	auto tex = Engine->assetsManager->getAsset<ZTextureAsset*>(aid);
 
-	glColor3f (1,1,1);
+	glColor3f (0.25,0.25,0.25);
 	glBindTexture (GL_TEXTURE_2D, tex->id);
 	glPushMatrix();
 	glTranslatef(_p.x,_p.y,_z);

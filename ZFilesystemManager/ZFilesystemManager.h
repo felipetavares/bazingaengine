@@ -16,12 +16,13 @@
 //#define WIN32
 
 #include <iostream>
-#include <fcntl.h>	  // Low level file creation
-#include <sys/types.h> // For Linux/Windows
-#include <sys/stat.h> // For Linux/Windows
-#include <cstdio>     // Files
-#include <unistd.h>   // Deleting
-#include <cstring>   // Memcpy
+#include <fcntl.h>	// Low level file creation
+#include <sys/types.h>	// For Linux/Windows
+#include <sys/stat.h>	// For Linux/Windows
+#include <cstdio>	// Files
+#include <unistd.h>	// Deleting
+#include <cstring>	// Memcpy
+#include <dirent.h>	// Directory listing
 #include <algorithm>
 using namespace std;
 
@@ -37,6 +38,7 @@ public:
 	string getExtension();
 	string getOriginalPath();
 	bool isEqual(ZFilePath);
+	void normalize();
 private:
 	void setWindowsPath(string);
 	void setLinuxPath(string);
@@ -56,9 +58,11 @@ public:
 	bool renameFile (ZFilePath,ZFilePath);
 	bool deleteFile (ZFilePath);
 	bool createFile (ZFilePath);
+	bool isDir (ZFilePath);
 	size_t getFileSize (ZFilePath);
 	char* getFileData (ZFilePath);
 	bool setFileData(ZFilePath, const char*, size_t);
+	vector <ZFilePath> listDirectory (ZFilePath,bool&);
 };
 
 #endif /* ZFILESYSTEMMANAGER_H */

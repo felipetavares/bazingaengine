@@ -172,11 +172,11 @@ void ZPlayerObject::init () {
 	}
 	};
 
-	anims[0] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> ("animation.player.up"));
+	anims[0] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> ("animation.x.up"));
 	anims[0]->setCallback (callback);
-	anims[1] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> ("animation.player.down"));
+	anims[1] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> ("animation.x.down"));
 	anims[0]->setCallback (callback);
-	anims[3] = anims[2] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> ("animation.player.left"));
+	anims[3] = anims[2] = 	new ZAnimation(Engine->assetsManager->getAsset <ZAnimationAsset*> ("animation.x.right"));
 	anims[2]->setCallback (callback);
 
 	graphic->animation = anims[0];
@@ -202,24 +202,24 @@ void ZPlayerObject::step () {
 
 	graphic->animation->isPlaying = false;
 
-	if (openInventory) {
-		if (getAxis(1) < -0.1 || keyboard->keys[SDLK_UP]) {
-			inventory.down();
-		}
-		if (getAxis(1) > 0.1 || keyboard->keys[SDLK_DOWN]) {
-			inventory.up();
-		}
-		//if (getAxis(0) < -0.1 || keyboard->isShot(SDLK_LEFT)) {
-			//inventory.left();
-		//}
-		//if (getAxis(0) > 0.1 || keyboard->isShot(SDLK_RIGHT)) {
-			//inventory.right();
-		//}
-	}
+	//if (openInventory) {
+	//	if (getAxis(1) < -0.1 || keyboard->keys[SDLK_UP]) {
+	//		inventory.down();
+	//	}
+	//	if (getAxis(1) > 0.1 || keyboard->keys[SDLK_DOWN]) {
+	//		inventory.up();
+	//	}
+	//	//if (getAxis(0) < -0.1 || keyboard->isShot(SDLK_LEFT)) {
+	//		//inventory.left();
+	//	//}
+	//	//if (getAxis(0) > 0.1 || keyboard->isShot(SDLK_RIGHT)) {
+	//		//inventory.right();
+	//	//}
+	//}
 
-	if (keyboard->isShot(SDLK_i) || joyButton (0)) {
-		openInventory = !openInventory;
-	}
+	//if (keyboard->isShot(SDLK_i) || joyButton (0)) {
+	//	openInventory = !openInventory;
+	//}
 
 	if (keyboard->isShot(SDLK_SPACE)) {
 		ShotCallback callback;
@@ -235,8 +235,8 @@ void ZPlayerObject::step () {
 		}
 	}
 
-	if (openInventory)
-		return;
+	//if (openInventory)
+	//	return;
 
 	if (getAxis(1) < -0.1 || keyboard->keys[SDLK_UP]) {
 		box2dBody->ApplyLinearImpulse (b2vec2 (0,-80), box2dBody->GetWorldPoint(b2vec2(0,0)));
@@ -256,7 +256,7 @@ void ZPlayerObject::step () {
 		box2dBody->ApplyLinearImpulse (b2vec2 (-80,0), box2dBody->GetWorldPoint(b2vec2(0,0)));
 		graphic->animation = anims[2];
 		graphic->animation->isPlaying = true;
-		graphic->animation->flipH = false;
+		graphic->animation->flipH = true;
 		dir.x = -1;
 		dir.y = 0;
 	}
@@ -264,14 +264,14 @@ void ZPlayerObject::step () {
 		box2dBody->ApplyLinearImpulse (b2vec2 (80,0), box2dBody->GetWorldPoint(b2vec2(0,0)));
 		graphic->animation = anims[3];
 		graphic->animation->isPlaying = true;
-		graphic->animation->flipH = true;
+		graphic->animation->flipH = false;
 		dir.x = +1;
 		dir.y = 0;
 	}
 }
 
 void ZPlayerObject::draw () {
-	inventory.draw();
+	//inventory.draw();
 }
 
 float ZPlayerObject::getAxis(int _axis) {

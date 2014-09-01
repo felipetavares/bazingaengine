@@ -69,6 +69,16 @@ string ZFilePath::getExtension () {
 	}
 }
 
+void ZFilePath::normalize() {
+	for (int i=0;i<oPath.size()-1;i++) {
+		if (oPath[i] == '.' && oPath[i+1] == ':') {
+                        oPath = oPath.substr(0,i)+oPath.substr(i+2, oPath.size()-i-2);
+                        i-=2;
+		}
+	}
+	setPath(oPath);
+}
+
 ZFilesystemManager::ZFilesystemManager () {
 
 }
@@ -212,4 +222,38 @@ size_t ZFilesystemManager::getFileSize (ZFilePath _path) {
 	}
 
 	return -1;
+}
+
+vector <ZFilePath> ZFilesystemManager::listDirectory (ZFilePath _path,bool &_success) {
+	vector <ZFilePath> dir;
+	_success = true;
+
+	if (isDir(_path)) {
+                DIR *d;
+                struct dirent *entry;
+
+                d = opendir(_path.getPath().c_str());
+
+                if (d) {
+                	string lig = _path.getOriginalPath()[_path.getOriginalPath().size()-1] != ':'?":":"";
+			while ((entry = readdir(d)) != NULL) {
+                                dir.push_back (ZFilePath(_path.getOriginalPath()+lig+string(entry->d_name)));
+			}
+
+			closedir(d);
+                } else {
+			_success = false;
+                }
+	} else {
+		_success = false;
+	}
+
+	return dir;
+}
+
+bool ZFilesystemManager::isDir(ZFilePath _path) {
+	return true;
+	struct _stat info;
+	_stat (_path.getPath().c_str(),&info);
+	return S_ISDIR(info.st_mode);
 }

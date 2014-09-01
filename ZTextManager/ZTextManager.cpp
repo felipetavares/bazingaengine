@@ -81,8 +81,9 @@ void ZUTF8Atlas::update () {
     if (characters.size() == 0)
         return;
 
-    string text;
-    int textW,textH,oldTextW=0;
+    string text = "";
+    int textW,textH;
+    float oldTextW=0;
 
     // Mede o texto (suporta utf8)
     positions.clear();
@@ -92,11 +93,14 @@ void ZUTF8Atlas::update () {
 
         if ((character&0xFF) > 192)
             text += (character>>8);
+
+        text += ' ';
+
         // Mede o tamanho da string
         TTF_SizeUTF8 (font.font, text.c_str(), &textW, &textH);
         // Adiciona o tamanho ao mapa
         positions.insert (pair<uint16_t,GlyphPosition>(character,GlyphPosition(oldTextW,textW*0.5-oldTextW)));
-        oldTextW = textW*0.5;
+        oldTextW = float(textW)*0.5;
     }
 
     // Renderiza o texto
@@ -488,7 +492,7 @@ float ZTextManager::measureString (string& _text, float _h) {
         len += utf8atlas->characterSize(utf8);
     }
 
-    return len;
+    return len*scale;
 }
 
 void ZTextManager::drawStringCentered (vec3 _pos, string& _text, float _h) {

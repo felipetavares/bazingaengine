@@ -162,6 +162,9 @@ class Panel {
 	vec2 dragDist;
 
 	Widget* focus;
+
+	//! Início da contagem
+	int drawStart;
 public:
 	Panel(vec2,vec2,int);
 	~Panel();
@@ -184,9 +187,23 @@ public:
 	void requestFocus(Widget*);
 };
 
+class Speak {
+	int charsToDraw;
+	int startChar;
+	int textSize;
+	string text;
+	vector <string> lines;
+	int cline;
+	float lastAddTime;
+public:
+	Speak(string);
+	void draw();
+};
+
 }
 
 class ZGUIManager {
+	vector <ZUI::Speak*> speaks;
 	vector <ZUI::Panel*> panels;
 	ZUI::Panel *focus;
 
@@ -196,6 +213,8 @@ public:
 
 	ZGUIManager();
 	~ZGUIManager();
+
+	void addSpeak (ZUI::Speak*);
 
 	void addPanel(ZUI::Panel*);
 	void removePanel(ZUI::Panel*);

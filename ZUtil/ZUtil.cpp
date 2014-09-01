@@ -83,7 +83,7 @@ void Selector::draw () {
 		}
 
 	glPopMatrix();
-	glEnable (GL_DEPTH_TEST);	
+	glEnable (GL_DEPTH_TEST);
 }
 
 void Selector::open () {
@@ -98,4 +98,30 @@ void Selector::close () {
 bool Selector::isHidden () {
 	float windowHeight = Engine->videoManager->windowHeight;
 	return y.v() <= -windowHeight/2;
+}
+
+void ZUtil::fillRect(vec2 _p, vec2 _s, float _z) {
+	glPushMatrix();
+	glDisable (GL_TEXTURE_2D);
+		glBegin(GL_QUADS);
+			glVertex3f(_p.x, _p.y, _z);
+			glVertex3f(_p.x+_s.x, _p.y, _z);
+			glVertex3f(_p.x+_s.x, _p.y+_s.y, _z);
+			glVertex3f(_p.x, _p.y+_s.y, _z);
+		glEnd();
+	glEnable (GL_TEXTURE_2D);
+	glPopMatrix();
+}
+
+void ZUtil::strokeRect(vec2 _p, vec2 _s, float _z) {
+	glPushMatrix();
+	glDisable (GL_TEXTURE_2D);
+		glBegin(GL_LINE_LOOP);
+			glVertex3f(_p.x, _p.y, _z);
+			glVertex3f(_p.x+_s.x, _p.y, _z);
+			glVertex3f(_p.x+_s.x, _p.y+_s.y, _z);
+			glVertex3f(_p.x, _p.y+_s.y, _z);
+		glEnd();
+	glEnable (GL_TEXTURE_2D);
+	glPopMatrix();
 }

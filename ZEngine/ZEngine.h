@@ -117,6 +117,7 @@ public:
 
 	void loadMap (ZFilePath);
 	void saveMap (ZFilePath);
+	void listDirectory (ZFilePath);
 private:
 	float getDeltaTime();
 };

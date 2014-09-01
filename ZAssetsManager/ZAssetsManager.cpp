@@ -390,7 +390,7 @@ void ZFontAsset::load () {
 	return;
     }
 	font = TTF_OpenFont(path.getPath().c_str(), 64);
-	TTF_SetFontHinting (font, TTF_HINTING_LIGHT);
+	TTF_SetFontHinting (font, TTF_HINTING_NONE);
 	TTF_SetFontKerning (font, 0);
 	if (!font) {
 		cout << "[ERR] " << "[CANNOT LOAD FONT]" << ZAsset::path.getPath()  << " [aid=" << ZAsset::aid << "]" << endl;

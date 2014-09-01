@@ -1,6 +1,6 @@
 {
 	"editmode": 0,
-	"font.default": ".:Assets:Fonts:LinuxLibertine:LinLibertine_Mah.ttf",
+	"font.default": ".:Assets:Fonts:Schoolbell.ttf",
 	"audio.effect.wind": ".:Assets:Audio:wind:wind.ogg",
 	"audio.effect.sand": ".:Assets:Audio:footsteps:sand.ogg",
 	"audio.music.intro": ".:Assets:Audio:music:intro:intro.ogg",
@@ -8,6 +8,9 @@
 	"animation.player.up": ".:Assets:Animations:player-up.anim",
 	"animation.player.left": ".:Assets:Animations:player-left.anim",
 	"animation.player.down": ".:Assets:Animations:player-down.anim",
+	"animation.x.right": ".:Assets:Animations:x-right.anim",
+	"animation.x.down": ".:Assets:Animations:x-down.anim",
+	"animation.x.up": ".:Assets:Animations:x-up.anim",
 	"image.rock.00": ".:Assets:Images:rock:rock00.png",
 	"image.rock.01": ".:Assets:Images:rock:rock01.png",
 	"image.rock.02": ".:Assets:Images:rock:rock02.png",

@@ -50,6 +50,8 @@ void ZCabinetObject::draw () {
 }
 
 void ZCabinetObject::interact (ZObject* _object) {
+	Engine->guiManager->addSpeak (new ZUI::Speak("Hi. Welcome to IF-Games demo v1.1.3. Redistribution allowed only for CCSL-IFRN members."));
+
     if (dclosed) {
         graphic->texture = Engine->assetsManager->getAsset<ZTextureAsset*> ("image.cabinet.01");
         dclosed = false;

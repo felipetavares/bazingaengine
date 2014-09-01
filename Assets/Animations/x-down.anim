@@ -1,0 +1,9 @@
+{
+	"file"		: 	".:Assets:Images:x-down.png",
+	"width"		: 	17,
+	"height"	: 	50,
+	"direction"	: 	"forward",
+	"type"		:	"horizontal",
+	"duration"	: 	0.1,
+	"loop"		:	1
+}

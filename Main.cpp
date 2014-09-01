@@ -15,6 +15,7 @@ void createGUI () {
 	auto button1 = new ZUI::wButton("Objects");
 	auto button2 = new ZUI::wButton("Save map");
 	auto button3 = new ZUI::wButton("Edit Mode");
+	auto button4 = new ZUI::wButton("Browse files");
 	auto entry = new ZUI::wEntry("ÁÉÍÓÚáéíóú");
 
 	button0->addAction (
@@ -34,12 +35,12 @@ void createGUI () {
 	button2->addAction (
 		new ZUI::Filter (button2, Engine->guiManager->onclick),
 		new ZUI::Action ([=] (ZUI::Widget* _w, ZUI::Event *_m) {
-            // Para não bloquear a UI
-            SDL_CreateThread([] (void *_obj) {
-                ZFilePath mapPath = ZFilePath (".:Assets:map00.map");
-	            Engine->saveMap(mapPath);
-	            return 0;
-            },NULL);
+			// Para não bloquear a UI
+			SDL_CreateThread([] (void *_obj) {
+			ZFilePath mapPath = ZFilePath (".:Assets:map00.map");
+			    Engine->saveMap(mapPath);
+			    return 0;
+			},NULL);
 		})
 	);
 
@@ -47,6 +48,13 @@ void createGUI () {
 		new ZUI::Filter (button3, Engine->guiManager->onclick),
 		new ZUI::Action ([] (ZUI::Widget* _w, ZUI::Event *_m) {
 			Engine->editMode = !Engine->editMode;
+		})
+	);
+
+	button4->addAction (
+		new ZUI::Filter (button4, Engine->guiManager->onclick),
+		new ZUI::Action ([] (ZUI::Widget* _w, ZUI::Event *_m) {
+			Engine->listDirectory (ZFilePath(".:Assets:"));
 		})
 	);
 
@@ -68,6 +76,7 @@ void createGUI () {
 	menu->addWidget(button1);
 	menu->addWidget(button2);
 	menu->addWidget(button3);
+	menu->addWidget(button4);
 	//menu->addWidget(entry);
 	menu->setVisibility(true);
 
@@ -156,15 +165,15 @@ int main (int,char**) {
 	object->position->x = 0;
 	object->position->y = 0;
 	object->position->z = 0;
-	object->graphic->position->x = -10;
-	object->graphic->position->y = -22;
+	object->graphic->position->x = -8;
+	object->graphic->position->y = -42;
 	object->graphic->position->z = 0;
 
 	object->size->x = 8;
 	object->size->y = 4;
 	object->size->z = 0;
-	object->graphic->size->x = 26;
-	object->graphic->size->y = 26;
+	object->graphic->size->x = 24;
+	object->graphic->size->y = 52;
 	object->graphic->size->z = 0;
 
 	object->phys = true;
@@ -174,18 +183,18 @@ int main (int,char**) {
 
 	// Pre-render every character (It is faster to render this way than using drawString)
 	// Draw string re-renders for every characters, here we render the entire chunk
-	string everything = "abcdefghijklmnopqrstyuvwxyzáéíóúãõÁÉÍÓÚâêôÂẼÔABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?@#$&*()-+/:;\"'<>[]{}%/\\ çÇ";
+	string everything = "abcdefghijklmnopqrstyuvwxyzáéíóúãõÁÉÍÓÚâêôÂÊÔABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?@#$&*()-+/:;\"'<>[]{}%/\\ çÇ";
 	Engine->textManager->registerCharacters(everything);
 
 	auto introScene = new scnIntro ("IntroFast.scene");
 
 	Engine->sceneManager->addScene (introScene);
 
-    try {
-        Engine->run();
-    } catch (exception e) {
-        cout << "[ERR] [EXCEPT] " << e.what() << endl;
-    }
+	try {
+		Engine->run();
+	} catch (exception e) {
+		cout << "[ERR] [EXCEPT] " << e.what() << endl;
+	}
 
 	delete Engine;
 

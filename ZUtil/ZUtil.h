@@ -11,6 +11,9 @@ class ZUtil {
 public:
 	ZUtil();
 	~ZUtil();
+
+	void fillRect (vec2, vec2, float);
+	void strokeRect (vec2, vec2, float);
 };
 
 class Selector {

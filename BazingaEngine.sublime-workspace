@@ -387,7 +387,7 @@
 			"file": "ZObject/Objects/ZCabinetObject.h",
 			"settings":
 			{
-				"buffer_size": 511,
+				"buffer_size": 481,
 				"line_ending": "Windows"
 			}
 		}
@@ -1144,15 +1144,15 @@
 					"file": "ZObject/Objects/ZCabinetObject.h",
 					"settings":
 					{
-						"buffer_size": 511,
+						"buffer_size": 481,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								221,
-								221
+								0,
+								0
 							]
 						],
 						"settings":
