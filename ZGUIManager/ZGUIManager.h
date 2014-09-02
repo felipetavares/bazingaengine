@@ -189,14 +189,15 @@ public:
 
 class Speak {
 	int charsToDraw;
-	int startChar;
 	int textSize;
 	string text;
-	vector <string> lines;
+	vector <string*> lines;
 	int cline;
 	float lastAddTime;
+	string line;
 public:
 	Speak(string);
+	~Speak();
 	void draw();
 };
 

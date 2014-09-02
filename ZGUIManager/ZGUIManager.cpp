@@ -270,14 +270,18 @@ void Panel::bringFront () {
 
 //! Speaks
 Speak::Speak(string _text) {
-	startChar = 0;
 	charsToDraw = 0;
 	cline = 0;
-	lines.push_back ("");
-	lines[lines.size()-1].reserve(128);
+	lines.push_back (new string(""));
 	lastAddTime = 0;
 	text = _text;
 	textSize = text.size();
+}
+
+Speak::~Speak () {
+    for (auto *str :lines) {
+        delete str;
+    }
 }
 
 void Speak::draw () {
@@ -297,42 +301,40 @@ void Speak::draw () {
 	glColor3f (0,0,0);
 	Engine->util->strokeRect (p, s, 52);
 
-	//if (Engine->realTime->currentTime-lastAddTime > 0.05) {
+	if (Engine->realTime->currentTime-lastAddTime > 0.05) {
 		if (charsToDraw < textSize) {
-			lines[cline] += text[charsToDraw];
-			charsToDraw ++;
-			//lastAddTime = Engine->realTime->currentTime;
+		    char newChar = text.c_str()[charsToDraw++];
+			lines.at(cline)->push_back(newChar);
+			lastAddTime = Engine->realTime->currentTime;
 		}
-	//}
+	}
 
-	/*
-        if (Engine->textManager->measureString(lines[cline], fsize) > s.x-2*m) {
-		int p = lines[cline].size()-1;
+    if (Engine->textManager->measureString(*lines[cline], fsize) > s.x-2*m) {
+		int p = lines[cline]->size()-1;
 
-		while (lines[cline][p] != ' ' && p >= 0) {
+		while (lines[cline]->at(p) != ' ' && p >= lines[cline]->size()-1) {
                         p--;
 			charsToDraw--;
 		}
 
-		lines[cline] = lines[cline].substr(0, p);
-
+        string *oldString = lines[cline];
+		lines[cline] = new string(lines[cline]->substr(0, p));
+        delete oldString;
 
 		if (lines.size()*fsize+fsize < s.y-2*m) {
 			cline++;
-			lines.push_back ("");
-			lines[lines.size()-1].reserve(128);
+			lines.push_back (new string(""));
 		} else {
 			for (int l=0;l<lines.size()-1;l++)
 				lines[l] = lines[l+1];
-			lines[cline] = "";
+			lines[cline]->assign("");
 		}
-        }
-	*/
+    }
 
 	n=0;
 	for (auto line :lines) {
 		Engine->textManager->setColor(vec3(0,0,0));
-		Engine->textManager->drawString (vec3(p.x+m,p.y+fsize*n+m,100),line,fsize);
+		Engine->textManager->drawString (vec3(p.x+m,p.y+fsize*n+m,100),*line,fsize);
 		n++;
 	}
 }
